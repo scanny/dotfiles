@@ -1,0 +1,145 @@
+#
+# aliases.zsh
+#
+
+# platform-specific aliases --------------------------------
+if is_mac; then
+    alias vim='mvim -v'
+    # set iTerm2 cursor back to vertical bar
+    alias curs='echo -e -n "\033]50;CursorShape=1\007"'
+    alias e='mvim -S Session.vim'
+else
+    alias e='vim -S Session.vim'
+fi
+
+# ----------------------------------------------------------
+
+alias b='behave'
+alias fix='git checkout fixit; git reset --hard'
+
+
+# -------------------------------------------------------------------
+# directory movement
+# -------------------------------------------------------------------
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias bk='cd $OLDPWD'
+alias d='dirs -lpv'
+alias dc='dirs -c'
+
+# ---------------------------------------------------------
+# git aliases
+# ---------------------------------------------------------
+alias g='git'
+alias ga='git add'
+alias gaa='git add --all'
+
+alias gb='git branch'
+alias gba='git branch -a'
+
+alias gc='git commit -v'
+alias gca='git commit -v --amend'
+alias gcar='git commit --amend --reuse-message=HEAD'
+alias gcl='git config --list'
+alias gclean='git reset --hard && git clean -dfx'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gcod='git checkout develop'
+alias gcof='git checkout fixit'
+alias gcom='git checkout master'
+alias gcp='git cherry-pick'
+
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gdh='git diff HEAD'
+
+alias gf='git fetch'
+
+alias gh='git h'
+alias ghp='git hp'
+
+alias gl='git l'
+alias gla='git la'
+alias glr='git r'
+alias glra='git ra'
+alias gls='git --no-pager log --oneline -S'
+alias glsf='git ls-files | grep'
+
+alias gm='git merge'
+
+alias gp='git log -p -1 --oneline HEAD'
+
+alias gr='git remote'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbfd='git rebase fixit develop'
+# alias grbi='git rebase -i'
+alias grbi='git checkout develop && git rebase -i fixit'
+alias grbo='git rebase --onto'
+alias grbs='git rebase --skip'
+alias grsh='git reset --hard'
+alias grsH='git reset HEAD'
+alias grhHh='git reset HEAD --hard'
+
+alias gs='git status'
+alias gss='git status -s'
+
+alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
+
+alias gx='gitx --all'
+
+# -------------------------------------------------------------------
+
+alias gentags='ctags .'
+# alias history='fc -l 1'
+alias ll='/usr/local/bin/gls -l --color --group-directories-first'
+alias lla='/usr/local/bin/gls -la --color --group-directories-first'
+alias n='next'
+alias sz="source ~/.zshrc"
+alias oz="vim ~/.zshrc"
+alias po='popd'
+alias prev='grsh HEAD^'
+alias pt='py.test'
+alias pu='pushd'
+alias rm='rm -i'
+alias t='make clean && flake8 opcdiag tests && py.test && behave'
+alias view='mvim -Rv'
+
+# -------------------------------------------------------------------
+# directory information
+# -------------------------------------------------------------------
+# alias lh='ls -d .*' # show hidden files/directories only
+# alias lsd='ls -aFhlG'
+# alias l='ls -al'
+# alias ls='ls -GFh' # Colorize output, add file type indicator, and put sizes in human readable format
+# alias ll='ls -GFhl' # Same as above, but in long listing format
+# alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+# alias 'dus=du -sckx * | sort -nr' #directories sorted by size
+
+# alias 'filecount=find . -type f | wc -l' # number of files (not directories)
+# alias 'wordy=wc -w * | sort | tail -n10' # sort files in current directory by the number of words they contain
+
+# -------------------------------------------------------------------
+# Mac only
+# -------------------------------------------------------------------
+if is_mac; then
+    alias ql='qlmanage -p 2>/dev/null' # OS X Quick Look
+    alias oo='open .' # open current directory in OS X Finder
+    alias 'today=calendar -A 0 -f /usr/share/calendar/calendar.mark | sort'
+    alias 'mailsize=du -hs ~/Library/mail'
+    # display SMART status of hard drive
+    alias 'smart=diskutil info disk0 | grep SMART'
+    # Hall of the Mountain King
+    alias cello='say -v cellos "di di di di di di di di di di di di di di di di di di di di di di di di di di"'
+    # # refresh brew by upgrading all outdated casks
+    # alias refreshbrew='brew outdated | while read cask; do brew upgrade $cask; done'
+fi
+
+# -------------------------------------------------------------------
+# Python virtualenv 
+# -------------------------------------------------------------------
+alias mkenv='mkvirtualenv'
+alias on="workon"
+alias off="deactivate"

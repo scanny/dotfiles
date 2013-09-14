@@ -1,0 +1,15 @@
+! rxvt.font:          -*-lucidatypewriter-medium-*-*-*-14-*-*-*-*-*-*-*
+! or...
+rxvt.font:            Lucida Console-12
+#rxvt.font:            Consolas-14
+rxvt.boldFont:        Lucida Console-12
+#rxvt.boldFont:        Consolas Bold-14
+rxvt.geometry:        110x26
+rxvt.scrollBar:       True
+rxvt.visualBell:      True
+rxvt.loginShell:      True
+rxvt.background:      White
+rxvt.foreground:      Black
+rxvt.saveLines:       3000
+rxvt.cursorColor:     Green
+rxvt.scrollBar_right: True

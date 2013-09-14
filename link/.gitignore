@@ -1,0 +1,7 @@
+*~
+*.DS_Store
+doc/tags
+Icon
+*.pyc
+/Session.vim
+/tmp
