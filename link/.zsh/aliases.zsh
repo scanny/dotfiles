@@ -4,12 +4,20 @@
 
 # platform-specific aliases --------------------------------
 if is_mac; then
-    alias vim='mvim -v'
     # set iTerm2 cursor back to vertical bar
     alias curs='echo -e -n "\033]50;CursorShape=1\007"'
     alias e='mvim -S Session.vim'
+    alias l='/usr/local/bin/gls -la --color --group-directories-first'
+    alias lh='/usr/local/bin/gls -dl --color --group-directories-first .*'
+    alias ll='/usr/local/bin/gls -l --color --group-directories-first'
+    alias lla='/usr/local/bin/gls -la --color --group-directories-first'
+    alias vim='mvim -v'
 else
     alias e='vim -S Session.vim'
+    alias l='ls -la --color --group-directories-first'
+    alias lh='ls -dl --color --group-directories-first .*'
+    alias ll='ls -l --color --group-directories-first'
+    alias lla='ls -la --color --group-directories-first'
 fi
 
 # ----------------------------------------------------------
@@ -94,8 +102,6 @@ alias gx='gitx --all'
 
 alias gentags='ctags .'
 # alias history='fc -l 1'
-alias ll='/usr/local/bin/gls -l --color --group-directories-first'
-alias lla='/usr/local/bin/gls -la --color --group-directories-first'
 alias n='next'
 alias sz="source ~/.zshrc"
 alias oz="vim ~/.zshrc"
@@ -110,16 +116,14 @@ alias view='mvim -Rv'
 # -------------------------------------------------------------------
 # directory information
 # -------------------------------------------------------------------
-# alias lh='ls -d .*' # show hidden files/directories only
-# alias lsd='ls -aFhlG'
-# alias l='ls -al'
-# alias ls='ls -GFh' # Colorize output, add file type indicator, and put sizes in human readable format
-# alias ll='ls -GFhl' # Same as above, but in long listing format
-# alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
-# alias 'dus=du -sckx * | sort -nr' #directories sorted by size
+# # directories sorted by size
+# alias 'dus=du -sckx * | sort -nr'
 
-# alias 'filecount=find . -type f | wc -l' # number of files (not directories)
-# alias 'wordy=wc -w * | sort | tail -n10' # sort files in current directory by the number of words they contain
+# # number of files (not directories)
+# alias 'filecount=find . -type f | wc -l'
+
+# # sort files in current directory by the number of words they contain
+# alias 'wordy=wc -w * | sort | tail -n10'
 
 # -------------------------------------------------------------------
 # Mac only
