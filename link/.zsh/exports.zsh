@@ -32,6 +32,9 @@ if [ -d "${HOME}/bin" ] ; then
   PATH=${HOME}/bin:${PATH}
 fi
 
+# where zsh finds functions and completions
+fpath=(~/.zsh $fpath)
+
 # CDPATH allows quick directory changes
 CDPATH=~/Dropbox/src
 

@@ -10,6 +10,9 @@ zstyle ':vcs_info:*' enable git #svn cvs
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path ~/.zsh/cache/$HOST
 
+# Enable git completion
+zstyle ':completion:*:*:git:' script ~/.zsh/git-completion.bash
+
 # Fallback to built in ls colors
 zstyle ':completion:*' list-colors ''
 

@@ -26,7 +26,10 @@ Keeping dotfiles under version control (git)
 --------------------------------------------
 
 You never know when you might need something later. Plus, it's interesting to
-see how the collection of dotfiles evolves.
+see how the collection of dotfiles evolves. A very useful benefit arises when
+you can't remember just how you added frombobulation way back when. With the
+git log, if you were a little careful about your commits, you can find exactly
+the changes that were required.
 
 
 Maintaining an off-site backup
