@@ -115,6 +115,12 @@ setopt prompt_subst
 # (don't) only show the rprompt on the current prompt
 unsetopt transient_rprompt
 
+# the Windows console is a bit fakakta and sends an unterminated line before
+# every prompt, causing reverse-video percent sign to appear without this:
+if is_cygwin; then
+    unsetopt prompt_sp
+fi
+
 
 # ---------------------------------------------------------
 # scripts and functions
