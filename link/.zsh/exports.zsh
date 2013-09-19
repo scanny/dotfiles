@@ -54,7 +54,13 @@ export GREP_COLOR='3;33'
 
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='less'
-export EDITOR='mvim -v'
+if is_mac; then
+    export EDITOR='mvim -v'
+    export VISUAL='mvim -v'
+else
+    export EDITOR='vim'
+    export VISUAL='vim'
+fi
 
 # CTAGS Sorting in VIM/Emacs is better behaved with this in place
 export LC_COLLATE=C
