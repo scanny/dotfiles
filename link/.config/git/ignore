@@ -1,7 +1,11 @@
 *~
+.AppleDouble
 *.DS_Store
 doc/tags
 Icon
+.LSOverride
 *.pyc
 /Session.vim
+.Spotlight-V100
 /tmp
+.Trashes

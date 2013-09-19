@@ -1,0 +1,16 @@
+#
+# .config/git/config-cygwin: git-config(1) - Git configuration
+#
+# vim: ft=gitconfig
+#
+# Git configuration specific to the Cygwin platform. Intended to be symlinked
+# from .config/git/config-local and incorporated in the user git
+# configuration file (.config/git/config) by an entry in the [include]
+# section, e.g.:
+#
+#     [include]
+#         path = config-local
+#
+
+[credentials]
+    helper = cache --timeout=1000000

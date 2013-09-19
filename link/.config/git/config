@@ -1,3 +1,9 @@
+#
+# .config/git/config: git-config(1) - Git configuration
+#
+# vim: ft=gitconfig
+#
+
 [alias]
     br = branch
     ci = commit
@@ -10,46 +16,41 @@
     st = status
     type = cat-file -t
 
+    # -----------------------------------------
     # Fancy logging.
-    #   h = head
-    #   hp = head with patch
-    #   r = recent commits, only current branch
-    #   ra = recent commits, all reachable refs
-    #   l = all commits, only current branch
-    #   la = all commits, all reachable refs
+    # -----------------------------------------
+    # h  = head
+    # hp = head with patch
+    # l  = all commits, only current branch
+    # la = all commits, all reachable refs
+    # r  = recent commits, only current branch
+    # ra = recent commits, all reachable refs
+    # -----------------------------------------
+    h    = !git head
     head = !git l -1
-    h = !git head
-    hp = "!. ~/.githelpers && show_git_head"
-    r = !git l -30
-    ra = !git r --all
-    l = "!. ~/.githelpers && pretty_git_log"
-    la = !git l --all
-
-[user]
-    name = Steve Canny
-    email = scanny@cisco.com
-
-[credential]
-    helper = osxkeychain
+    hp   = "!. ~/.githelpers && show_git_head"
+    l    = "!. ~/.githelpers && pretty_git_log"
+    la   = !git l --all
+    r    = !git l -30
+    ra   = !git r --all
 
 [color]
     diff = always
     ui = true
 
 [core]
-    editor = /usr/local/bin/mvim -v -f
-    excludesfile = /Users/scanny/.gitignore
     autocrlf = input
     safecrlf = true
 
 [diff]
-    tool = gvimdiff
+    mnemonicprefix = true
 
-[difftool "gvimdiff"]
-    path = /usr/local/bin/mvimdiff
+[include]
+    path = config-local
 
-[merge]
-    tool = mvimdiff
+[push]
+    default = tracking
 
-[mergetool "mvimdiff"]
-    cmd = /usr/local/bin/mvimdiff -f "$LOCAL" "$MERGED" "$REMOTE"
+[user]
+    name = Steve Canny
+    email = scanny@cisco.com
