@@ -36,7 +36,11 @@ fi
 fpath=(~/.zsh $fpath)
 
 # CDPATH allows quick directory changes
-CDPATH=~/Dropbox/src
+if is_mac; then
+    export CDPATH=~/Dropbox/src
+else
+    export CDPATH=~/src
+fi
 
 # PYTHONPATH is normally not defined
 # export PYTHONPATH=/usr/local/lib/python2.6/site-packages
