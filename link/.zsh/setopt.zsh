@@ -95,7 +95,7 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 
 # don't execute, just expand history
-setopt hist_verify
+setopt no_hist_verify
 
 # Add comamnds as they are typed, don't wait until shell exit
 setopt inc_append_history
