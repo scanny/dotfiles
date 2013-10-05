@@ -283,6 +283,11 @@ set ruler
 " so - minimum lines of context at top and bottom
 set scrolloff=3
 
+" sh - shell to use for :! commands
+set shell=/usr/local/bin/zsh
+" set shellcmdflag=-ci
+set shellcmdflag=-c
+
 " sw - set width of indents/dedents
 set shiftwidth=4
 
