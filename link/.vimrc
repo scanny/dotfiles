@@ -72,7 +72,7 @@ endif
 filetype plugin indent on
 syntax on
 
-set background=light
+set background=dark
 colorscheme solarized
 
 " }}}
