@@ -373,9 +373,6 @@ nnoremap <leader>2 :RivTitle2<CR>
 nnoremap <leader>3 :RivTitle3<CR>
 nnoremap <leader>4 :RivTitle4<CR>
 
-" b - activate LustyJuggler
-nnoremap <silent> <leader>b :LustyJuggler<CR>
-
 " c - close current window
 nnoremap <silent> <leader>c :clo<CR>
 
