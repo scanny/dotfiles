@@ -5,7 +5,7 @@ doc/tags
 Icon
 .LSOverride
 *.pyc
-/Session.vim
+Session.vim
 .Spotlight-V100
 /tmp
 .Trashes
