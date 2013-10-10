@@ -101,6 +101,9 @@ let g:ctrlp_show_hidden = 1
 let g:netrw_list_hide = '.*\.pyc$'
 let g:netrw_hide = 1
 
+" simpylfold -----------------------------------------------
+let g:SimpylFold_docstring_preview = 1
+
 " solarized color scheme -----------------------------------
 
 " invisibles (e.g. newlines) in subdued tone
