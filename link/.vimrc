@@ -370,7 +370,7 @@ set tabstop=4
 set textwidth=79
 
 " tm - delay waiting for next keystroke after leader
-set timeoutlen=2000
+set timeoutlen=1000
 
 " ttm - delay waiting for key code (esc sequence for special key like <S-PgUp>¬
 set ttimeoutlen=20
