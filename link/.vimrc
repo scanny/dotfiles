@@ -75,6 +75,11 @@ if has("macunix")
     Bundle 'Valloric/YouCompleteMe'
 endif
 
+" these bundles are compatible with Linux
+if has("unix")
+    Bundle 'Lokaltog/powerline'
+endif
+
 filetype plugin indent on
 syntax on
 
@@ -95,6 +100,13 @@ if has("macunix")
     let g:UltiSnipsExpandTrigger="<S-Tab>"
     " YouCompleteMe
     let g:ycm_key_list_previous_completion=['<Up>']
+endif
+
+" these plugins are installed in Linux ---------------------
+
+if has("unix")
+    " powerline
+    set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 endif
 
 " built-ins ------------------------------------------------
