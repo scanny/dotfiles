@@ -297,8 +297,11 @@ set list
 " lcs - use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
-" mls - avoid a security vulnerability
+" mls - mitigate a security vulnerability
 set modelines=5
+
+" more - do or don't page command output (i.e. show '-- More --' message)
+set nomore
 
 " mouse - enable mouse in all modes
 set mouse=a
