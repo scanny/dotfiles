@@ -181,9 +181,11 @@ augroup END
 " }}}
 
 " Python file settings ----------------- {{{
-" augroup filetype_python
-"     autocmd!
-" augroup END
+augroup filetype_python
+    autocmd!
+    " tw - max line length before wrapping
+    autocmd FileType python set textwidth=77
+augroup END
 " }}}
 
 " restructuredText (.rst) settings ----- {{{
