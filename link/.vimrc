@@ -467,8 +467,9 @@ nnoremap <leader>q gqip
 
 " r - toggle relative line numbers
 function! ToggleRelativeNumber()
-  if(&relativenumber == 1)
+  if (&relativenumber == 1)
     set number
+    set norelativenumber
   else
     set relativenumber
   endif
