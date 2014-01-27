@@ -89,7 +89,8 @@ alias grbo='git rebase --onto'
 alias grbs='git rebase --skip'
 alias grsh='git reset --hard'
 alias grsH='git reset HEAD'
-alias grhHh='git reset HEAD --hard'
+alias grsHh='git reset HEAD --hard'
+alias grv='git remote -v'
 
 alias gs='git status'
 alias gss='git status -s'
@@ -110,7 +111,7 @@ alias prev='grsh HEAD~'
 alias pt='py.test'
 alias pu='pushd'
 alias rm='rm -i'
-alias t='make clean && flake8 opcdiag tests && py.test && behave'
+alias t='make clean && flake8 docx tests && py.test && behave --stop'
 alias view='mvim -Rv'
 
 # -------------------------------------------------------------------
