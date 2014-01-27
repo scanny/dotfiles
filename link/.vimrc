@@ -213,7 +213,7 @@ augroup END
 " on lose focus ------------------------ {{{
 augroup on_lose_focus
     " automatically save all buffers after tabbing away from vim
-    autocmd FocusLost * :wa
+    autocmd FocusLost * :silent wall
 augroup END
 " }}}
 " }}}
