@@ -153,6 +153,7 @@ let g:solarized_visibility = "low"
 " syntastic ------------------------------------------------
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_rst_checkers = []
 
 
 " Vitality -------------------------------------------------
