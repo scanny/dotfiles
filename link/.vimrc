@@ -417,7 +417,7 @@ nnoremap <leader>l :set list!<CR>
 nnoremap <leader>n :set number!<CR>
 
 " ov - open ~/.vimrc file in vertically split window
-nnoremap <leader>ov <C-w><C-v>:e $MYVIMRC<CR>
+nnoremap <leader>ov :split $MYVIMRC<CR>
 
 " p - paste from clipboard
 nnoremap <leader>p "*p
