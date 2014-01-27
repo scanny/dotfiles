@@ -140,7 +140,7 @@ let g:riv_fold_level = 1
 let g:riv_global_leader = '<C-q>'
 
 
-" simpylfold -----------------------------------------------
+" SimpylFold -----------------------------------------------
 let g:SimpylFold_docstring_preview = 1
 
 
@@ -516,6 +516,12 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " jk instead of Esc
 inoremap jk <Esc>
 
+" Ctrl-b is move left one character
+inoremap <C-b> <Left>
+
+" Ctrl-f is move right one character in insert mode
+inoremap <C-f> <Right>
+
 " Ctrl-k is kill (to end of line) in insert mode
 inoremap <C-k> <C-\><C-O>D
 
@@ -528,9 +534,6 @@ inoremap <C-k> <C-\><C-O>D
 
 " space - toggle fold
 nnoremap <space> za
-
-" Ctrl+d - insert datetime now
-" nnoremap <C-d> a<C-r>=strftime("%Y-%m-%d %H:%M")<CR><Esc>
 
 " always screen lines for up and down motion
 nnoremap j gj
