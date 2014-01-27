@@ -248,7 +248,7 @@ set backspace=indent,eol,start
 set colorcolumn=79
 
 " cot - only insert the longest common text of matches
-set completeopt=longest,menu,preview
+set completeopt=longest,menu
 
 " ch - number of screen lines to use for command line
 set cmdheight=2
