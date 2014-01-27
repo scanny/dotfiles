@@ -287,7 +287,12 @@ set ruler
 set scrolloff=3
 
 " sh - shell to use for :! commands
-set shell=/usr/local/bin/zsh
+if has("unix")
+    set shell=/usr/bin/zsh
+else
+    set shell=/usr/local/bin/zsh
+endif
+
 " set shellcmdflag=-ci
 set shellcmdflag=-c
 
