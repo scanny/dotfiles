@@ -317,7 +317,9 @@ set ruler
 set scrolloff=3
 
 " sh - shell to use for :! commands
-if has("unix")
+if has("macunix")
+    set shell=/usr/local/bin/zsh
+elseif has("unix")
     set shell=/usr/bin/zsh
 else
     set shell=/usr/local/bin/zsh
