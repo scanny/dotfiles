@@ -116,6 +116,7 @@ let loaded_matchparen = 1
 
 
 " ctrlp ----------------------------------------------------
+let g:ctrlp_custom_ignore = '\v[\/]\.tox$'
 let g:ctrlp_show_hidden = 1
 
 
