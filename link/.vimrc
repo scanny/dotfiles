@@ -392,6 +392,9 @@ nnoremap <leader>2 :RivTitle2<CR>
 nnoremap <leader>3 :RivTitle3<CR>
 nnoremap <leader>4 :RivTitle4<CR>
 
+" b - wipe current buffer (and close window)
+nnoremap <silent> <leader>b :bw<CR>
+
 " c - close current window
 nnoremap <silent> <leader>c :clo<CR>
 
