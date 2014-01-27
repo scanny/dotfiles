@@ -156,6 +156,15 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_rst_checkers = []
 
 
+" vim-commentary -------------------------------------------
+
+" release traditional comment mappings to avoid key delay
+" xunmap \\
+" nunmap \\
+" nunmap \\\
+" nunmap \\u
+
+
 " Vitality -------------------------------------------------
 let g:vitality_always_assume_iterm = 1
 
