@@ -444,6 +444,9 @@ map <leader>gs :Gstatus<CR>
 " gw - :Gwrite
 map <leader>gw :Gwrite<CR>
 
+" h - toggle highlight of last search matches
+nnoremap <leader>h :set hlsearch!<CR>
+
 " l - toggle show invisibles
 nnoremap <leader>l :set list!<CR>
 
