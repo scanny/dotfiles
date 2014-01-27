@@ -109,27 +109,34 @@ if has("unix")
     set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 endif
 
+
 " built-ins ------------------------------------------------
 let loaded_matchparen = 1
 
+
 " ctrlp ----------------------------------------------------
 let g:ctrlp_show_hidden = 1
+
 
 " netrw ----------------------------------------------------
 let g:netrw_list_hide = '.*\.pyc$'
 let g:netrw_hide = 1
 
+
 " simpylfold -----------------------------------------------
 let g:SimpylFold_docstring_preview = 1
+
 
 " solarized color scheme -----------------------------------
 
 " invisibles (e.g. newlines) in subdued tone
 let g:solarized_visibility = "low"
 
+
 " syntastic ------------------------------------------------
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_python_checkers = ['flake8']
+
 
 " riv ------------------------------------------------------
 
@@ -144,6 +151,11 @@ let g:riv_fold_level = 1
 
 " Ctrl-Q is leader for Riv commands
 let g:riv_global_leader = '<C-q>'
+
+
+" Vitality -------------------------------------------------
+let g:vitality_always_assume_iterm = 1
+
 
 " XML Syntax -----------------------------------------------
 let g:xml_syntax_folding=1
