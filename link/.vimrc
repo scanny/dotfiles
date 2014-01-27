@@ -24,6 +24,12 @@ if has("macunix")
     " let &t_te = "\<Esc>]50;CursorShape=1\x7"
 endif
 
+" Linux on iTerm2 via ssh
+if has("unix")
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
 " Cygwin version
 if has("win32unix")
     " take terminal out of "termcap" mode
