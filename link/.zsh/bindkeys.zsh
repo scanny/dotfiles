@@ -2,6 +2,9 @@
 # cat > /dev/null
 # And press it
 
+# Default to Vim bindings, regardless of editor string
+bindkey -v
+
 bindkey "^A"   beginning-of-line                    # ctrl-a  
 bindkey "^B"   backward-char                        # ctrl-b
 bindkey "^E"   end-of-line                          # ctrl-e
@@ -30,7 +33,3 @@ zle-line-init () {
     echo -ne "\e]50;CursorShape=1\a"  # vertical bar
 }
 zle -N zle-line-init
-
-# Default to standard emacs bindings, regardless of editor string
-# bindkey -e
-bindkey -v
