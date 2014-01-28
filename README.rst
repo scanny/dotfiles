@@ -2,21 +2,45 @@
 scanny/dotfiles
 ###############
 
+Using
+=====
+
+1. Install zsh if required (Ubuntu)::
+
+    $ sudo apt-get -y install zsh
+    $ sudo chsh -s /usr/bin/zsh
+
+2. Clone scanny/dotfiles from github::
+
+    $ git clone https://github.com/scanny/dotfiles ~/.dotfiles
+
+3. Run install script to establish symlinks and bootstrap downloads and/or
+   installs::
+
+    $ ~/.dotfiles/install.sh
+
+4. Run :BundleInstall from inside Vim to install plugins
+
+5. Install virtualenvwrapper::
+
+    $ sudo pip install virtualenvwrapper
+
+
 Features
 ========
 
 * [X] .dotfiles is git repo
 * [X] .vim/bundles is in .gitignore, managed locally
-* [ ] ? Script for auto setup, linking of items, etc.
+* [X] Script for auto setup, linking of items, etc.
 * [ ] ? Have a bin/ dir? Maybe link selected executables.
 
 
-Work
+TODO
 ====
 
-* [ ] Work out how to do platform-specific customizations to .vimrc
-* [ ] Try out on Cygwin and make necessary platform-specific script changes
 * [X] Push to replace current GitHub version
+* [X] Work out how to do platform-specific customizations to .vimrc
+* [X] Try out on Cygwin and make necessary platform-specific script changes
 
 
 Reasons I care about
