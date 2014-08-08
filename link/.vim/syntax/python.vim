@@ -96,7 +96,7 @@ syn keyword pythonStatement     yield lambda
 syn keyword pythonStatement     with
 
 " Class definitions
-syn region  pythonClass        start="^\s*class" end=")\s*:" contains=pythonClassDef,pythonClassName,pythonSuperclasses
+syn region  pythonClass        start="^\s*class " end=")\s*:" contains=pythonClassDef,pythonClassName,pythonSuperclasses
 syn keyword pythonClassDef     class contained nextgroup=pythonClassName
 syn match   pythonClassName    "[a-zA-Z_][a-zA-Z0-9_]*" display contained nextgroup=pythonSuperclasses skipwhite
 syn region  pythonSuperclasses start="("ms=s+1 end=")"me=e-1 keepend contained contains=pythonSuperclass transparent
