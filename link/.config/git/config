@@ -54,3 +54,6 @@
 [user]
     name = Steve Canny
     email = scanny@cisco.com
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
