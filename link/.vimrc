@@ -73,7 +73,7 @@ Bundle 'sukima/xmledit'
 " skip these bundles if on Cygwin
 if has("macunix")
     Bundle 'Lokaltog/powerline'
-    " Bundle 'SirVer/ultisnips'
+    Bundle 'SirVer/ultisnips'
     Bundle 'Valloric/YouCompleteMe'
 endif
 

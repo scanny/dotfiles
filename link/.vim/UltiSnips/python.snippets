@@ -1,3 +1,94 @@
-snippet moc "Construct a Mock object"
-${1:name} = Mock(name='$1')
+
+snippet it_provides "collection access test"
+def it_provides_access_to_the_${1:collection_prop_name}(self, $1_fixture):
+    ${2:host_obj}, $1_, ${3:CollectionClass}_, ${4:elmTagName} = $1_fixture
+	$1 = $2.$1
+	$3_.assert_called_once_with($4)
+	assert $1 is $1_
+@pytest.fixture
+def $1_fixture(self, $3_, $1_):
+	${5:parent_elm} = element('c:$5/c:$4')
+	$4 = $5.xpath('./c:$4')[0]
+	$2 = ${6:HostClass}($5)
+	return $2, $1_, $3_, $4
+@pytest.fixture
+def $3_(self, request, $1_):
+	return class_mock(
+		request, '${7:pptx.chart.chart}.$3',
+		return_value=$1_
+	)
+@pytest.fixture
+def $1_(self, request):
+	return instance_mock(request, $3)
+endsnippet
+
+snippet it_can_change "property setter test"
+def it_can_change_${1:its_property_setting}(self, ${2:prop_name}_set_fixture):
+    ${3:host_obj}, new_value, expected_xml = $2_set_fixture
+	$3.$2 = new_value
+	assert $3._element.xml == expected_xml
+@pytest.fixture(params=[
+    ('', None, ''),
+])
+def $2_set_fixture(self, request):
+    ${4:parent_elm}_cxml, new_value, expected_$4_cxml = request.param
+	$3 = ${5:ClassName}(element($4_cxml))
+	expected_xml = xml(expected_$4_cxml)
+    return $3, new_value, expected_xml
+endsnippet
+
+snippet it_knows "property getter test"
+def it_knows_${1:its_property_setting}(self, ${2:prop_name}_get_fixture):
+    ${3:host_obj}, expected_value = $2_get_fixture
+	assert $3.$2 == expected_value
+@pytest.fixture(params=[
+    (''),
+])
+def $2_get_fixture(self, request):
+    ${4:parent_elm}_cxml, expected_value = request.param
+	$3 = ${5:ClassName}(element($4_cxml))
+    return $3, expected_value
+endsnippet
+
+snippet insm
+@pytest.fixture
+def $1_(self, request):
+    return instance_mock(request, $2)
+endsnippet
+
+snippet clsmock
+@pytest.fixture
+def $1_(self, request):
+    return class_mock(request, '$2.$1')
+endsnippet
+
+
+snippet desc
+class Describe$1(object):
+
+    def it_$2(self, $3_fixture):
+	    $4 = $3_fixture
+		assert $5
+endsnippet
+
+
+snippet ptf
+@pytest.fixture(params=[
+    (''),
+])
+def $1_fixture(self, request):
+    return
+endsnippet
+
+
+snippet #f
+# fixtures -------------------------------------------------------
+
+endsnippet
+
+
+snippet #fc
+# fixture components ---------------------------------------------
+
+
 endsnippet
