@@ -496,6 +496,14 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 " t - test
 nnoremap <leader>t :w\|!py.test<CR>
 
+" T - set current module to run on ,t
+function! MakeCurrentBufferTestModule()
+    let l:path=expand('%')
+    execute 'nnoremap <leader>t :w\|!py.test -x ' l:path "<CR>"
+    echo ',t: ' . l:path
+endfunc
+nnoremap <silent> <leader>T :call MakeCurrentBufferTestModule()<CR>
+
 " v - vertical split
 map <leader>v :vsp<CR>
 
