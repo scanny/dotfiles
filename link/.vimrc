@@ -51,6 +51,7 @@ endif
 Bundle 'gmarik/vundle'
 
 " other bundles installed
+Bundle 'rking/ag.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Rykka/riv.vim'
 Bundle 'tmhedberg/SimpylFold'
