@@ -464,6 +464,9 @@ nnoremap <leader>l :set list!<CR>
 " n - toggle show line numbers
 nnoremap <leader>n :set number!<CR>
 
+" ob - open _scratch/blank.rst in vertically split window
+nnoremap <leader>ob :split _scratch/blank.rst<CR>
+
 " ov - open ~/.vimrc file in vertically split window
 nnoremap <leader>ov :split $MYVIMRC<CR>
 
