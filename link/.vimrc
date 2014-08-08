@@ -560,6 +560,9 @@ inoremap <C-k> <C-\><C-O>D
 " space - toggle fold
 nnoremap <space> za
 
+" gs goes to first non-blank on line
+nnoremap gs ^
+
 " always screen lines for up and down motion
 nnoremap j gj
 nnoremap k gk
