@@ -76,10 +76,10 @@ if has("macunix")
     Bundle 'Valloric/YouCompleteMe'
 endif
 
-" these bundles are compatible with Linux
-if has("unix")
-    Bundle 'Lokaltog/powerline'
-endif
+" " these bundles are compatible with Linux
+" if has("unix")
+"     Bundle 'Lokaltog/powerline'
+" endif
 
 filetype plugin indent on
 syntax on
@@ -194,6 +194,7 @@ augroup filetype_python
     autocmd!
     " tw - max line length before wrapping
     autocmd FileType python set textwidth=77
+    autocmd FileType python set formatoptions+=t
 augroup END
 " }}}
 
@@ -280,13 +281,13 @@ set formatoptions=qrn1
 " gfn - choose display font and size
 " set guifont=Source\ Code\ Pro\ Light:h13
 " set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h12
-set guifont=Source\ Code\ Pro:h12
+set guifont=Source\ Code\ Pro:h13
 
 " hid - allow unsaved buffers to rotate to background
 set hidden
 
 " hi - number of commands to save in command history
-set history=250
+set history=1000
 
 " hls - highlight matches for find buffer
 set nohlsearch
@@ -301,7 +302,7 @@ set incsearch
 set laststatus=2
 
 " list - show newline and tab characters
-set list
+set nolist
 
 " lcs - use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -335,7 +336,8 @@ set scrolloff=3
 
 " sh - shell to use for :! commands
 if has("macunix")
-    set shell=/usr/local/bin/zsh
+    " set shell=/usr/local/bin/zsh
+    set shell=/bin/zsh
 elseif has("unix")
     set shell=/usr/bin/zsh
 else
@@ -364,7 +366,7 @@ set showmode
 set softtabstop=4
 
 " scs - make search case-sensitive if an uppercase character in search string
-set smartcase
+set nosmartcase
 
 " sb - make new horz splits appear below current window
 set splitbelow
@@ -499,6 +501,9 @@ map <leader>v :vsp<CR>
 
 " w - write current buffer
 nnoremap <leader>w :w<CR>
+
+" x - cut to system pasteboard (for cut/paste)
+vnoremap <leader>x "*x
 
 " y - yank to system pasteboard ('copy' for copy/paste)
 vnoremap <leader>y "*y
