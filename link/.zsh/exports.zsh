@@ -1,3 +1,15 @@
+
+# --------------------------------------------------------------------
+# workaround for clang compiler difficulty
+# https://langui.sh/2014/03/10/wunused-command-line-argument-hard-error-in-future-is-a-harsh-mistress/
+# --------------------------------------------------------------------
+
+export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
+
+# needed by DocBook for something
+export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
+
+
 # --------------------------------------------------------------------
 # not PATH but path-ish interactive exports
 # --------------------------------------------------------------------
