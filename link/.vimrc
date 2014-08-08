@@ -190,6 +190,14 @@ augroup at_end_of_vim_setup
 augroup END
 " }}}
 
+" Applescript file settings ------------ {{{
+augroup filetype_applescript
+    autocmd!
+    " comment string used by vim-commentary
+    autocmd FileType applescript set commentstring=#\ %s
+augroup END
+" }}}
+
 " Python file settings ----------------- {{{
 augroup filetype_python
     autocmd!
