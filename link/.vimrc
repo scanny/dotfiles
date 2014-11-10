@@ -203,6 +203,15 @@ augroup filetype_applescript
 augroup END
 " }}}
 
+" Java file settings ------------------- {{{
+augroup filetype_java
+    autocmd!
+    " tw - max line length before wrapping
+    autocmd FileType java set makeprg=javac\ %
+    set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+augroup END
+" }}}
+
 " Python file settings ----------------- {{{
 augroup filetype_python
     autocmd!
