@@ -487,10 +487,10 @@ nnoremap <leader>l :set list!<CR>
 " n - toggle show line numbers
 nnoremap <leader>n :set number!<CR>
 
-" ob - open _scratch/blank.rst in vertically split window
-nnoremap <leader>ob :split _scratch/blank.rst<CR>
+" ob - open _scratch/blank.rst in split below, stay in current window
+nnoremap <leader>ob :split _scratch/blank.rst<CR><C-w>k
 
-" ov - open ~/.vimrc file in vertically split window
+" ov - open ~/.vimrc file in split below current
 nnoremap <leader>ov :split $MYVIMRC<CR>
 
 " p - paste from clipboard
