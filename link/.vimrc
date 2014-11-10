@@ -555,7 +555,12 @@ call togglebg#map("<F5>")
 " }}}
 
 " command mode --------------------------------------------- {{{
+
+" %% expands to directory of current buffer
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
+
+" get prior command that starts-with current string
+cnoremap <C-P> <Up>
 
 " }}}
 
