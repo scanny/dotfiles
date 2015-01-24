@@ -103,7 +103,7 @@ alias gx='gitx --all'
 
 alias gentags='ctags .'
 # alias history='fc -l 1'
-alias n='next'
+alias n='git next'
 alias sz="source ~/.zshrc"
 alias oz="vim ~/.zshrc"
 alias po='popd'

@@ -34,6 +34,7 @@
 
     # custom functions ---------------------------
     fix  = ! fix   # checkout 'fixit' and reset hard to $1
+    next = ! next  # move current branch "upward" to child commit
 
 
 [color]
