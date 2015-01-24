@@ -19,6 +19,7 @@
     # hp = head with patch
     # l  = all commits, only current branch
     # la = all commits, all reachable refs
+    # n  = commit causing current rebase conflict ({n}ext commit)
     # r  = recent commits, only current branch
     # ra = recent commits, all reachable refs
     # -----------------------------------------
@@ -27,6 +28,7 @@
     hp   = "!. ~/.githelpers && show_git_head"
     l    = "!. ~/.githelpers && pretty_git_log"
     la   = !git l --all
+    n    = !git l -1 $(cat .git/rebase-apply/original-commit)
     r    = !git l -30
     ra   = !git r --all
 

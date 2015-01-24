@@ -76,6 +76,8 @@ alias glsf='git ls-files | grep'
 
 alias gm='git merge'
 
+alias gn='git n'
+
 alias gp='git log -p -1 --oneline HEAD'
 
 alias gr='git remote'
