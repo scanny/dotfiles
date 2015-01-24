@@ -1,0 +1,117 @@
+#compdef opc
+
+# Command-line completion for the 'opc' command, provided by opc-diag.
+#
+
+_opc() {
+    #
+    # The main completion function. Called by the zsh completer when completion
+    # is needed and 'opc' is in command position.
+    #
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    # classify command-line words as either subcommand or a subcommand argument
+    _arguments -C \
+        '1:sub-command:->subcmd' \
+        '*: :->args' \
+        && ret=0
+
+    # handle subcommand options directly, delegate subcommand arguments
+    case $state in
+        (subcmd)
+            local subcommands; subcommands=(
+                'browse:view the XML of an OPC package part'
+                'extract:un-zip a package into a directory and format its XML'
+                'repackage:re-zip a directory containing an extracted package'
+                'diff:compare two package files'
+                'diff-item:compare the same part between two packages'
+                'substitute:replace a part with the one from another package'
+            )
+            _describe -t subcommands 'sub-command' subcommands && ret=0
+        ;;
+        (args)
+            case $words[2] in
+                (browse)    _opc_browse    ;;
+                (extract)   _opc_extract   ;;
+                (repackage) _opc_repackage ;;
+                (diff)      _opc_files     ;;
+                (*)         _opc_files     ;;
+            esac
+        ;;
+    esac
+
+    return ret
+}
+
+_opc_browse() {
+#
+# Generate the options for the arguments following the 'browse' sub-command,
+# a package path and a package part, respectively.
+#
+    case $CURRENT in
+        3)
+            _message 'package to browse, e.g. foo.docx'
+            _opc_files
+        ;;
+        4)
+            local parts; parts=(
+                '.rels' \
+                '\[Content_Types].xml' \
+                'app.xml' \
+                'core.xml' \
+                'document.xml' \
+                'presentation.xml' \
+                'slide1.xml' \
+                'slideLayout1.xml' \
+                'slideMaster1.xml' \
+                'styles.xml' \
+            )
+            _describe -t parts 'part to display' parts && ret=0
+        ;;
+    esac
+}
+
+_opc_extract() {
+#
+# Generate the options for the arguments following the 'extract' sub-command,
+# a package path and a target directory, respectively.
+#
+    case $CURRENT in
+    3)
+        _message 'source package, e.g. foo.docx'
+        _opc_files
+        ;;
+    4)
+        _message 'target directory'
+        _files -/
+        ;;
+    esac
+}
+
+_opc_repackage() {
+#
+# Generate the options for the arguments following the 'repackage' sub-command,
+# a source directory and a target package path, respectively.
+#
+    case $CURRENT in
+    3)
+        _message 'source directory'
+        _files -/
+        ;;
+    4)
+        _message 'target package, e.g. foo.docx'
+        _opc_files
+        ;;
+    esac
+}
+
+_opc_files() {
+#
+# Generate the package filenames for the current completion, files that end in
+# .docx, .xlsx, or .pptx.
+#
+    _files -g '(*.docx|*.pptx|*.xlsx)' && return 0
+}
+
+_opc "$@"
