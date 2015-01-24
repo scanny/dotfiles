@@ -5,15 +5,11 @@
 #
 
 [alias]
-    br = branch
-    ci = commit
-    co = checkout
+    br   = branch
+    ci   = commit
+    co   = checkout
     dump = cat-file -p
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    lg1 = log --graph --all --format=format:'%C(cyan)%h%C(reset) - %C(green)(%ar)%C(reset) %C(bold cyan)%s%C(reset) %C(bold yellow)— %an%C(reset)%C(magenta)%d%C(reset)' --abbrev-commit --date=relative
-    lg2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
-    lg = !"git lg1"
-    st = status
+    st   = status
     type = cat-file -t
 
     # -----------------------------------------
@@ -36,7 +32,7 @@
 
 [color]
     diff = always
-    ui = true
+    ui   = true
 
 [core]
     autocrlf = input
@@ -52,8 +48,9 @@
     default = tracking
 
 [user]
-    name = Steve Canny
+    name  = Steve Canny
     email = scanny@cisco.com
+
 [filter "media"]
-	clean = git-media-clean %f
+	clean  = git-media-clean %f
 	smudge = git-media-smudge %f
