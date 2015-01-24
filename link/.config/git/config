@@ -32,6 +32,10 @@
     r    = !git l -30
     ra   = !git r --all
 
+    # custom functions ---------------------------
+    fix  = ! fix   # checkout 'fixit' and reset hard to $1
+
+
 [color]
     diff = always
     ui   = true
