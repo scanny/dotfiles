@@ -107,14 +107,14 @@ alias gx='gitx --all'
 
 alias gentags='ctags .'
 # alias history='fc -l 1'
-alias n='git next'
-alias sz="source ~/.zshrc"
+alias n='next'
 alias oz="vim ~/.zshrc"
+alias p='prev'
 alias po='popd'
-alias prev='grsh HEAD~'
 alias pt='py.test'
 alias pu='pushd'
 alias rm='rm -i'
+alias sz="source ~/.zshrc"
 alias t='make clean && flake8 docx tests && py.test && behave --stop'
 alias tw='make clean && flake8 docx tests && py.test && behave --stop --tags=-wip'
 alias view='mvim -Rv'
