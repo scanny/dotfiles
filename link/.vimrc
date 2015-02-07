@@ -221,6 +221,14 @@ augroup filetype_python
 augroup END
 " }}}
 
+" R file settings ---------------------- {{{
+augroup filetype_r
+    autocmd!
+    " comment string used by vim-commentary
+    autocmd FileType r set commentstring=#\ %s
+augroup END
+" }}}
+
 " restructuredText (.rst) settings ----- {{{
 augroup filetype_rst
     autocmd!
