@@ -25,8 +25,7 @@
     # -----------------------------------------
     h    = !git head
     head = !git l -1
-    hp   = "!. ~/.githelpers && show_git_head"
-    l    = "!. ~/.githelpers && pretty_git_log"
+    l    = "!f(){ git lawg $@ | less -FXRS; };f"
     la   = !git l --all
     n    = !git l -1 $(cat .git/rebase-apply/original-commit)
     r    = !git l -40
