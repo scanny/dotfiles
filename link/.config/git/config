@@ -29,7 +29,7 @@
     l    = "!. ~/.githelpers && pretty_git_log"
     la   = !git l --all
     n    = !git l -1 $(cat .git/rebase-apply/original-commit)
-    r    = !git l -30
+    r    = !git l -40
     ra   = !git r --all
 
     # custom functions ---------------------------
