@@ -31,9 +31,9 @@ def it_can_change_${1:its_property_setting}(self, ${2:prop_name}_set_fixture):
     ('', None, ''),
 ])
 def $2_set_fixture(self, request):
-    ${4:parent_elm}_cxml, new_value, expected_$4_cxml = request.param
+    ${4:parent_elm}_cxml, new_value, expected_cxml = request.param
 	$3 = ${5:ClassName}(element($4_cxml))
-	expected_xml = xml(expected_$4_cxml)
+	expected_xml = xml(expected_cxml)
     return $3, new_value, expected_xml
 endsnippet
 
@@ -42,7 +42,7 @@ def it_knows_${1:its_property_setting}(self, ${2:prop_name}_get_fixture):
     ${3:host_obj}, expected_value = $2_get_fixture
 	assert $3.$2 == expected_value
 @pytest.fixture(params=[
-    (''),
+    ('', None),
 ])
 def $2_get_fixture(self, request):
     ${4:parent_elm}_cxml, expected_value = request.param
