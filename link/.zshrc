@@ -2,6 +2,7 @@
 # .zshrc
 #
 
+# source ~/.zsh/path.zsh
 source ~/.zsh/colors.zsh
 source ~/.zsh/setopt.zsh
 source ~/.zsh/exports.zsh
