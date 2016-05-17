@@ -307,7 +307,7 @@ set encoding=utf-8
 set expandtab
 
 " fo - specify text wrapping particulars
-set formatoptions=qrn1
+set formatoptions=qrtn1
 
 " gfn - choose display font and size
 " set guifont=Source\ Code\ Pro\ Light:h13
