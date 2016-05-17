@@ -115,8 +115,8 @@ alias pt='py.test'
 alias pu='pushd'
 alias rm='rm -i'
 alias sz="source ~/.zshrc"
-alias t='make clean && flake8 docx tests && py.test && behave --stop'
-alias tw='make clean && flake8 docx tests && py.test && behave --stop --tags=-wip'
+alias t='make clean && flake8 && py.test && behave --stop'
+alias tw='make clean && flake8 && py.test && behave --stop --tags=-wip'
 alias view='mvim -Rv'
 
 # -------------------------------------------------------------------
