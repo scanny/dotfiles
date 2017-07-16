@@ -3,8 +3,10 @@
 set nocompatible
 filetype off
 
-set runtimepath+=~/.vim/bundle/vundle/
-call vundle#rc()
+set runtimepath+=~/.vim/bundle/Vundle.vim
+" call vundle#rc()
+
+au BufRead,BufNewFile *.tmpl set filetype=html
 
 " }}}
 
@@ -45,47 +47,46 @@ endif
 " }}}
 
 
-" manage plugin bundles ---------------------------------------------{{{
+" load plugins ------------------------------------------------------{{{
+
+call vundle#begin()
 
 " let Vundle manage Vundle (required)
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " other bundles installed
-Bundle 'rking/ag.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Rykka/riv.vim'
-Bundle 'tmhedberg/SimpylFold'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-abolish'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-cucumber'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Twinside/vim-haskellFold'
-Bundle 'tpope/vim-obsession'
-Bundle 'hynek/vim-python-pep8-indent'
-Bundle 'nelstrom/vim-qargs'
-Bundle 'tpope/vim-repeat'
-Bundle 'justinmk/vim-sneak'
-Bundle 'tpope/vim-surround'
-Bundle 'bps/vim-textobj-python'
-Bundle 'kana/vim-textobj-user'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'kana/vim-vspec'
-Bundle 'sjl/vitality.vim'
-Bundle 'sukima/xmledit'
+" Plugin 'Konfekt/FastFold'
+Plugin 'Rykka/riv.vim',        {'pinned': 1}
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-abolish'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-cucumber',   {'pinned': 1}
+Plugin 'tpope/vim-fugitive'
+" Plugin 'pangloss/vim-javascript'
+Plugin 'tpope/vim-obsession'
+Plugin 'hynek/vim-python-pep8-indent'
+" Plugin 'tpope/vim-repeat'
+Plugin 'justinmk/vim-sneak'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'sjl/vitality.vim'
+" Plugin 'sukima/xmledit'
 
 " skip these bundles if on Cygwin
 if has("macunix")
-    Bundle 'Lokaltog/powerline'
-    Bundle 'SirVer/ultisnips'
-    Bundle 'Valloric/YouCompleteMe'
+    " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+    " Plugin 'SirVer/ultisnips'
+    Plugin 'Valloric/YouCompleteMe'
 endif
 
 " " these bundles are compatible with Linux
 " if has("unix")
-"     Bundle 'Lokaltog/powerline'
+"     Plugin 'Lokaltog/powerline'
 " endif
+
+call vundle#end()
 
 filetype plugin indent on
 syntax on
@@ -148,16 +149,50 @@ let g:riv_global_leader = '<C-q>'
 
 " SimpylFold -----------------------------------------------
 let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 0
+let g:SimpylFold_fold_import = 0
 
 
 " solarized color scheme -----------------------------------
 
-" invisibles (e.g. newlines) in subdued tone
-let g:solarized_visibility = "low"
+" invisibles (e.g. newlines)
+" low: subdued, normal: gray, high: red
+let g:solarized_visibility = "normal"
 
 
 " syntastic ------------------------------------------------
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_cursor_columns = 0
+let g:syntastic_echo_current_error = 0
+let g:syntastic_enable_baloons = 0
+let g:syntastic_enable_signs = 0
+let g:syntastic_filetype_map = { "tmpl": "html" }
+let g:syntastic_html_tidy_ignore_errors = [
+    \'discarding unexpected </label>',
+    \'<form> lacks "',
+    \'<form> proprietary attribute "novalidate"',
+    \'<input> attribute "required/" lacks value',
+    \'inserting implicit <label>',
+    \'<link> escaping malformed URI reference',
+    \"<link> isn't allowed in <body> elements",
+    \"<meta> isn't allowed in <body> elements",
+    \"missing </button>",
+    \"missing </label> before <",
+    \"plain text isn't allowed in <head> elements",
+    \' proprietary attribute "bix',
+    \' proprietary attribute "hide-events',
+    \' proprietary attribute "icon',
+    \' proprietary attribute "ng-',
+    \' proprietary attribute "required',
+    \' proprietary attribute "show-events',
+    \'replacing unexpected button by </button>',
+    \'trimming empty <',
+    \'unescaped &',
+\]
+let g:syntastic_html_tidy_blocklevel_tags = [
+    \'bix-template-select',
+    \'phone-list',
+\]
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_rst_checkers = []
 
@@ -171,6 +206,10 @@ let g:syntastic_rst_checkers = []
 " nunmap \\u
 
 
+" vim-python-pep8-indent -----------------------------------
+let g:python_pep8_indent_multiline_string = -1
+
+
 " Vitality -------------------------------------------------
 let g:vitality_always_assume_iterm = 1
 
@@ -178,6 +217,13 @@ let g:vitality_always_assume_iterm = 1
 " XML Syntax -----------------------------------------------
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
+
+
+" YouCompleteMe --------------------------------------------
+
+let g:ycm_filetype_blacklist = {
+    \ 'rst' : 1,
+\}
 
 " }}}
 
@@ -191,7 +237,7 @@ augroup at_end_of_vim_setup
     autocmd!
     autocmd VimEnter set winheight=5
     autocmd VimEnter set winminheight=3
-    autocmd VimEnter set winheight=99
+    autocmd VimEnter set winheight=199
 augroup END
 " }}}
 
@@ -200,6 +246,33 @@ augroup filetype_applescript
     autocmd!
     " comment string used by vim-commentary
     autocmd FileType applescript set commentstring=#\ %s
+augroup END
+" }}}
+
+" C file settings ---**----------------- {{{
+augroup filetype_c
+    autocmd!
+    " comment string used by vim-commentary
+    autocmd FileType c set commentstring=//\ %s
+    autocmd FileType c set foldmethod=syntax
+    autocmd FileType c set foldnestmax=1
+augroup END
+" }}}
+
+" C++ file settings -------------------- {{{
+augroup filetype_cpp
+    autocmd!
+    " comment string used by vim-commentary
+    autocmd FileType cpp set commentstring=//\ %s
+    autocmd FileType cpp set foldmethod=syntax
+    autocmd FileType cpp set foldnestmax=1
+augroup END
+" }}}
+
+" HTML file settings ------------------- {{{
+augroup filetype_html
+    autocmd!
+    autocmd FileType html setlocal ts=2 sw=2 expandtab
 augroup END
 " }}}
 
@@ -212,12 +285,20 @@ augroup filetype_java
 augroup END
 " }}}
 
-" Python file settings ----------------- {{{
-augroup filetype_python
+" gitcommit file settings ----------------- {{{
+augroup filetype_gitcommit
     autocmd!
     " tw - max line length before wrapping
-    autocmd FileType python set textwidth=77
-    autocmd FileType python set formatoptions+=t
+    autocmd FileType gitcommit set textwidth=72
+    autocmd FileType gitcommit set formatoptions+=t
+augroup END
+" }}}
+
+" openscad file settings --------------- {{{
+augroup filetype_openscad
+    autocmd!
+    " comment string used by vim-commentary
+    autocmd FileType openscad set commentstring=//\ %s
 augroup END
 " }}}
 
@@ -226,14 +307,6 @@ augroup filetype_r
     autocmd!
     " comment string used by vim-commentary
     autocmd FileType r set commentstring=#\ %s
-augroup END
-" }}}
-
-" restructuredText (.rst) settings ----- {{{
-augroup filetype_rst
-    autocmd!
-    " use ,pf for preformatted text (double-backtick)
-    " autocmd FileType rst inoremap <buffer> <leader>pf ``
 augroup END
 " }}}
 
@@ -247,7 +320,7 @@ augroup END
 " XML file settings -------------------- {{{
 augroup filetype_xml
     autocmd!
-    autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+    autocmd FileType xml setlocal ts=2 sw=2 expandtab
 augroup END
 " }}}
 
@@ -307,7 +380,13 @@ set encoding=utf-8
 set expandtab
 
 " fo - specify text wrapping particulars
-set formatoptions=qrtn1
+"    c - Auto-wrap comments using textwidth.
+"    n - Recognize numbered lists
+"    o - Continue comments when 'O/o'pen line above/below commented line
+"    q - Allow formatting comments with gq
+"    r - Continue comments when hitting 'r'eturn (Enter) in insert mode
+"    t - Auto-wrap text using textwidth
+set formatoptions=cnoqrt1
 
 " gfn - choose display font and size
 " set guifont=Source\ Code\ Pro\ Light:h13
@@ -440,7 +519,7 @@ set wildmode=list:longest
 " wmh - minimum number of lines for non-current windows
 set winheight=5
 set winminheight=3
-set winheight=99
+set winheight=199
 
 " wiw - minimum number of columns for current window
 set winwidth=86
@@ -475,7 +554,7 @@ nnoremap <silent> <leader>b :bw<CR>
 nnoremap <silent> <leader>c :clo<CR>
 
 " e - open file in same directory as current file
-map <leader>e :edit %%
+map <leader>e :e %%
 
 " gd - :Gdiff
 map <leader>gd :Gdiff<CR>
@@ -533,7 +612,7 @@ nnoremap <leader>t :w\|!py.test<CR>
 " T - set current module to run on ,t
 function! MakeCurrentBufferTestModule()
     let l:path=expand('%')
-    execute 'nnoremap <leader>t :w\|!py.test -x ' l:path "<CR>"
+    execute 'nnoremap <leader>t :w\|!py.test -x --wip ' l:path "<CR>"
     echo ',t: ' . l:path
 endfunc
 nnoremap <silent> <leader>T :call MakeCurrentBufferTestModule()<CR>
@@ -613,9 +692,13 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
-" bubble single line
-nmap - [e
-nmap _ ]e
+" bubble single line (breaks in latest version, using unimpaired at least)
+" nmap - [e
+" nmap - zi[ezi
+nmap - ddkP
+" nmap _ ]e
+" nmap _ zi]ezi
+nmap _ ddp
 nnoremap <C-Up> ddkP
 nnoremap <C-Down> ddp
 " bubble multiple lines
