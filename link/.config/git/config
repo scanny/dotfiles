@@ -55,7 +55,7 @@
 
 [user]
     name  = Steve Canny
-    email = scanny@cisco.com
+    email = stcanny@gmail.com
 
 [filter "media"]
 	required = true
