@@ -23,6 +23,8 @@ fi
 # ----------------------------------------------------------
 
 alias b='behave'
+# show work-in-progress (WIP) behave scenarios
+alias bw='behave --tags=wip --no-skipped --dry-run'
 
 
 # -------------------------------------------------------------------
@@ -51,11 +53,13 @@ alias gca='git commit -v --amend'
 alias gcar='git commit --amend --reuse-message=HEAD'
 alias gcl='git config --list'
 alias gclean='git reset --hard && git clean -dfx'
+alias gcm='cat .git/rebase-apply/msg-clean'
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcod='git checkout develop'
 alias gcof='git checkout fixit'
 alias gcom='git checkout master'
+alias gcon='git n && git h'
 alias gcos='git checkout spike'
 alias gcow='git checkout working'
 alias gcp='git cherry-pick'
