@@ -76,7 +76,7 @@ Plugin 'sjl/vitality.vim'
 
 " skip these bundles if on Cygwin
 if has("macunix")
-    " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+    Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
     " Plugin 'SirVer/ultisnips'
     Plugin 'Valloric/YouCompleteMe'
 endif
@@ -105,7 +105,7 @@ if has("macunix")
     " powerline
     set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
     " UltiSnips
-    let g:UltiSnipsExpandTrigger="<S-Tab>"
+    " let g:UltiSnipsExpandTrigger="<S-Tab>"
     " YouCompleteMe
     let g:ycm_key_list_previous_completion=['<Up>']
 endif
@@ -237,7 +237,7 @@ augroup at_end_of_vim_setup
     autocmd!
     autocmd VimEnter set winheight=5
     autocmd VimEnter set winminheight=3
-    autocmd VimEnter set winheight=199
+    autocmd VimEnter set winheight=41
 augroup END
 " }}}
 
