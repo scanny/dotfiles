@@ -54,10 +54,15 @@
     default = upstream
 
 [user]
-    name  = Steve Canny
-    email = stcanny@gmail.com
+	name = Steve Canny
+	email = stcanny@gmail.com
 
 [filter "media"]
 	required = true
 	clean  = git-media-clean %f
 	smudge = git-media-smudge %f
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
