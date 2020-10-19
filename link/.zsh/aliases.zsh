@@ -45,7 +45,7 @@ alias ga='git add'
 alias gaa='git add --all'
 alias gai='git add --interactive'
 
-alias gb='git branch'
+alias gb='git --no-pager branch'
 alias gba='git branch -a'
 
 alias gc='git commit -v'
