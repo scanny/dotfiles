@@ -3,43 +3,33 @@
 set nocompatible
 filetype off
 
-au BufRead,BufNewFile *.tmpl set filetype=html
-
 " }}}
 
 
 " terminal-related settings ----------------------------------------- {{{
 
-" terminal can display 256 colors
-set t_Co=256
+" " --- supports truecolor ---
+" set termguicolors
 
-" set cursor to block in normal mode, vert bar in insert mode
+" " --- small adjustments for tmux-256color from xterm-256color ---
+" set t_8f=[38;2;%lu;%lu;%lum  " set RGB foreground color (true-color)
+" set t_8b=[48;2;%lu;%lu;%lum  " set RGB background color (true-color)
+
+" --- set cursor to block in normal mode, vert bar in insert mode ---
 
 " OS X (iTerm2) version
 if has("macunix")
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-    " let &t_ti = "\<Esc>]50;CursorShape=0\x7"
-    " let &t_te = "\<Esc>]50;CursorShape=1\x7"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"  " S-tart I-nsert (bar-cursor)
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"  " E-nd I-nsert (change to block-cursor)
+    " let &t_ti = "\<Esc>]50;CursorShape=0\x7"  " put terminal into termcap mode
+    " let &t_te = "\<Esc>]50;CursorShape=1\x7"  " end of termcap mode
 endif
 
-" Linux on iTerm2 via ssh
-if has("unix")
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
-" Cygwin version
-if has("win32unix")
-    " take terminal out of "termcap" mode
-    let &t_te .= "\e[0 q"
-    " put terminal in "termcap" mode
-    let &t_ti .= "\e[1 q"
-    " end insert mode
-    let &t_EI .= "\e[1 q"
-    " start insert mode
-    let &t_SI .= "\e[5 q"
-endif
+" " Linux on iTerm2 via ssh
+" if has("unix")
+"     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" endif
 
 " }}}
 
@@ -49,10 +39,20 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " --- 'Black'-ens Python code on save ---
-Plug 'psf/black',
+Plug 'psf/black', { 'branch': 'stable' }
+
+" --- rip-grep in Vim; multi-file search ---
+Plug 'wincent/ferret'
 
 " --- speeds-up code folding, avoiding certain pathological cases ---
 Plug 'Konfekt/FastFold'
+
+" --- fuzzy-file finding and more ---
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" --- Accordion-style file drawer with preview ---
+Plug 'preservim/nerdtree'
 
 " --- Fancy status line formatting and indicators ---
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -66,42 +66,75 @@ Plug 'tmhedberg/SimpylFold'
 " --- lints on every save ---
 Plug 'scrooloose/syntastic'
 
+" --- add n-ext target ---
+Plug 'wellle/targets.vim'
+
+" --- jump around git and merge conflicts ---
+Plug 'wincent/vcs-jump'
+
 " --- more powerful camel/snake-case aware text substitution with :S instead of :s ---
 Plug 'tpope/vim-abolish'
 
 " --- provides Solarized color scheme ---
-" Plug 'altercation/vim-colors-solarized'
-Plug 'overcache/NeoSolarized'
+Plug 'altercation/vim-colors-solarized'
 
 " --- provides filetype-aware code commenting ---
 Plug 'tpope/vim-commentary'
 
-Plug 'rbong/vim-flog'
+" --- enhanced close-by file navigation using '-' key ---
+Plug 'justinmk/vim-dirvish'
+
+" --- allows renames etc. on a buffer and its file ---
+Plug 'tpope/vim-eunuch'
+
+" --- Git support ---
 Plug 'tpope/vim-fugitive'
-Plug 'Twinside/vim-haskellFold'
+
+" --- JSON support, folding, etc. ---
 Plug 'elzr/vim-json'
+
+" --- session save and restore ---
 Plug 'tpope/vim-obsession'
+
+" --- subtle alignment improvements on <CR> in Python code ---
 Plug 'Vimjas/vim-python-pep8-indent'
+
+" --- repeat plugin-commands with '.' key ---
+Plug 'tpope/vim-repeat'
+
+" --- display marks in gutter ---
 Plug 'kshenoy/vim-signature'
+
+" --- horizontal find with 2-letters ---
 Plug 'justinmk/vim-sneak'
+
+" --- write view files to remember where you were in file ---
 Plug 'zhimsel/vim-stay'
+
+" --- additional 'surrounding' text-objects like parens, quotes, etc. ---
 Plug 'tpope/vim-surround'
+
+" --- handy bracket mappings like ']q' for :cnext
 Plug 'tpope/vim-unimpaired'
+
 Plug 'sjl/vitality.vim'
+
+" --- tab completions ---
 Plug 'Valloric/YouCompleteMe'
 
 " ---maybe install again later---
+" Plug 'rbong/vim-flog'
 " Plug 'gerw/vim-HiLinkTrace'
 " Plug 'vim-python/python-syntax',
 " Plug 'SirVer/ultisnips'
 " Plug 'tpope/vim-cucumber',   {'pinned': 1}
-" Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-vinegar'
+" Plug 'Twinside/vim-haskellFold'
 " Plug 'sukima/xmledit'
 
 call plug#end()
 
-"installed in OS X -----------------
+" filetype plugin indent on
+" syntax on
 
 " }}}
 
@@ -142,103 +175,110 @@ let g:fastfold_savehook = 0
 "let g:netrw_hide = 1
 
 
-"" python-syntax --------------------------------------------
+" python-syntax --------------------------------------------
 
-"" " Python 2 mode
-"" let g:python_version_2 = 0
+" " Python 2 mode
+" let g:python_version_2 = 0
 
-"" " Python 2 mode (buffer local)
-"" let b:python_version_2 = 0
+" " Python 2 mode (buffer local)
+" let b:python_version_2 = 0
 
-"" Highlight builtin functions and objects
+" Highlight builtin functions and objects
 "let g:python_highlight_builtins = 1
 
-"" " Highlight builtin objects only
-"" let g:python_highlight_builtin_objs = 0
+" Highlight builtin objects only
+" let g:python_highlight_builtin_objs = 0
 
-"" " Highlight builtin functions only
-"" let g:python_highlight_builtin_funcs = 0
+" Highlight builtin functions only
+" let g:python_highlight_builtin_funcs = 0
 
-"" " Highlight builtin functions when used as kwarg
-"" let g:python_highlight_builtin_funcs_kwarg = 1
+" Highlight builtin functions when used as kwarg
+" let g:python_highlight_builtin_funcs_kwarg = 1
 
-"" " Highlight standard exceptions
-"" let g:python_highlight_exceptions = 0
+" Highlight standard exceptions
+" let g:python_highlight_exceptions = 0
 
-"" " Highlight % string formatting
-"" let g:python_highlight_string_formatting = 0
+" Highlight % string formatting
+" let g:python_highlight_string_formatting = 0
 
-"" " Highlight syntax of str.format syntax
-"" let g:python_highlight_string_format = 0
+" " Highlight syntax of str.format syntax
+" let g:python_highlight_string_format = 0
 
-"" " Highlight syntax of string.Template
-"" let g:python_highlight_string_templates = 0
+" " Highlight syntax of string.Template
+" let g:python_highlight_string_templates = 0
 
-"" " Highlight indentation errors
-"" let g:python_highlight_indent_errors = 0
+" " Highlight indentation errors
+" let g:python_highlight_indent_errors = 0
 
-"" Highlight trailing spaces
+" Highlight trailing spaces
 "let g:python_highlight_space_errors = 1
 
-"" " Highlight doc-tests
-"" let g:python_highlight_doctests = 0
+" Highlight doc-tests
+" let g:python_highlight_doctests = 0
 
-"" " Highlight class variables self and cls
-"" let g:python_highlight_class_vars = 0
+" Highlight class variables self and cls
+let g:python_highlight_class_vars = 1
 
-"" " Highlight all operators
-"" let g:python_highlight_operators = 0
+" Highlight all operators
+" let g:python_highlight_operators = 0
 
-"" Enable all highlight options above, except for previously set.
+" Enable all highlight options above, except for previously set.
 "let g:python_highlight_all = 1
 
-"" Highlight shebang and coding headers as comments
+" Highlight shebang and coding headers as comments
 "let g:python_highlight_file_headers_as_comments = 1
 
-"" Disable for slow machines (default: 1)
+" Disable for slow machines (default: 1)
 "let g:python_slow_sync = 1
 
 
-"" riv ------------------------------------------------------
+" powerline ------------------------------------------------
+let g:Powerline_symbols = 'fancy'
 
-"" disable pesky table auto-formatting
+
+" riv ------------------------------------------------------
+
+" disable pesky table auto-formatting
 let g:riv_auto_format_table = 0
 
-"" update folds on file save
+" update folds on file save
 let g:riv_fold_auto_update = 1
 
-"" show blank lines at end of fold, except the first one
+" show blank lines at end of fold, except the first one
 let g:riv_fold_blank = 0
 
-"" turn folding on
+" turn folding on
 let g:rst_fold_enabled = 1
 
-"" don't fold lists
+" don't fold lists
 let g:riv_fold_level = 1
 
-"" Let <CR> stay as :nohlsearch
+" Let <CR> stay as :nohlsearch
 let g:riv_ignored_nmaps = '<CR>'
 
-"" Ctrl-Q is leader for Riv commands
+" Ctrl-Q is leader for Riv commands
 let g:riv_global_leader = '<C-q>'
 
 
-"" SimpylFold -----------------------------------------------
+" SimpylFold -----------------------------------------------
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
-let g:SimpylFold_fold_import = 0
+let g:SimpylFold_fold_import = 1
 
+" --- Solarized color scheme ---
+if strftime("%H") > 6 && strftime("%H") < 17
+    set background=light
+else
+    set background=dark
+endif
 
-" solarized color scheme -----------------------------------
+colorscheme solarized
 
-" invisibles (e.g. newlines)
-" low: subdued, normal: gray, high: red
+" -- invisibles (e.g. newlines) - low: subdued, normal: gray, high: red
 let g:solarized_visibility = "normal"
-
-" trailing space hilighting
-let g:solarized_hitrail = 1  
-
-" turn extra MacVim menu on or off
+" -- trailing space hilighting --
+"let g:solarized_hitrail = 1  
+" -- turn extra MacVim menu on or off---
 let g:solarized_menu = 0
 
 
@@ -312,11 +352,14 @@ let g:vim_json_syntax_conceal = 0
 
 "" XML Syntax -----------------------------------------------
 let g:xml_syntax_folding=1
-autocmd FileType xml setlocal foldmethod=syntax
 
 
-" YouCompleteMe --------------------------------------------
+"" YouCompleteMe --------------------------------------------
 
+let g:ycm_auto_hover = ""
+let g:ycm_auto_trigger = 1
+let g:ycm_key_detailed_diagnostics = ""
+let g:ycm_disable_signature_help = 1
 let g:ycm_filetype_blacklist = {
     \ 'rst' : 1,
 \}
@@ -390,8 +433,12 @@ augroup END
 " Cucumber file settings ------------------- {{{
 augroup filetype_cucumber
     autocmd!
-    autocmd FileType cucumber setlocal sw=2
+    autocmd FileType cucumber setlocal fdm=indent sw=2
 augroup END
+" }}}
+
+" dirvish buffer settings ------------------ {{{
+autocmd! FileType dirvish setlocal relativenumber
 " }}}
 
 " HTML file settings ------------------- {{{
@@ -407,6 +454,14 @@ augroup filetype_java
     " tw - max line length before wrapping
     autocmd FileType java set makeprg=javac\ %
     set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+augroup END
+" }}}
+
+" JSON file settings ------------------- {{{
+augroup filetype_json
+    autocmd!
+    autocmd FileType json setl nowrap
+    autocmd FileType json setl foldmethod=syntax
 augroup END
 " }}}
 
@@ -431,7 +486,8 @@ augroup END
 augroup filetype_python
     autocmd!
     " ---don't wrap Python windows---
-    autocmd FileType python set nowrap textwidth=88
+    autocmd FileType python set fdm=expr nowrap so=3 textwidth=88
+    autocmd BufWritePre *.py execute ':Black'
 augroup END
 " }}}
 
@@ -447,7 +503,7 @@ augroup END
 augroup filetype_rst
     autocmd!
     " set spell-check on
-    autocmd FileType rst setlocal spell
+    autocmd FileType rst setlocal nospell sw=4 sts=4
 augroup END
 " }}}
 
@@ -468,7 +524,8 @@ augroup END
 " XML file settings -------------------- {{{
 augroup filetype_xml
     autocmd!
-    autocmd FileType xml setlocal ts=2 sw=2 expandtab
+    autocmd FileType xml setlocal fdm=syntax ts=2 sw=2 expandtab
+    autocmd FileType xsd setlocal fdm=syntax ts=2 sw=2 expandtab
 augroup END
 " }}}
 
@@ -478,19 +535,6 @@ augroup on_lose_focus
     autocmd FocusLost * :silent wall
 augroup END
 " }}}
-" }}}
-
-
-" commands ---------------------------------------------------------- {{{
-
-" Show syntax highlighting groups for word under cursor
-" nmap <C-S> :call <SID>SynStack()<CR>
-" function! <SID>SynStack()
-"   if !exists("*synstack")
-"     return
-"   endif
-"   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-" endfunc
 
 " }}}
 
@@ -527,6 +571,9 @@ set encoding=utf-8
 " et - enter spaces when tab is pressed
 set expandtab
 
+" fcs - chars with which to fill statuslines and vertical separators
+set fillchars+=stl:\ ,stlnc:\
+
 " fo - specify text wrapping particulars
 "    c - Auto-wrap comments using textwidth.
 "    n - Recognize numbered lists
@@ -538,13 +585,18 @@ set formatoptions=cnoqrt1
 
 " gfn - choose display font and size
 set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+" set guifont=Source\ Code\ Pro\ for\ Powerline\ Light:h12
 " set guifont=Source\ Code\ Pro:h13
+
+" go - GUI options like scrollbars
+" --- remove left and right scrollbars ---
+set guioptions-=rL
 
 " hid - allow unsaved buffers to rotate to background
 set hidden
 
 " hi - number of commands to save in command history
-set history=1000
+set history=10000
 
 " hls - highlight matches for find buffer
 set hlsearch
@@ -558,7 +610,7 @@ set incsearch
 " ls - always show status line
 set laststatus=2
 
-" list - show newline and tab characters
+" list - hide/show newline and tab characters
 set nolist
 
 " lcs - use the same symbols as TextMate for tabstops and EOLs
@@ -571,7 +623,7 @@ set modelines=5
 set nomore
 
 " mouse - enable mouse in all modes
-set mouse=a
+set mouse=nich
 
 " js - single space between sentences on join lines
 set nojoinspaces
@@ -583,7 +635,7 @@ set noswapfile
 set number
 
 " rnu - line numbers are relative to current line
-" set relativenumber
+set relativenumber
 
 " ru - set row/col numbers to appear in status line
 set ruler
@@ -592,14 +644,7 @@ set ruler
 set scrolloff=3
 
 " sh - shell to use for :! commands
-if has("macunix")
-    " set shell=/usr/local/bin/zsh
-    set shell=/bin/zsh
-elseif has("unix")
-    set shell=/usr/bin/zsh
-else
-    set shell=/usr/local/bin/zsh
-endif
+set shell=/usr/local/bin/zsh
 
 " set shellcmdflag=-ci
 set shellcmdflag=-c
@@ -621,6 +666,9 @@ set showmode
 
 " sts - set tab width for backspacing
 set softtabstop=4
+
+" titlestring - set MacVim window title to current directory
+" set titlestring+=\ pwd:\ %{substitute(getcwd(),\ $HOME,\ '~',\ '')}
 
 " scs - make search case-sensitive if an uppercase character in search string
 set nosmartcase
@@ -656,7 +704,10 @@ set ttyfast
 set undofile
 
 " udir - specify directory for undo files
-set undodir=~/.vim/undo//
+set undodir=~/.vim/undo
+
+" vop - view options, remove some for vim-stay plugin
+set viewoptions=cursor,folds
 
 " ve - allow cursor to travel where there is no actual character
 set virtualedit=block
@@ -675,7 +726,7 @@ set winminheight=3
 set winheight=199
 
 " wiw - minimum number of columns for current window
-set winwidth=96
+set winwidth=92
 
 " wrap - wrap lines longer than the width of the window
 set wrap
@@ -700,17 +751,20 @@ nnoremap <leader>2 :RivTitle2<CR>
 nnoremap <leader>3 :RivTitle3<CR>
 nnoremap <leader>4 :RivTitle4<CR>
 
-" a - tee-up :Ag! command
-nnoremap <leader>a :Ack!<Space>
-
 " b - wipe current buffer (and close window)
 nnoremap <silent> <leader>b :bw<CR>
 
 " c - close current window
 nnoremap <silent> <leader>c :clo<CR>
 
+" D - open 'TODO.rst'
+nnoremap <silent> <leader>D :vsplit _scratch/TODO.rst<CR>
+
 " e - open file in same directory as current file
 map <leader>e :e %%
+
+" f - fzf file finder
+map <leader>f :Files<CR>
 
 " gd - :Gdiff
 map <leader>gd :Gdiff<CR>
@@ -722,10 +776,19 @@ map <leader>gs :Gstatus<CR>
 map <leader>gw :Gwrite<CR>
 
 " h - toggle highlight of last search matches
-nnoremap <leader>h :set hlsearch!<CR>
+" nnoremap <leader>h :set hlsearch!<CR>
 
 " l - toggle show invisibles
 nnoremap <leader>l :set list!<CR>
+
+" L - set current LeetCode module to run on ,t and make executable
+function! MakeCurrentBufferLeetCodeModule()
+    let l:path=expand('%')
+    execute 'nnoremap <leader>t :w\|! ' l:path "<CR>"
+    execute 'silent !chmod +x ' l:path
+    echo 'LeetCoded: ' . l:path
+endfunc
+nnoremap <silent> <leader>L :call MakeCurrentBufferLeetCodeModule()<CR>
 
 " n - toggle show line numbers
 nnoremap <leader>n :set number!<CR>
@@ -756,22 +819,25 @@ function! ToggleRelativeNumber()
 endfunc
 nnoremap <leader>r :call ToggleRelativeNumber()<CR>
 
+" R - replace matches in search buffer
+nnoremap <leader>R :%s//
+
 " sp - open horizontal split window
 nnoremap <leader>sp :split<CR>
 
-" ss - reSync syntax from Start
+" ss - syntax S-ync from S-tart
 nnoremap <leader>ss :syntax sync fromstart<CR>
 
 " sv - source ~/.vimrc (after changes)
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " t - test
-nnoremap <leader>t :w\|!py.test<CR>
+nnoremap <leader>t :w\|!py.test -x<CR>
 
 " T - set current module to run on ,t
 function! MakeCurrentBufferTestModule()
     let l:path=expand('%')
-    execute 'nnoremap <leader>t :w\|!py.test -x -q -p no:warnings -p no:flaky --tb=native ' l:path "<CR>"
+    execute 'nnoremap <leader>t :w\|!py.test -x -q --tb=native ' l:path "<CR>"
     echo ',t: ' . l:path
 endfunc
 nnoremap <silent> <leader>T :call MakeCurrentBufferTestModule()<CR>
@@ -851,18 +917,35 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
-" bubble single line (breaks in latest version, using unimpaired at least)
+" -- bubble single line --
 " nmap - [e
-" nmap - zi[ezi
-nmap - ddkP
 " nmap _ ]e
+" brute-force method
+" nmap - zi[ezi
+" nmap - ddkP
 " nmap _ zi]ezi
-nmap _ ddp
+" nmap _ ddp
 nnoremap <C-Up> ddkP
 nnoremap <C-Down> ddp
 " bubble multiple lines
 vnoremap <C-Up> xkP`[V`]
 vnoremap <C-Down> xp`[V`]
+
+" --- fzf mappings ---
+function! MinExec(cmd)
+	redir @a
+	exec printf('silent %s',a:cmd)
+	redir END
+	return @a
+endfunction
+
+function! GetMappings()
+	let lines=MinExec('map')
+	let lines=split(lines,'\n')
+	return lines
+endfunction
+
+nnoremap <silent> <C-a>M :call fzf#run({'source': GetMappings(),'options': '-m'} )<CR>
 
 " }}}
 
