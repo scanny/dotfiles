@@ -55,7 +55,7 @@ export LC_COLLATE=C
 
 export PIP_REQUIRE_VIRTUALENV=true
 
-gpip() {
+function gpip {
    PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
 
@@ -70,4 +70,5 @@ source virtualenvwrapper.sh
 
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
+export PIP_REQUIRE_VIRTUALENV=true
 export VIRTUAL_ENV_DISABLE_PROMPT=1

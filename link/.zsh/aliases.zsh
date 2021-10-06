@@ -110,6 +110,8 @@ alias gx='gitx --all'
 # -------------------------------------------------------------------
 
 alias gentags='ctags .'
+# ---allow access to global Python environment---
+alias gpip='PIP_REQUIRE_VIRTUALENV="" pip'
 # alias history='fc -l 1'
 alias n='next'
 alias oz="vim ~/.zshrc"
