@@ -6,14 +6,12 @@
 if is_mac; then
     # set iTerm2 cursor back to vertical bar
     alias curs='echo -e -n "\033]50;CursorShape=1\007"'
-    alias e='mvim -S Session.vim'
     alias l='/usr/local/bin/gls -la --color --group-directories-first'
     alias lh='/usr/local/bin/gls -dl --color --group-directories-first .*'
     alias ll='/usr/local/bin/gls -l --color --group-directories-first'
     alias lla='/usr/local/bin/gls -la --color --group-directories-first'
-    alias vim='mvim -v'
+    alias vim='nvim'
 else
-    alias e='vim -S Session.vim'
     alias l='ls -la --color --group-directories-first'
     alias lh='ls -dl --color --group-directories-first .*'
     alias ll='ls -l --color --group-directories-first'
@@ -26,6 +24,7 @@ alias b='behave'
 # show work-in-progress (WIP) behave scenarios
 alias bw='behave --tags=wip --no-skipped --dry-run'
 
+alias csb='clear && printf "\e[3J"'  # --- C-lear S-croll B-ack ---
 
 # -------------------------------------------------------------------
 # directory movement
@@ -37,75 +36,63 @@ alias bk='cd $OLDPWD'
 alias d='dirs -lpv'
 alias dc='dirs -c'
 
+alias e='nvim -S'
+
 # ---------------------------------------------------------
 # git aliases
 # ---------------------------------------------------------
-alias g='git'
 alias ga='git add'
 alias gaa='git add --all'
 alias gai='git add --interactive'
 
 alias gb='git --no-pager branch'
-alias gba='git branch -a'
 
 alias gc='git commit -v'
 alias gca='git commit -v --amend'
 alias gcar='git commit --amend --reuse-message=HEAD'
 alias gcl='git config --list'
-alias gclean='git reset --hard && git clean -dfx'
-alias gcm='cat .git/rebase-apply/msg-clean'
+alias gcm='cat .git/rebase-merge/message'
 alias gco='git checkout'
-alias gcob='git checkout -b'
-alias gcod='git checkout develop'
 alias gcof='git checkout fixit'
 alias gcom='git checkout master'
-alias gcon='git n && git h'
 alias gcos='git checkout spike'
-alias gcow='git checkout working'
 alias gcp='git cherry-pick'
 alias gcpc='git cherry-pick --continue'
+alias gcpnc='git cherry-pick --no-commit'
 
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias gdh='git diff HEAD'
 
-alias gf='git fetch'
+# --- git HEAD, on one line ---
+alias gh='git lawg -1'
 
-alias gh='git h'
-alias ghp='git hp'
-
-alias gl='git l'
-alias gla='git la'
-alias glr='git r'
-alias glra='git ra'
-alias gls='git --no-pager log --oneline -S'
-alias glsf='git ls-files | grep'
+gl() { git lawg $@ | less -EFXRS }
+alias gla='gl --all'
+# --- git log "recent", 42 is adjustable for window size ---
+alias glr='git lawg -42'
+alias glra='git lawg -42 --all'
+alias glrf='glr fixit'
+alias glrs='glr spike'
 
 alias gm='git merge'
 
 alias gn='git n'
 
+# --- show patch/diff for HEAD ---
 alias gp='git log -p -1 --oneline HEAD'
 
-alias gr='git remote'
 alias grb='git rebase'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
-alias grbfd='git rebase fixit develop'
 alias grbi='git rebase -i'
 alias grbo='git rebase --onto'
 alias grbs='git rebase --skip'
 alias grsh='git reset --hard'
 alias grsH='git reset HEAD'
-alias grsHh='git reset HEAD --hard'
-alias grv='git remote -v'
 
 alias gs='git status'
-alias gss='git status -s'
 
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
-
-alias gx='gitx --all'
 
 # -------------------------------------------------------------------
 
@@ -124,6 +111,8 @@ alias sz="source ~/.zshrc"
 alias t='make clean && flake8 && py.test && behave --stop'
 alias tw='make clean && flake8 && py.test && behave --stop --tags=-wip'
 alias view='mvim -Rv'
+# --- V-cs-jump M-erge ---
+alias vm=vim\ -c\ 'VcsJump\ merge'
 
 # -------------------------------------------------------------------
 # directory information
