@@ -24,4 +24,6 @@ source ~/.zsh/functions.zsh
 source ~/.zsh/history.zsh
 source ~/.zsh/zsh_hooks.zsh
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 eval "$(pyenv init -)"
