@@ -8,7 +8,6 @@ bindkey -v
 bindkey "^A"   beginning-of-line                    # ctrl-a  
 bindkey "^B"   backward-char                        # ctrl-b
 bindkey "^E"   end-of-line                          # ctrl-e
-bindkey "^F"   forward-char                         # ctrl-f
 bindkey "^D"   delete-char                          # ctrl-d
 bindkey "^K"   kill-whole-line                      # ctrl-k
 bindkey "^N"   down-line-or-search                  # ctrl-n
@@ -43,4 +42,6 @@ zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 # Vi style:
+bindkey "^F" edit-command-line
+bindkey -M vicmd "^F" edit-command-line
 bindkey -M vicmd v edit-command-line
