@@ -21,6 +21,10 @@ if is_cygwin; then
     export PATH
 fi
 
+# Linux PATH, maybe ok as is -------------------------------
+if is_linux; then
+fi
+
 # include user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
   PATH=${HOME}/bin:${PATH}
