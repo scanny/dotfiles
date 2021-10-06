@@ -15,6 +15,10 @@
 [core]
     autocrlf = input
     safecrlf = true
+    editor = nvim
+
+[credential]
+    helper = osxkeychain
 
 [diff]
     mnemonicprefix = true
@@ -37,6 +41,7 @@
 	required = true
 	clean  = git-media-clean %f
 	smudge = git-media-smudge %f
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

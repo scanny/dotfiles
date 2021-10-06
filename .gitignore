@@ -1,4 +1,5 @@
 /link/.config/git/config-local
+/link/.config/nvim/.netrwhist
 /link/.vim/.netrwhist
 /link/.vim/black/
 /link/.vim/bundle/

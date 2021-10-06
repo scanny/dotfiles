@@ -1,0 +1,82 @@
+snippet defl "An @lazyproperty definition" b
+@lazyproperty
+def ${1:fname}(self):
+	"""${3:docstring for $1}"""
+	${0:raise NotImplementedError}
+endsnippet
+
+snippet cmk "A class-mock" b
+@pytest.fixture
+def ${1:ClassName}_(self, request):
+	return class_mock(request, "${2:module}.$1")
+endsnippet
+
+snippet iimk "inline instance-mock"
+instance_mock(request, ${1:Class})
+endsnippet
+
+snippet imk "An instance-mock" b
+@pytest.fixture
+def ${1:instance_name}_(self, request):
+	return instance_mock(request, ${2}`!p snip.rv = (
+	    "".join(
+		    [
+			    s[0].upper() + s[1:]
+				for s in t[1].split("_")
+				if s
+		    ]
+		)
+	)`)
+endsnippet
+
+snippet inmk "An initializer-mock" b
+@pytest.fixture
+def _init_(self, request):
+	return initializer_mock(request, ${2:ClassName})
+endsnippet
+
+snippet immk "inline method-mock"
+method_mock(request, ${1:Cls}, "${2:method_name}", return_value=${3:value})
+endsnippet
+
+snippet mmk "A method-mock" b
+@pytest.fixture
+def ${1:method_name}_(self, request):
+	return method_mock(request, ${2:ClassName}, "$1")
+endsnippet
+
+snippet par "A parametrized-test decorator" b
+@pytest.mark.parametrize(
+	"${1:params}",
+	(
+		# -DELETEME-----------------------------------------------------------------
+		(),
+	)
+)
+endsnippet
+
+snippet ipmk "inline property-mock"
+property_mock(request, ${1:ClassName}, "${2:prop_name}", return_value=$3)
+endsnippet
+
+snippet pmk "A property-mock" b
+@pytest.fixture
+def ${1:prop_name}_prop_(self, request):
+	return property_mock(request, ${2:ClassName}, "$1")
+endsnippet
+
+snippet prf "print an f-string" b
+print(f"{${1}=}")
+endsnippet
+
+snippet rfb "return foobar" b
+return "foobar"
+endsnippet
+
+snippet rni "raise NotImplementedError" b
+raise NotImplementedError
+endsnippet
+
+snippet xf "An XFAIL decorator" b
+@pytest.mark.xfail(reason="WIP", raises=NotImplementedError, strict=True)
+endsnippet
