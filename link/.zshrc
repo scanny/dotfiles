@@ -2,7 +2,7 @@
 # .zshrc
 #
 
-# source ~/.zsh/path.zsh
+# source ~/.zsh/path.zsh  # ---executed in .zshenv, not here---
 source ~/.zsh/colors.zsh
 source ~/.zsh/setopt.zsh
 source ~/.zsh/exports.zsh
