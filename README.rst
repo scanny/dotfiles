@@ -5,12 +5,21 @@ scanny/dotfiles
 Using
 =====
 
-1. Install zsh if required (Ubuntu)::
+1. Install `zsh` if required
+
+   Ubuntu::
 
     $ sudo apt-get -y install zsh
+
+   CentOS::
+
+    $ sudo yum update && sudo yum -y install zsh
+
+2. Change user shell to `zsh`::
+
     $ sudo chsh -s /usr/bin/zsh
 
-2. Clone scanny/dotfiles from github::
+2. Clone `scanny/dotfiles` from GitHub::
 
     $ git clone https://github.com/scanny/dotfiles ~/.dotfiles
 
