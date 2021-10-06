@@ -1,5 +1,6 @@
 /link/.config/git/config-local
 /link/.vim/.netrwhist
+/link/.vim/black/
 /link/.vim/bundle/
 /link/.vim/plugged/
 /link/.vim/spell/
