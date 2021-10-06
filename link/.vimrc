@@ -1,4 +1,4 @@
-" a priori items ----------------------------------------------------{{{
+" a priori items ---------------------------------------------------- {{{
 
 set nocompatible
 filetype off
@@ -11,7 +11,7 @@ au BufRead,BufNewFile *.tmpl set filetype=html
 " }}}
 
 
-" terminal-related settings -----------------------------------------{{{
+" terminal-related settings ----------------------------------------- {{{
 
 " terminal can display 256 colors
 set t_Co=256
@@ -47,7 +47,7 @@ endif
 " }}}
 
 
-" load plugins ------------------------------------------------------{{{
+" load plugins ------------------------------------------------------ {{{
 
 call vundle#begin()
 
@@ -56,29 +56,32 @@ Plugin 'VundleVim/Vundle.vim'
 
 " other bundles installed
 " Plugin 'Konfekt/FastFold'
+" Plugin 'gerw/vim-HiLinkTrace'
+Plugin 'vim-python/python-syntax',
 Plugin 'Rykka/riv.vim',        {'pinned': 1}
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'scrooloose/syntastic'
+Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-abolish'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-cucumber',   {'pinned': 1}
 Plugin 'tpope/vim-fugitive'
-" Plugin 'pangloss/vim-javascript'
+Plugin 'elzr/vim-json'
 Plugin 'tpope/vim-obsession'
-Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'Vimjas/vim-python-pep8-indent'
 " Plugin 'tpope/vim-repeat'
 Plugin 'justinmk/vim-sneak'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-vinegar'
 Plugin 'sjl/vitality.vim'
 " Plugin 'sukima/xmledit'
+Plugin 'Valloric/YouCompleteMe'
 
 " skip these bundles if on Cygwin
 if has("macunix")
     Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-    " Plugin 'SirVer/ultisnips'
-    Plugin 'Valloric/YouCompleteMe'
 endif
 
 " " these bundles are compatible with Linux
@@ -99,13 +102,49 @@ colorscheme solarized
 
 " configure plugins ------------------------------------------------- {{{
 
-" these plugins are only installed in OS X -----------------
+function! g:UltiSnips_Complete()
+  call UltiSnips#ExpandSnippet()
+  if g:ulti_expand_res == 0
+    if pumvisible()
+      return "\<C-n>"
+    else
+      call UltiSnips#JumpForwards()
+      if g:ulti_jump_forwards_res == 0
+        return "\<TAB>"
+      endif
+    endif
+  endif
+  return ""
+endfunction
+
+function! g:UltiSnips_Reverse()
+  call UltiSnips#JumpBackwards()
+  if g:ulti_jump_backwards_res == 0
+    return "\<C-P>"
+  endif
+  return ""
+endfunction
+
+if !exists("g:UltiSnipsJumpForwardTrigger")
+  let g:UltiSnipsJumpForwardTrigger = "<tab>"
+endif
+
+if !exists("g:UltiSnipsJumpBackwardTrigger")
+  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+endif
+
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
+
+"installed in OS X -----------------
 
 if has("macunix")
     " powerline
     set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
     " UltiSnips
-    " let g:UltiSnipsExpandTrigger="<S-Tab>"
+    " let g:UltiSnipsExpandTrigger="<Tab>"
+    " let g:UltiSnipsJumpForwardTrigger="<Tab>"
+    " let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
     " YouCompleteMe
     let g:ycm_key_list_previous_completion=['<Up>']
 endif
@@ -122,6 +161,10 @@ endif
 let loaded_matchparen = 1
 
 
+" ack.vim --------------------------------------------------
+let g:ackprg = 'ag --vimgrep'
+
+
 " ctrlp ----------------------------------------------------
 let g:ctrlp_custom_ignore = '\v[\/]\.tox$'
 let g:ctrlp_show_hidden = 1
@@ -132,7 +175,67 @@ let g:netrw_list_hide = '.*\.pyc$'
 let g:netrw_hide = 1
 
 
+" python-syntax --------------------------------------------
+
+" " Python 2 mode
+" let g:python_version_2 = 0
+
+" " Python 2 mode (buffer local)
+" let b:python_version_2 = 0
+
+" Highlight builtin functions and objects
+let g:python_highlight_builtins = 1
+
+" " Highlight builtin objects only
+" let g:python_highlight_builtin_objs = 0
+
+" " Highlight builtin functions only
+" let g:python_highlight_builtin_funcs = 0
+
+" " Highlight builtin functions when used as kwarg
+" let g:python_highlight_builtin_funcs_kwarg = 1
+
+" " Highlight standard exceptions
+" let g:python_highlight_exceptions = 0
+
+" " Highlight % string formatting
+" let g:python_highlight_string_formatting = 0
+
+" " Highlight syntax of str.format syntax
+" let g:python_highlight_string_format = 0
+
+" " Highlight syntax of string.Template
+" let g:python_highlight_string_templates = 0
+
+" " Highlight indentation errors
+" let g:python_highlight_indent_errors = 0
+
+" Highlight trailing spaces
+let g:python_highlight_space_errors = 1
+
+" " Highlight doc-tests
+" let g:python_highlight_doctests = 0
+
+" " Highlight class variables self and cls
+" let g:python_highlight_class_vars = 0
+
+" " Highlight all operators
+" let g:python_highlight_operators = 0
+
+" Enable all highlight options above, except for previously set.
+let g:python_highlight_all = 1
+
+" Highlight shebang and coding headers as comments
+let g:python_highlight_file_headers_as_comments = 1
+
+" Disable for slow machines (default: 1)
+let g:python_slow_sync = 1
+
+
 " riv ------------------------------------------------------
+
+" disable pesky table auto-formatting
+let g:riv_auto_format_table = 0
 
 " update folds on file save
 let g:riv_fold_auto_update = 1
@@ -158,6 +261,12 @@ let g:SimpylFold_fold_import = 0
 " invisibles (e.g. newlines)
 " low: subdued, normal: gray, high: red
 let g:solarized_visibility = "normal"
+
+" trailing space hilighting
+let g:solarized_hitrail = 1  
+
+" turn extra MacVim menu on or off
+let g:solarized_menu = 0
 
 
 " syntastic ------------------------------------------------
@@ -228,6 +337,19 @@ let g:ycm_filetype_blacklist = {
 " }}}
 
 
+" utility functions ------------------------------------------------- {{{
+
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" }}}
+
+
 " auto-commands ----------------------------------------------------- {{{
 
 " after Vim startup -------------------- {{{
@@ -238,6 +360,15 @@ augroup at_end_of_vim_setup
     autocmd VimEnter set winheight=5
     autocmd VimEnter set winminheight=3
     autocmd VimEnter set winheight=41
+augroup END
+" }}}
+
+" restore CR in special windows -------- {{{
+augroup vimrc_CRfix
+  autocmd!
+  " Quickfix, Location list, &c. remap <CR> to work as expected
+  autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+  autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
 augroup END
 " }}}
 
@@ -269,6 +400,13 @@ augroup filetype_cpp
 augroup END
 " }}}
 
+" Cucumber file settings ------------------- {{{
+augroup filetype_cucumber
+    autocmd!
+    autocmd FileType cucumber setlocal sw=2
+augroup END
+" }}}
+
 " HTML file settings ------------------- {{{
 augroup filetype_html
     autocmd!
@@ -289,7 +427,7 @@ augroup END
 augroup filetype_gitcommit
     autocmd!
     " tw - max line length before wrapping
-    autocmd FileType gitcommit set textwidth=72
+    autocmd FileType gitcommit set colorcolumn=73 textwidth=72
     autocmd FileType gitcommit set formatoptions+=t
 augroup END
 " }}}
@@ -302,11 +440,34 @@ augroup filetype_openscad
 augroup END
 " }}}
 
+" Python file settings------------------ {{{
+augroup filetype_python
+    autocmd!
+    " ---don't wrap Python windows---
+    autocmd FileType python set nowrap textwidth=88
+augroup END
+" }}}
+
 " R file settings ---------------------- {{{
 augroup filetype_r
     autocmd!
     " comment string used by vim-commentary
     autocmd FileType r set commentstring=#\ %s
+augroup END
+" }}}
+
+" rst file settings -------------------- {{{
+augroup filetype_rst
+    autocmd!
+    " set spell-check on
+    autocmd FileType rst setlocal spell
+augroup END
+" }}}
+
+" text file settings -------------------- {{{
+augroup filetype_text
+    autocmd!
+    autocmd FileType text setlocal nowrap textwidth=0 wrapmargin=0
 augroup END
 " }}}
 
@@ -358,8 +519,8 @@ set autoread
 " bs - enable backspace to consume linefeeds, etc.
 set backspace=indent,eol,start
 
-" cc - place line-width indicator in column 79
-set colorcolumn=79
+" cc - place line-width indicator in column 89 (one past wrap limit)
+set colorcolumn=89
 
 " cot - only insert the longest common text of matches
 set completeopt=longest,menu
@@ -389,9 +550,8 @@ set expandtab
 set formatoptions=cnoqrt1
 
 " gfn - choose display font and size
-" set guifont=Source\ Code\ Pro\ Light:h13
-" set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h12
-set guifont=Source\ Code\ Pro:h13
+set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+" set guifont=Source\ Code\ Pro:h13
 
 " hid - allow unsaved buffers to rotate to background
 set hidden
@@ -400,7 +560,7 @@ set hidden
 set history=1000
 
 " hls - highlight matches for find buffer
-set nohlsearch
+set hlsearch
 
 " ic - ignore case in search if all lower case (see smartcase too)
 set noignorecase
@@ -436,7 +596,7 @@ set noswapfile
 set number
 
 " rnu - line numbers are relative to current line
-set relativenumber
+" set relativenumber
 
 " ru - set row/col numbers to appear in status line
 set ruler
@@ -478,6 +638,12 @@ set softtabstop=4
 " scs - make search case-sensitive if an uppercase character in search string
 set nosmartcase
 
+" spf - location of word list file for spell check
+set spellfile=$HOME/.vim/spell/en.utf-8.add
+
+" spl - specify spelling language
+set spelllang=en
+
 " sb - make new horz splits appear below current window
 set splitbelow
 
@@ -488,7 +654,7 @@ set splitright
 set tabstop=4
 
 " tw - max line length before wrapping
-set textwidth=79
+set textwidth=88
 
 " tm - delay waiting for next keystroke after leader
 set timeoutlen=1000
@@ -522,7 +688,7 @@ set winminheight=3
 set winheight=199
 
 " wiw - minimum number of columns for current window
-set winwidth=86
+set winwidth=96
 
 " wrap - wrap lines longer than the width of the window
 set wrap
@@ -546,6 +712,9 @@ nnoremap <leader>1 :RivTitle1<CR>
 nnoremap <leader>2 :RivTitle2<CR>
 nnoremap <leader>3 :RivTitle3<CR>
 nnoremap <leader>4 :RivTitle4<CR>
+
+" a - tee-up :Ag! command
+nnoremap <leader>a :Ack!<Space>
 
 " b - wipe current buffer (and close window)
 nnoremap <silent> <leader>b :bw<CR>
@@ -603,6 +772,9 @@ nnoremap <leader>r :call ToggleRelativeNumber()<CR>
 " sp - open horizontal split window
 nnoremap <leader>sp :split<CR>
 
+" ss - reSync syntax from Start
+nnoremap <leader>ss :syntax sync fromstart<CR>
+
 " sv - source ~/.vimrc (after changes)
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
@@ -612,7 +784,7 @@ nnoremap <leader>t :w\|!py.test<CR>
 " T - set current module to run on ,t
 function! MakeCurrentBufferTestModule()
     let l:path=expand('%')
-    execute 'nnoremap <leader>t :w\|!py.test -x --wip ' l:path "<CR>"
+    execute 'nnoremap <leader>t :w\|!py.test -x -q -p no:warnings -p no:flaky --tb=native ' l:path "<CR>"
     echo ',t: ' . l:path
 endfunc
 nnoremap <silent> <leader>T :call MakeCurrentBufferTestModule()<CR>
@@ -670,8 +842,8 @@ inoremap <C-k> <C-\><C-O>D
 
 " normal mode ---------------------------------------------- {{{
 
-" Enter - turn off search highlighting
-" nnoremap <CR> :nohlsearch<CR>
+" Enter - :noh - turn off search highlighting
+nnoremap <CR> :nohlsearch<CR>
 
 " space - toggle fold
 nnoremap <space> za
