@@ -5,36 +5,8 @@
 #
 
 [alias]
-    br   = branch
-    ci   = commit
-    co   = checkout
     dump = cat-file -p
-    st   = status
     type = cat-file -t
-
-    # -----------------------------------------
-    # Fancy logging.
-    # -----------------------------------------
-    # h  = head
-    # hp = head with patch
-    # l  = all commits, only current branch
-    # la = all commits, all reachable refs
-    # n  = commit causing current rebase conflict ({n}ext commit)
-    # r  = recent commits, only current branch
-    # ra = recent commits, all reachable refs
-    # -----------------------------------------
-    h    = !git head
-    head = !git l -1
-    l    = "!f(){ git lawg $@ | less -FXRS; };f"
-    la   = !git l --all
-    n    = !git l -1 $(cat .git/rebase-apply/original-commit)
-    r    = !git l -40
-    ra   = !git r --all
-
-    # custom functions ---------------------------
-    fix  = ! fix   # checkout 'fixit' and reset hard to $1
-    next = ! next  # move current branch "upward" to child commit
-
 
 [color]
     diff = always
@@ -46,6 +18,10 @@
 
 [diff]
     mnemonicprefix = true
+    tool = vimdiff
+
+[difftool]
+    prompt = false
 
 [include]
     path = config-local
