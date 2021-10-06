@@ -3,6 +3,7 @@ doc/tags
 *.pyc
 Session.vim
 _scratch/
+tags
 /tmp
 
 # Thumbnails
