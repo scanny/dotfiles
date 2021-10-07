@@ -66,7 +66,7 @@ unsetopt correctall
 # ---------------------------------------------------------
 
 # treat #, ~, and ^ as part of patterns for filename generation
-setopt extended_glob
+# setopt extended_glob
 
 
 # ---------------------------------------------------------
