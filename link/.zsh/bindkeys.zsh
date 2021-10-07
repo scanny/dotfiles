@@ -19,17 +19,20 @@ bindkey "^[[A" history-search-backward              # up arrow
 # vim-style command-line
 bindkey -M viins 'jk' vi-cmd-mode
 
+# --- called each time the key-map changes, like from vicmd to viins ---
 zle-keymap-select () {
     if [ $KEYMAP = vicmd ]; then
-        echo -ne "\e]50;CursorShape=0\a"  # block cursor
+        printf "\e[1 q"  # --- blinking block cursor ---
     else
-        echo -ne "\e]50;CursorShape=1\a"  # vertical bar
+        printf "\e[5 q"  # --- blinking vert bar ---
     fi
 }
+# --- define this "New" user-defined widget ---
 zle -N zle-keymap-select
+
+# --- called each time a new command-prompt appears -defined widget ---
 zle-line-init () {
     zle -K viins
-    echo -ne "\e]50;CursorShape=1\a"  # vertical bar
 }
 zle -N zle-line-init
 
