@@ -18,11 +18,7 @@ export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 fpath=(~/.zsh $fpath)
 
 # CDPATH allows quick directory changes
-if is_mac; then
-    export CDPATH=~/Dropbox/src
-else
-    export CDPATH=~/src
-fi
+export CDPATH=~/Dropbox:~/Dropbox/src
 
 
 # --------------------------------------------------------------------
