@@ -1,6 +1,8 @@
 *~
 doc/tags
 *.pyc
+.pytest_cache/
+.python-version
 Session.vim
 _scratch/
 tags
