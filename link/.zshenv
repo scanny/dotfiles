@@ -1,6 +1,20 @@
 #
 # .zshenv
 #
+# Runs after:
+#
+# * /etc/zshenv
+#
+# and before
+#
+# * /etc/zprofile
+# * ~/.zprofile
+# * /etc/zshrc
+# * ~/.zshrc
+#
+# Takes care of setup required by any shell, interacive or not (scripts run in a
+# non-interactive shell).
+#
 
 source ~/.zsh/checks.zsh
 source ~/.zsh/path.zsh
