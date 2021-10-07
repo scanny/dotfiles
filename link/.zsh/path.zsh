@@ -3,21 +3,14 @@
 #
 # Set the path used for shell environments
 #
+# Called by .zshenv, then again by .zprofile for interactive login shell
 
 # This is the OS X PATH ------------------------------------
 if is_mac; then
-    # reset to known base path
-    export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
-fi
-
-# Cygwin PATH is different ---------------------------------
-if is_cygwin; then
-    PATH="/usr/local/bin:/usr/bin:/bin"
-    # PATH="$PATH:/usr/sbin:/sbin:/opt/X11/bin"
-    # PATH="$PATH:/Windows/system32"
-    # PATH="$PATH:/Windows"
-    # PATH="$PATH:/Windows/System32/Wbem"
-    # PATH="$PATH:/Windows/System32/WindowsPowerShell/v1.0"
+    # --- most of PATH is set by /etc/zprofile, but we need our own order ---
+    PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    PATH="/opt/X11/bin:$PATH"
+    PATH="/usr/local/opt/python/libexec/bin:$PATH"
     export PATH
 fi
 
