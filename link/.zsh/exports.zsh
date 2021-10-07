@@ -29,7 +29,9 @@ fi
 # terminal
 # --------------------------------------------------------------------
 # Setup terminal, and turn on colors
-export TERM=xterm-256color
+# --- some say this should be the terminal (iTerm2) that does this. That makes some
+# --- sense because Linux could use a different terminal.
+# export TERM=xterm-256color
 
 # Enable color in grep
 export GREP_OPTIONS='--color=auto'
