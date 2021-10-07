@@ -5,11 +5,11 @@
 # Default to Vim bindings, regardless of editor string
 bindkey -v
 
-bindkey "^A"   beginning-of-line                    # ctrl-a  
+bindkey "^A"   beginning-of-line                    # ctrl-a
 bindkey "^B"   backward-char                        # ctrl-b
 bindkey "^E"   end-of-line                          # ctrl-e
 bindkey "^D"   delete-char                          # ctrl-d
-bindkey "^K"   kill-whole-line                      # ctrl-k
+bindkey "^K"   kill-line                            # ctrl-k
 bindkey "^N"   down-line-or-search                  # ctrl-n
 bindkey "^P"   up-line-or-search                    # ctrl-p
 bindkey "^R"   history-incremental-search-backward  # ctrl-r
