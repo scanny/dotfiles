@@ -1,13 +1,15 @@
 #
 # .zshrc
 #
-# Runs after:
+# Runs in overall sequence:
 #
-# * /etc/zshenv
-# * ~/.zshenv
-# * /etc/zprofile
-# * ~/.zprofile
-# * /etc/zshenv
+# 1. /etc/zshenv
+# 2. ~/.zshenv
+# 3. /etc/zprofile
+# 4. ~/.zprofile
+# 5: /etc/zshrc
+#
+# HERE-> 6: ~/.zshrc
 #
 # Generally takes care of setup distinctive to interacive shells.
 #

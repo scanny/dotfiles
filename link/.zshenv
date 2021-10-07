@@ -1,22 +1,24 @@
 #
 # .zshenv
 #
-# Runs after:
+# Runs in overall sequence:
 #
-# * /etc/zshenv
+# 1: /etc/zshenv
 #
-# and before
+# HERE-> 2: ~/.zshenv
 #
-# * /etc/zprofile
-# * ~/.zprofile
-# * /etc/zshrc
-# * ~/.zshrc
+# 3: /etc/zprofile
+# 4: ~/.zprofile
+# 5: /etc/zshrc
+# 6: ~/.zshrc
 #
 # Takes care of setup required by any shell, interacive or not (scripts run in a
 # non-interactive shell).
 #
 
 source ~/.zsh/checks.zsh
+# --- PATH is set here (in ~/.zsh/path.zsh), but can be clobbered by later /etc/zprofile
+# --- so must be set again in ~/.zprofile
 source ~/.zsh/path.zsh
 source ~/.zsh/aliases.zsh
 

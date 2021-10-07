@@ -20,6 +20,7 @@ establish_symlink ~/.githelpers     ~/.dotfiles/link/.githelpers
 establish_symlink ~/.vim            ~/.dotfiles/link/.vim
 establish_symlink ~/.vimrc          ~/.dotfiles/link/.vimrc
 
+establish_symlink ~/.zprofile       ~/.dotfiles/link/.zprofile
 establish_symlink ~/.zsh            ~/.dotfiles/link/.zsh
 establish_symlink ~/.zshenv         ~/.dotfiles/link/.zshenv
 establish_symlink ~/.zshrc          ~/.dotfiles/link/.zshrc
