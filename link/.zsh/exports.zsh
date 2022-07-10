@@ -75,3 +75,11 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # [ -n "$PS1" ] && \
 #     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
 #         eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+
+# --------------------------------------------------------------------
+# AWS configuration selection
+# --------------------------------------------------------------------
+# Wouldn't strictly be required but allows for multiple named AWS profile and for
+# whatever reason, Sense uses a named profile, not the [default] one.
+export AWS_PROFILE=sense
