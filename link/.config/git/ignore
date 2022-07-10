@@ -1,5 +1,7 @@
 *~
 doc/tags
+# --- allow working flake8 config in non-package root directories ---
+.flake8
 *.pyc
 .pytest_cache/
 .python-version
