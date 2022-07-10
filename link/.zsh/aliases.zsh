@@ -36,6 +36,20 @@ alias bk='cd $OLDPWD'
 alias d='dirs -lpv'
 alias dc='dirs -c'
 
+# ---------------------------------------------------------
+# docker aliases
+# ---------------------------------------------------------
+# --- list images ---
+alias di=docker\ images
+# --- list running containers ---
+alias dps=docker\ ps
+# --- list all containers, running or stopped ---
+alias dpsa=docker\ ps\ -a
+# --- remove docker container ---
+alias drm=docker\ rm
+# --- remove docker image ---
+alias drmi=docker\ rmi
+
 alias e='nvim -S'
 
 # ---------------------------------------------------------
