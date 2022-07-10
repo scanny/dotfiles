@@ -43,7 +43,7 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'chriskempson/base16-vim'
 
 " --- 'Black'-ens Python code on save ---
-Plug 'psf/black', { 'branch': 'stable' }
+Plug 'psf/black', { 'tag': '19.10b0' }
 
 " --- completion ---
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -55,6 +55,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " --- rip-grep in Vim; multi-file search ---
+" --- NOTE: installing ferret causes `E471: Argument required` error unless its :Black
+" --- command is remapped (conflicts with Python Black command).
+let g:FerretCommandNames={'Black': 'Fblack'}
 Plug 'wincent/ferret'
 
 " --- fuzzy-file finding and more ---
