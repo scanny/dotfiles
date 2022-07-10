@@ -119,6 +119,9 @@ Plug 'elzr/vim-json'
 " --- Letters instead of numbers for relative lines ---
 Plug 'skamsie/vim-lineletters'
 
+" --- markdown (plasticboy) ---
+source ~/.config/nvim/plugins/vim-markdown.vim
+
 " --- store dynamically updated session files ---
 Plug 'tpope/vim-obsession'
 
@@ -496,6 +499,13 @@ augroup filetype_gitcommit
 augroup END
 " }}}
 
+" markdown file settings --------------- {{{
+augroup filetype_md
+    autocmd!
+    autocmd FileType markdown syn clear mkdLineBreak
+augroup END
+" }}}
+
 " Python file settings------------------ {{{
 augroup filetype_python
     autocmd!
@@ -715,7 +725,7 @@ nmap <leader>n <Plug>(LoupeClearHighlight)
 nnoremap <leader>ob :split _scratch/blank.rst<CR><C-w>k
 
 " od - open 'TODO.rst'
-nnoremap <silent> <leader>od :vsplit _scratch/TODO.rst<CR>
+nnoremap <silent> <leader>od :vsplit _scratch/TODO.md<CR><C-w>L
 
 " os - open spike:% in split above and place cursor there
 nnoremap <leader>os :split<CR><C-w>k:Gedit spike:%<CR>
