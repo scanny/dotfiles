@@ -98,6 +98,9 @@ Plug 'wincent/vcs-jump'
 " --- more powerful camel/snake-case aware text substitution with :S instead of :s ---
 Plug 'tpope/vim-abolish'
 
+" --- split args onto separate lines ---
+Plug 'FooSoft/vim-argwrap'
+
 " --- improved '*' search-under-cursor behaviors ---
 Plug 'haya14busa/vim-asterisk'
 
@@ -171,7 +174,11 @@ call plug#end()
 " autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 
-" " --- deoplete -------------------------------------------------------
+" --- argwrap --------------------------------------------------------
+let g:argwrap_tail_comma = 1
+
+
+" --- deoplete -------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#enable_typeinfo = 0
 " --- Tab for autocomplete ---
@@ -698,6 +705,9 @@ let mapleader=","
 
 " <leader> - switch to alternate buffer
 nnoremap <leader><leader> <C-^>
+
+" a - wrap function args in parens onto separate lines
+nnoremap <silent> <leader>a :ArgWrap<CR>
 
 " b - wipe current buffer (and close window)
 nnoremap <silent> <leader>b :bw<CR>
