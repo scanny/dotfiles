@@ -622,7 +622,7 @@ set mouseshape=n:arrow,i:beam
 set number
 
 " --- rnu - line numbers are relative to current line ---
-set relativenumber
+" set relativenumber
 
 " --- so - minimum context lines at top/bottom on scrolling ---
 set scrolloff=3
