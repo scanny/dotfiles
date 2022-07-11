@@ -780,7 +780,7 @@ nnoremap <leader>t :w\|!py.test -x<CR>
 " T - set current (test) module to run on ,t
 function! MakeCurrentBufferTestModule()
     let l:path=expand('%')
-    execute 'nnoremap <leader>t :w\|!py.test -x -s -q --tb=native ' l:path "<CR>"
+    execute 'nnoremap <leader>t :w\|!py.test -x -q --tb=native --disable-warnings' l:path "<CR>"
     echo ',t: ' . l:path
 endfunc
 nnoremap <silent> <leader>T :call MakeCurrentBufferTestModule()<CR>
