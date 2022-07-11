@@ -122,6 +122,9 @@ Plug 'tpope/vim-eunuch'
 " --- git integration ---
 Plug 'tpope/vim-fugitive'
 
+" --- highlight individual lines ---
+Plug 'airblade/vim-highline'
+
 " --- JSON language support ---
 Plug 'elzr/vim-json'
 
@@ -729,6 +732,13 @@ map <leader>gs :Gstatus<CR>
 
 " gw - :Gwrite
 map <leader>gw :Gwrite<CR>
+
+" h - Highline Toggle
+nmap <leader>h <Plug>(HighlineToggle)  # highlight current line
+xmap <leader>h <Plug>(HighlineToggle)  # highlight selected lines
+
+" H - Highline Clear (all highlighted lines)
+nmap <leader>H <Plug>(HighlineClear)
 
 " j* - Jedi definitions
 nmap <leader>jd :call jedi#goto_definitions()<CR>
