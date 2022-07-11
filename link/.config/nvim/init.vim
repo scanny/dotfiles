@@ -361,7 +361,7 @@ let g:neosolarized_italic = 1
 " --- bold is displayed as brighter color ---
 let g:neosolarized_termBoldAsBright = 1
 " --- select NeoSolarized color scheme ---
-if strftime("%H") > 7 && strftime("%H") < 19
+if strftime("%H") > 7 && strftime("%H") < 21
     set background=light
 else
     set background=dark
