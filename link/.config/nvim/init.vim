@@ -611,6 +611,9 @@ set relativenumber
 " --- so - minimum context lines at top/bottom on scrolling ---
 set scrolloff=3
 
+" --- ssop - change effect of :mksession command ---
+set sessionoptions+=tabpages,globals
+
 " --- sw - set width of indents/dedents ---
 set shiftwidth=4
 
