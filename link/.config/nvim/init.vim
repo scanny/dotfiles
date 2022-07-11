@@ -89,6 +89,9 @@ Plug 'tmhedberg/SimpylFold'
 " --- lints on every save ---
 Plug 'scrooloose/syntastic'
 
+" --- Tab naming ---
+Plug 'gcmt/taboo.vim'
+
 " --- jump around git and merge conflicts ---
 Plug 'wincent/vcs-jump'
 
