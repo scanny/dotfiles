@@ -39,18 +39,6 @@ let g:ruby_host_prog = '/usr/local/lib/ruby/gems/2.7.0/bin/neovim-ruby-host'
 " --- Make sure to use single quotes ---
 call plug#begin(stdpath('data') . '/plugged')
 
-" === EXPERIMENTAL ===
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/completion-nvim'
-"
-" --- speed-editing game ---
-" Plug 'ThePrimeagen/vim-be-good'
-" Plug 'tjdevries/train.nvim'
-" Plug 'wellle/targets.vim'
-
-
-" === MAINSTREAM ===
-
 " --- colorschemes ---
 Plug 'chriskempson/base16-vim'
 
@@ -73,22 +61,14 @@ Plug 'wincent/ferret'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" --- provides gruvbox color scheme ---
-Plug 'gruvbox-community/gruvbox'
-
 " --- lightweight status line ---
 Plug 'itchyny/lightline.vim'
 
 " --- better highlighting of search matches ---
 Plug 'wincent/loupe'
-" Plug 'wincent/pinnacle'  " --- for non-current match highlighting ---
 
 " --- provides Solarized color scheme ---
 Plug 'overcache/NeoSolarized'
-
-" --- pytest run and populate quickfix ---
-" Plug 'alfredodeza/pytest.vim'
-Plug '5long/pytest-vim-compiler'
 
 " --- Python syntax ---
 Plug 'vim-python/python-syntax',
@@ -133,9 +113,6 @@ Plug 'tpope/vim-eunuch'
 " --- git integration ---
 Plug 'tpope/vim-fugitive'
 
-" --- tag support ---
-" Plug 'ludovicchabant/vim-gutentags'
-
 " --- JSON language support ---
 Plug 'elzr/vim-json'
 
@@ -163,9 +140,6 @@ Plug 'zhimsel/vim-stay'
 " --- enable changing surrounding pairs like quotes in single action ---
 Plug 'tpope/vim-surround'
 
-" --- test failures to quickfix window ---
-" Plug 'vim-test/vim-test'
-
 " --- handy bracket mappings like ']q' for :cnext ---
 Plug 'tpope/vim-unimpaired'
 
@@ -186,27 +160,6 @@ call plug#end()
 
 " use omni completion provided by lsp
 " autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
-
-" --- vim-coiled-snake (Python folding) ------------------------------
-" let g:coiled_snake_foldtext_flags = []
-" function! g:CoiledSnakeConfigureFold(fold)
-"     " --- docstrings are only folded for module-level, others open with unit ---
-"     if a:fold.type == 'doc' && get(a:fold.parent, 'type', '') == 'function'
-"         let a:fold.ignore = 1
-"     " --- classes ---
-"     elseif a:fold.type == 'class'
-"         let a:fold.num_blanks_below = 1
-
-"     " " Don't fold nested functions, but do fold methods (i.e. functions
-"     " " nested inside a class).
-"     elseif a:fold.type == 'function'
-"         let a:fold.num_blanks_below = 0
-"     endif
-"         " " let a:fold.max_level = 1
-"         " if get(a:fold.parent, 'type', '') == 'class'
-"         "     let a:fold.num_blanks_below = 0
-"         " endif
-" endfunction
 
 
 " " --- deoplete -------------------------------------------------------
@@ -391,19 +344,11 @@ else
     set background=dark
 endif
 
-" let g:gruvbox_invert_selection=0
-" let g:gruvbox_italic=1
-" let g:gruvbox_contrast_dark='hard'
-" colorscheme gruvbox
 colorscheme NeoSolarized
 " let g:solarized_termcolors=256
 " colorscheme solarized
 " colorscheme base16-ocean
 " colorscheme base16-tomorrow-night-eighties
-
-
-"" vim-lineletters ------------------------------------------
-" nmap <silent><Enter> <Plug>LineLetters
 
 
 "" vim-json -------------------------------------------------
