@@ -134,6 +134,9 @@ Plug 'skamsie/vim-lineletters'
 " --- markdown (plasticboy) ---
 source ~/.config/nvim/plugins/vim-markdown.vim
 
+" --- toggle maximize current split ---
+Plug 'szw/vim-maximizer'
+
 " --- store dynamically updated session files ---
 Plug 'tpope/vim-obsession'
 
@@ -746,6 +749,9 @@ nmap <leader>ju :call jedi#usages()<CR>
 
 " l - toggle show invisibles
 nnoremap <leader>l :set list!<CR>
+
+" m - maximize current split
+nnoremap <leader>m :MaximizerToggle<CR>
 
 " Enter - :noh - turn off search highlighting, but not in quickfix
 " nnoremap <expr> <CR> &buftype ==# 'quickfix' ? '<CR>' : ':nohlsearch<CR>'
