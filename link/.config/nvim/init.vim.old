@@ -39,9 +39,6 @@ let g:ruby_host_prog = '/usr/local/lib/ruby/gems/2.7.0/bin/neovim-ruby-host'
 " --- Make sure to use single quotes ---
 call plug#begin(stdpath('data') . '/plugged')
 
-" --- colorschemes ---
-Plug 'chriskempson/base16-vim'
-
 " --- 'Black'-ens Python code on save ---
 Plug 'psf/black', { 'tag': '19.10b0' }
 
@@ -297,41 +294,6 @@ let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 
-" " --- vim-airline ----------------------------------------------------
-" " --- disable most extensions ---
-" let g:airline_extensions = ["branch"]
-" " --- use powerline symbols ---
-" let g:airline_powerline_fonts = 1
-" if !exists('g:airline_symbols')
-"     let g:airline_symbols = {}
-" endif
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_right_alt_sep = ''
-" let g:airline_symbols.branch = ''
-" let g:airline_symbols.readonly = ''
-" " let g:airline_symbols.dirty = '🔴 ⭕️🔸🔺🔻♨️ ♦️🏮🔹✘'
-
-" let g:airline_symbols.dirty = ' Δ'
-" let g:airline_symbols.dirty = ' 💊'
-
-" " --- don't render empty sections, like branch in non-git-repo dir ---
-" let g:airline_skip_empty_sections = 1
-
-" " Search         xxx cterm=reverse ctermfg=3 gui=reverse guifg=#b58900
-" " StatusLine     xxx cterm=reverse ctermfg=10 ctermbg=7 gui=reverse guifg=#586e75 guibg=#eee8d5
-
-" " --- don't render unnecessary default filetype 'utf-8[unix]' ---
-" let g:airline#parts#ffenc#skip_expected_string  = 'utf-8[unix]'
-
-" " --- more elegant line/column display
-" " hi User1 guifg=#FF0000
-" let g:airline_section_c  = "%f %{&mod?'🏮':' '}"
-" let g:airline_section_c  = "%1*%f%0* %{&mod?'🏮':' '}"
-" let g:airline_section_z  = "ℓ %l/%L 𝚌 %2c"
-
-
 " --- vim-asterisk ---------------------------------------------------
 
 " --- cursor does not jump to next match on '*' ---
@@ -348,30 +310,14 @@ map gz# <Plug>(asterisk-gz#)
 
 " --- Color Scheme ---------------------------------------------------
 
-" --- normal,  high, or low ---
-let g:neosolarized_contrast = "normal"
-" --- brightness of whitespace characters when shown ---
-let g:neosolarized_visibility = "normal"
-" --- vertical split bar is transparent, 1=True, 0=False ---
-let g:neosolarized_vertSplitBgTrans = 1
-" --- bold, underline, and italic are enabled, 1=True, 0=False ---
-let g:neosolarized_bold = 1
-let g:neosolarized_underline = 1
-let g:neosolarized_italic = 1
-" --- bold is displayed as brighter color ---
-let g:neosolarized_termBoldAsBright = 1
-" --- select NeoSolarized color scheme ---
+" -- select solarized dark or light based on time-of-day ---
 if strftime("%H") > 7 && strftime("%H") < 21
     set background=light
 else
     set background=dark
 endif
 
-colorscheme NeoSolarized
-" let g:solarized_termcolors=256
-" colorscheme solarized
-" colorscheme base16-ocean
-" colorscheme base16-tomorrow-night-eighties
+colorscheme solarized
 
 
 "" vim-json -------------------------------------------------
