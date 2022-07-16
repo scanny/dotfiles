@@ -9,7 +9,16 @@ local opts = { noremap = true, silent = true }
 --  v - visual_mode
 --  x - visual_block_mode
 
--- === LEADER COMMANDS ===============================================
+
+-- === GLOBAL MAPPINGS ===============================================
+
+-- use F5 to toggle between light and dark background ---
+vim.cmd([[
+    map <F5> :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
+]])
+
+
+-- === LEADER COMMANDS =============================================== {{{
 
 -- leader is comma ---
 vim.g.mapleader = ","
@@ -62,8 +71,8 @@ keymap("n", "<leader>sp", ":split<CR>", opts)
 -- ss - reSync syntax from Start ---
 keymap("n", "<leader>ss", ":syntax sync fromstart<CR>", opts)
 
--- sv - source ~/.vimrc (after changes) ---
-keymap("n", "<leader>sv", ":source $MYVIMRC<CR>", opts)
+-- -- sv - source ~/.vimrc (after changes) ---
+-- keymap("n", "<leader>sv", ":source $MYVIMRC<CR>", opts)
 
 -- t - test ---
 keymap("n", "<leader>t", ":w|!py.test -x<CR>", opts)
@@ -80,14 +89,20 @@ keymap("n", "<leader>x", "\"*x", opts)
 -- y - yank to system pasteboard ('copy' for copy/paste) ---
 keymap("v", "<leader>y", '"*y', {})
 
+-- z - suspend to shell prompt ---
+keymap("v", "<leader>z", "<C-Z>", {})
 
--- === NORMAL-MODE COMMANDS ==========================================
+-- }}}
+
+
+-- === NORMAL-MODE COMMANDS ========================================== {{{
 
 -- space - toggle fold --
 keymap("n", "<space>", "za", opts)
 
--- Enter - :noh - turn off search highlighting, but not in quickfix --
-vim.cmd("nnoremap <expr> <CR> &buftype ==# 'quickfix' ? '<CR>' : ':nohlsearch<CR>'")
+-- Enter - :noh - turn off search highlighting (autocmd suppresses this in quickfix) --
+-- keymap("n", "<CR>", ":nohlsearch<CR>", opts)
+keymap("n", "<CR>", "<Plug>(LoupeClearHighlight)", {})
 
 -- reselect pasted text --
 keymap("n", "gp", "`[v`]", opts)
@@ -114,8 +129,10 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<C-h>", "<C-w>h", opts)
 
+-- }}}
 
--- === INSERT-MODE COMMANDS ==========================================
+
+-- === INSERT-MODE COMMANDS ========================================== {{{
 
 -- jk instead of Esc --
 keymap("i", "jk", "<Esc>", opts)
@@ -123,16 +140,24 @@ keymap("i", "JK", "<Esc>", opts)
 
 -- Ctrl-k is kill (to end of line) in insert mode. Note this overrides insert di-graph
 -- which is Vim built-in mapping of insert-mode Ctrl-k.
--- keymap("i", "<C-k>", "<C-\\><C-O>D", opts)
+keymap("i", "<C-k>", "<C-\\><C-O>D", opts)
+
+-- }}}
 
 
--- === VISUAL-MODE COMMANDS ==========================================
+-- === VISUAL-MODE COMMANDS ========================================== {{{
 
 -- pasting over selection preserves default register ---
 keymap("v", "p", "\"_dP", opts)
 
+-- -- Stay in indent mode while indenting a block --
+-- keymap("v", "<", "<gv", opts)
+-- keymap("v", ">", ">gv", opts)
 
--- === COMMAND-MODE COMMANDS =========================================
+-- }}}
+
+
+-- === COMMAND-MODE COMMANDS ========================================= {{{
 
 -- %% expands to directory of current buffer
 keymap("c", "%%", "<C-R>=expand('%:h').'/'<CR>", opts)
@@ -141,9 +166,13 @@ keymap("c", "%%", "<C-R>=expand('%:h').'/'<CR>", opts)
 keymap("c", "<C-p>", "<Up>", {})
 keymap("c", "<C-n>", "<Down>", {})
 
+-- }}}
 
--- === TELESCOPE KEY BINDINGS ========================================
 
-keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
--- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-keymap("n", "<C-t>", "<cmd>Telescope live_grep<cr>", opts)
+-- -- === TELESCOPE KEY BINDINGS ======================================== {{{
+
+-- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
+-- -- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+-- keymap("n", "<C-t>", "<cmd>Telescope live_grep<cr>", opts)
+
+-- }}}

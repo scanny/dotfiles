@@ -1,14 +1,14 @@
 
 
--- automatically save all buffers after tabbing away from vim --
+-- FocusLost - automatically save all buffers after tabbing away from vim --
 local group = vim.api.nvim_create_augroup("OnLoseFocus", {clear = true})
-vim.api.nvim_create_autocmd(
-    "FocusLost",
-    {
-        command = ":silent wall",
-        group = group
-    }
-)
+vim.api.nvim_create_autocmd("FocusLost", { command = ":silent wall", group = group })
+
+
+-- FocusGained - in conjunction with `set autoread`, automatically re-read
+-- externally-changed file when focus is regained
+local group = vim.api.nvim_create_augroup("OnGainFocus", {clear = true})
+vim.api.nvim_create_autocmd("FocusGained", { command = ":checktime", group = group })
 
 
 -- ignore CR mapping (to :noh) in special windows like quickfix --
@@ -19,8 +19,7 @@ vim.api.nvim_create_autocmd(
 )
 -- same for command-line window --
 vim.api.nvim_create_autocmd(
-    "CmdwinEnter",
-    {command="nnoremap <buffer> <CR> <CR>", group=group}
+    "CmdwinEnter", { command="nnoremap <buffer> <CR> <CR>", group=group }
 )
 
 
@@ -41,6 +40,14 @@ vim.api.nvim_create_autocmd(
 )
 
 
+-- Git commit ----------------------------------------------
+local group = vim.api.nvim_create_augroup("GitCommitFileType", {clear = true})
+-- cc = colorcolumn, fo = formatoptions, tw = textwidth 
+vim.api.nvim_create_autocmd(
+    "FileType",
+    {pattern="gitcommit", command="set cc=73 fo+=t tw=72", group=group}
+)
+
 
 vim.cmd [[
 
@@ -48,15 +55,6 @@ vim.cmd [[
 augroup filetype_cucumber
     autocmd!
     autocmd FileType cucumber setlocal fdm=indent sw=2
-augroup END
-
-
-" gitcommit file settings --------------
-augroup filetype_gitcommit
-    autocmd!
-    " tw - max line length before wrapping
-    autocmd FileType gitcommit set colorcolumn=73 textwidth=72
-    autocmd FileType gitcommit set formatoptions+=t
 augroup END
 
 

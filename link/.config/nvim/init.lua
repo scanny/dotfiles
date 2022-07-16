@@ -5,6 +5,8 @@ vim.g.ruby_host_prog = "/usr/local/lib/ruby/gems/3.1.0/bin/neovim-ruby-host"
 vim.g.loaded_matchparen = 1
 
 require "scanny.options"
+require "scanny.keymaps"
+require "scanny.autocommands"
 
 
 vim.cmd [[
@@ -29,6 +31,64 @@ endif
 " --- possible undercurl terminal codes ---
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
+
+" }}}
+
+
+" === custom and plugin-specific key mappings ======================== {{{
+
+" R - run current module on ,t
+function! MakeCurrentBufferRunModule()
+    let l:path=expand('%')
+    execute 'nnoremap <leader>t :w\|!python ' l:path "<CR>"
+    echo ',t: ' . l:path
+endfunc
+nnoremap <silent> <leader>R :call MakeCurrentBufferRunModule()<CR>
+
+" r - toggle relative line numbers
+function! ToggleRelativeNumber()
+  if (&relativenumber == 1)
+    set number
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <leader>r :call ToggleRelativeNumber()<CR>
+
+" T - set current (test) module to run on ,t
+function! MakeCurrentBufferTestModule()
+    let l:path=expand('%')
+    execute 'nnoremap <leader>t :w\|!py.test -x -q --tb=native --disable-warnings' l:path "<CR>"
+    echo ',t: ' . l:path
+endfunc
+nnoremap <silent> <leader>T :call MakeCurrentBufferTestModule()<CR>
+
+" j* - Jedi definitions
+nmap <leader>jd :call jedi#goto_definitions()<CR>
+nmap <leader>ju :call jedi#usages()<CR>
+
+" a - wrap function args in parens onto separate lines
+nnoremap <silent> <leader>a :ArgWrap<CR>
+
+" f - fzf file finder
+map <leader>f :Files<CR>
+
+" gd - :Gdiff
+map <leader>gd :Gdiff<CR>
+
+" gs - :Gstatus
+map <leader>gs :Gstatus<CR>
+
+" gw - :Gwrite
+map <leader>gw :Gwrite<CR>
+
+" h - Highline Toggle
+nmap <leader>h <Plug>(HighlineToggle)  # highlight current line
+xmap <leader>h <Plug>(HighlineToggle)  # highlight selected lines
+
+" H - Highline Clear (all highlighted lines)
+nmap <leader>H <Plug>(HighlineClear)
 
 " }}}
 
@@ -448,300 +508,5 @@ let g:xml_syntax_folding=1
 " endif
 
 " }}}
-
-
-" === auto-commands ================================================== {{{
-
-" --- in conjunction with `set autoread`, automatically re-read externally-changed file
-" --- when focus is regained
-autocmd FocusGained * :checktime
-
-" on lose focus ------------------------ {{{
-augroup on_lose_focus
-    " automatically save all buffers after tabbing away from vim
-    autocmd FocusLost * :silent wall
-augroup END
-" }}}
-
-" restore CR in special windows -------- {{{
-augroup vimrc_CRfix
-  autocmd!
-  " Quickfix, Location list, &c. remap <CR> to work as expected
-  autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-  autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
-augroup END
-" }}}
-
-" Cucumber file settings --------------- {{{
-augroup filetype_cucumber
-    autocmd!
-    autocmd FileType cucumber setlocal fdm=indent sw=2
-augroup END
-" }}}
-
-" gitcommit file settings -------------- {{{
-augroup filetype_gitcommit
-    autocmd!
-    " tw - max line length before wrapping
-    autocmd FileType gitcommit set colorcolumn=73 textwidth=72
-    autocmd FileType gitcommit set formatoptions+=t
-augroup END
-" }}}
-
-" markdown file settings --------------- {{{
-augroup filetype_md
-    autocmd!
-    autocmd FileType markdown syn clear mkdLineBreak
-augroup END
-" }}}
-
-" Python file settings------------------ {{{
-augroup filetype_python
-    autocmd!
-    " ---don't wrap Python windows---
-    autocmd FileType python set fdm=expr nowrap so=3 textwidth=88
-    autocmd FileType python setl so=3
-    autocmd BufWritePre *.py execute ':Black'
-augroup END
-" }}}
-
-" rst file settings -------------------- {{{
-augroup filetype_rst
-    autocmd!
-    " set spell-check on
-    " autocmd FileType rst setlocal spell sw=4 sts=4
-    autocmd FileType rst setlocal sw=4 sts=4
-augroup END
-" }}}
-
-" Vimscript file settings -------------- {{{
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-" }}}
-
-" XML file settings -------------------- {{{
-augroup filetype_xml
-    autocmd!
-    autocmd FileType xml setlocal fdm=syntax ts=2 sw=2 expandtab
-    autocmd FileType xsd setlocal fdm=syntax ts=2 sw=2 expandtab
-augroup END
-" }}}
-
-" }}}
-
-
-" === keyboard remappings ============================================ {{{
-
-" --- global mappings -------------------------------------- {{{
-
-" ---use F5 to toggle between light and dark background ---
-map <F5> :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
-
-" }}}
-
-
-" --- leader commands -------------------------------------- {{{
-
-" leader is comma
-let mapleader=","
-
-" <leader> - switch to alternate buffer
-nnoremap <leader><leader> <C-^>
-
-" a - wrap function args in parens onto separate lines
-nnoremap <silent> <leader>a :ArgWrap<CR>
-
-" b - wipe current buffer (and close window)
-nnoremap <silent> <leader>b :bw<CR>
-
-" c - close current window
-nnoremap <silent> <leader>c :clo<CR>
-
-" e - open file in same directory as current file
-map <leader>e :e %%
-
-" f - fzf file finder
-map <leader>f :Files<CR>
-
-" gd - :Gdiff
-map <leader>gd :Gdiff<CR>
-
-" gs - :Gstatus
-map <leader>gs :Gstatus<CR>
-
-" gw - :Gwrite
-map <leader>gw :Gwrite<CR>
-
-" h - Highline Toggle
-nmap <leader>h <Plug>(HighlineToggle)  # highlight current line
-xmap <leader>h <Plug>(HighlineToggle)  # highlight selected lines
-
-" H - Highline Clear (all highlighted lines)
-nmap <leader>H <Plug>(HighlineClear)
-
-" j* - Jedi definitions
-nmap <leader>jd :call jedi#goto_definitions()<CR>
-nmap <leader>ju :call jedi#usages()<CR>
-
-" l - toggle show invisibles
-nnoremap <leader>l :set list!<CR>
-
-" m - maximize current split
-nnoremap <leader>m :MaximizerToggle<CR>
-
-" Enter - :noh - turn off search highlighting, but not in quickfix
-" nnoremap <expr> <CR> &buftype ==# 'quickfix' ? '<CR>' : ':nohlsearch<CR>'
-nmap <leader>n <Plug>(LoupeClearHighlight)
-
-" ob - open _scratch/blank.rst in split below, stay in current window
-nnoremap <leader>ob :split _scratch/blank.rst<CR><C-w>k
-
-" od - open 'TODO.rst'
-nnoremap <silent> <leader>od :vsplit _scratch/TODO.md<CR><C-w>L
-
-" os - open spike:% in split above and place cursor there
-nnoremap <leader>os :split<CR><C-w>k:Gedit spike:%<CR>
-
-" ov - open ~/.config/nvim/init.vim file in split below current
-nnoremap <leader>ov :split $MYVIMRC<CR>
-
-" p - paste from clipboard
-nnoremap <leader>p "*p
-
-" P - paste before from clipboard
-nnoremap <leader>P "*P
-
-" q - hardwrap current paragraph (like Ctrl-Q)
-nnoremap <leader>q gqip
-
-" r - toggle relative line numbers
-function! ToggleRelativeNumber()
-  if (&relativenumber == 1)
-    set number
-    set norelativenumber
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <leader>r :call ToggleRelativeNumber()<CR>
-
-" R - run current module on ,t
-function! MakeCurrentBufferRunModule()
-    let l:path=expand('%')
-    execute 'nnoremap <leader>t :w\|!python ' l:path "<CR>"
-    echo ',t: ' . l:path
-endfunc
-nnoremap <silent> <leader>R :call MakeCurrentBufferRunModule()<CR>
-
-" sp - open horizontal split window
-nnoremap <leader>sp :split<CR>
-
-" ss - reSync syntax from Start
-nnoremap <leader>ss :syntax sync fromstart<CR>
-
-" sv - source ~/.vimrc (after changes)
-nnoremap <leader>sv :source $MYVIMRC<CR>
-
-" t - test
-nnoremap <leader>t :w\|!py.test -x<CR>
-
-" T - set current (test) module to run on ,t
-function! MakeCurrentBufferTestModule()
-    let l:path=expand('%')
-    execute 'nnoremap <leader>t :w\|!py.test -x -q --tb=native --disable-warnings' l:path "<CR>"
-    echo ',t: ' . l:path
-endfunc
-nnoremap <silent> <leader>T :call MakeCurrentBufferTestModule()<CR>
-
-" v - vertical split
-map <leader>v :vsplit<CR>
-
-" w - write current buffer
-nnoremap <leader>w :write<CR>
-
-" x - cut to system pasteboard (for cut/paste)
-vnoremap <leader>x "*x
-
-" y - yank to system pasteboard ('copy' for copy/paste)
-vnoremap <leader>y "*y
-
-" z - suspend to shell prompt
-nnoremap <leader>z <C-Z>
-
-" }}}
-
-
-" --- insert mode ------------------------------------------ {{{
-
-" jk instead of Esc
-inoremap jk <Esc>
-inoremap JK <Esc>
-
-" Ctrl-k is kill (to end of line) in insert mode. Note this overrides insert di-graph
-" which is Vim built-in mapping of insert-mode Ctrl-k.
-inoremap <C-k> <C-\><C-O>D
-
-" }}}
-
-
-" --- normal mode ------------------------------------------ {{{
-
-" Enter - :nohlsearch - turn off search highlighting
-" nnoremap <CR> :nohlsearch<CR>
-nmap <CR> <Plug>(LoupeClearHighlight)
-
-" space - toggle fold
-nnoremap <space> za
-
-" --- reselect pasted text ---
-nnoremap gp `[v`]
-
-" --- gs - move to first non-blank on line ---
-nnoremap gs ^
-
-" --- always screen lines for up and down motion ---
-nnoremap <silent> j gj
-nnoremap <silent> k gk
-
-" --- Q - exit quickly when multiple windows are open (like quick-fix pane) ---
-nnoremap Q :qa<CR>
-
-" --- Y - yanks to end of line (instead of entire line, like yy)
-nnoremap Y y$
-
-" --- zx - refold around current and center in vertical space ---
-nnoremap zx zxzz
-
-" --- Ctrl+{movement} keys navigate between windows ---
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
-
-" }}}
-
-
-" --- command mode ----------------------------------------- {{{
-
-" %% expands to directory of current buffer
-cnoremap %% <C-R>=expand('%:h').'/'<CR>
-
-" get prior (and next) command that starts-with current string
-cnoremap <C-P> <Up>
-cnoremap <C-N> <Down>
-
-" }}}
-
-
-" --- visual mode ------------------- Visual --
-
-" " -- Stay in indent mode while indenting a block --
-" vnoremap < <gv
-" vnoremap > >gv
-
-" --- search defaults to very-magic mode ---
-vnoremap / /\v
 
 ]]
