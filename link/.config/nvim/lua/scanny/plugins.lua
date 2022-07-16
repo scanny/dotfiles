@@ -55,13 +55,13 @@ return require("packer").startup(function(use)
     use {"psf/black", tag="19.10b0"}
 
     -- status line --
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt=true}
-    }
+    -- use {
+    --     'nvim-lualine/lualine.nvim',
+    --     requires = {'kyazdani42/nvim-web-devicons', opt=true}
+    -- }
 
-    -- provides Solarized color scheme --
-    use "ishan9299/nvim-solarized-lua"
+    -- -- provides Solarized color scheme --
+    -- use "ishan9299/nvim-solarized-lua"
 
     -- Tab naming --
     use "gcmt/taboo.vim"
@@ -69,8 +69,8 @@ return require("packer").startup(function(use)
     -- Treesitter --
     -- use {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
 
-    -- Telescope --
-    use "nvim-telescope/telescope.nvim"
+    -- -- Telescope --
+    -- use "nvim-telescope/telescope.nvim"
 
     -- jump around git and merge conflicts --
     use "wincent/vcs-jump"
@@ -117,13 +117,13 @@ return require("packer").startup(function(use)
 
     -- ==== COMPLETION =================================================
 
-    use "hrsh7th/nvim-cmp"                -- The completion plugin
-    use "hrsh7th/cmp-buffer"              -- buffer completions
-    use "hrsh7th/cmp-path"                -- path completions
-    use "hrsh7th/cmp-cmdline"             -- cmdline completions
-    -- use "saadparwaiz1/cmp_luasnip"        -- snippet completions
-    use "hrsh7th/cmp-nvim-lsp"            -- LSP completions
-    use "hrsh7th/cmp-nvim-lua"            -- Neovim's Lua runtime API (e.g. vim.*)
+    -- use "hrsh7th/nvim-cmp"                -- The completion plugin
+    -- use "hrsh7th/cmp-buffer"              -- buffer completions
+    -- use "hrsh7th/cmp-path"                -- path completions
+    -- use "hrsh7th/cmp-cmdline"             -- cmdline completions
+    -- -- use "saadparwaiz1/cmp_luasnip"        -- snippet completions
+    -- use "hrsh7th/cmp-nvim-lsp"            -- LSP completions
+    -- use "hrsh7th/cmp-nvim-lua"            -- Neovim's Lua runtime API (e.g. vim.*)
 
 
     -- ==== SNIPPETS ===================================================
@@ -132,8 +132,8 @@ return require("packer").startup(function(use)
     -- use "rafamadriz/friendly-snippets"    -- a bunch of snippets to use
 
     -- ==== LANGUAGE SERVER PROTOCOL (LSP) =============================
-    use "neovim/nvim-lspconfig"           -- enable LSP
-    use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-    use "jose-elias-alvarez/null-ls.nvim" -- LSP-ifies CLI linters etc.
+    -- use "neovim/nvim-lspconfig"           -- enable LSP
+    -- use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+    -- use "jose-elias-alvarez/null-ls.nvim" -- LSP-ifies CLI linters etc.
 
 end)
