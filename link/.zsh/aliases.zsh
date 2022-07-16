@@ -124,7 +124,7 @@ alias rm='rm -i'
 alias sz="source ~/.zshrc"
 alias t='make clean && flake8 && py.test && behave --stop'
 alias tw='make clean && flake8 && py.test && behave --stop --tags=-wip'
-alias view='mvim -Rv'
+alias view='nvim -R'
 # --- V-cs-jump M-erge ---
 alias vm=vim\ -c\ 'VcsJump\ merge'
 

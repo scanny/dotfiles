@@ -123,7 +123,7 @@ keymap("i", "JK", "<Esc>", opts)
 
 -- Ctrl-k is kill (to end of line) in insert mode. Note this overrides insert di-graph
 -- which is Vim built-in mapping of insert-mode Ctrl-k.
-keymap("i", "<C-k>", "<C-\\><C-O>D", opts)
+-- keymap("i", "<C-k>", "<C-\\><C-O>D", opts)
 
 
 -- === VISUAL-MODE COMMANDS ==========================================

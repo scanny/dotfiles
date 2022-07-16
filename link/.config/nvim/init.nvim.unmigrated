@@ -1,9 +1,6 @@
 
 " === PROBABLY MIGRATE ===============================================
 
-
-
-
 " --- small adjustments for tmux-256color from xterm-256color ---
 " --- may not be active in neovim ---
 if exists('+termguicolors')
@@ -15,9 +12,6 @@ endif
 " --- possible undercurl terminal codes ---
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
-
-
-" === load plugins =================================================== {{{
 
 
 " --- Loupe ----------------------------------------------------------
@@ -35,11 +29,11 @@ nmap <CR> <Plug>(LoupeClearHighlight)
 Plug 'yssl/QFEnter'
 
 
-" --- reStructuredText support ---
+" --- Riv = reStructuredText support ---
 Plug 'gu-fan/riv.vim'
 
 
-" --- split args onto separate lines ---
+" --- Argwrap - split args onto separate lines ---
 Plug 'FooSoft/vim-argwrap'
 let g:argwrap_tail_comma = 1
 
@@ -47,14 +41,18 @@ let g:argwrap_tail_comma = 1
 " --- improved '*' search-under-cursor behaviors ---
 Plug 'haya14busa/vim-asterisk'
 
+
 " --- provides Cucumber language syntax and folding ---
 Plug 'tpope/vim-cucumber'
+
 
 " --- highlight individual lines ---
 Plug 'airblade/vim-highline'
 
+
 " --- markdown (plasticboy) ---
 source ~/.config/nvim/plugins/vim-markdown.vim
+
 
 " --- better indent behavior after colon etc. on Python
 Plug 'Vimjas/vim-python-pep8-indent'

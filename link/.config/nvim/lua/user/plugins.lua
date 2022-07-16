@@ -67,34 +67,37 @@ return require("packer").startup(function(use)
     use "gcmt/taboo.vim"
 
     -- Treesitter --
-    use {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
+    -- use {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
 
     -- Telescope --
     use "nvim-telescope/telescope.nvim"
 
-    -- jump around git and merge conflicts ---
+    -- jump around git and merge conflicts --
     use "wincent/vcs-jump"
 
     -- more powerful camel/snake-case aware text substitution with :S instead of :s --
     use "tpope/vim-abolish"
 
-    -- provides filetype-aware code commenting ---
+    -- provides filetype-aware code commenting --
     use "tpope/vim-commentary"
 
     -- press "minus" key to show directory and navigate using netrw --
     use "justinmk/vim-dirvish"
 
-    -- allows renames etc. on a buffer and its file ---
+    -- allows renames etc. on a buffer and its file --
     use "tpope/vim-eunuch"
 
     -- git integration --
     use "tpope/vim-fugitive"
 
-    -- toggle maximize current split ---
+    -- toggle maximize current split --
     use "szw/vim-maximizer"
 
-    -- store dynamically updated session files ---
+    -- store dynamically updated session files --
     use "tpope/vim-obsession"
+
+    -- better indent behavior after colon etc. on Python --
+    use "Vimjas/vim-python-pep8-indent"
 
     -- repeat plugin actions with "." command --
     use "tpope/vim-repeat"
@@ -105,10 +108,10 @@ return require("packer").startup(function(use)
     -- write better buffer persistance (view) files --
     use "zhimsel/vim-stay"
 
-    -- enable changing surrounding pairs like quotes in single action ---
+    -- enable changing surrounding pairs like quotes in single action --
     use "tpope/vim-surround"
 
-    -- handy bracket mappings like "]q" for :cnext ---
+    -- handy bracket mappings like "]q" for :cnext --
     use "tpope/vim-unimpaired"
 
 
@@ -118,15 +121,15 @@ return require("packer").startup(function(use)
     use "hrsh7th/cmp-buffer"              -- buffer completions
     use "hrsh7th/cmp-path"                -- path completions
     use "hrsh7th/cmp-cmdline"             -- cmdline completions
-    use "saadparwaiz1/cmp_luasnip"        -- snippet completions
+    -- use "saadparwaiz1/cmp_luasnip"        -- snippet completions
     use "hrsh7th/cmp-nvim-lsp"            -- LSP completions
     use "hrsh7th/cmp-nvim-lua"            -- Neovim's Lua runtime API (e.g. vim.*)
 
 
     -- ==== SNIPPETS ===================================================
 
-    use "L3MON4D3/LuaSnip" --snippet engine
-    use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+    -- use "L3MON4D3/LuaSnip"                --snippet engine
+    -- use "rafamadriz/friendly-snippets"    -- a bunch of snippets to use
 
     -- ==== LANGUAGE SERVER PROTOCOL (LSP) =============================
     use "neovim/nvim-lspconfig"           -- enable LSP

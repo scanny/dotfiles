@@ -1,0 +1,13 @@
+vim.g.python3_host_prog = "/Users/scanny/.virtualenvs/nvim/bin/python3"
+vim.g.ruby_host_prog = "/usr/local/lib/ruby/gems/3.1.0/bin/neovim-ruby-host"
+
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
+require "user.colorscheme"
+require "user.completion"
+require "user.lsp"
+require "user.lualine"
+require "user.telescope"
+require "user.treesitter"
+require "user.autocommands"

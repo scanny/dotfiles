@@ -61,6 +61,9 @@ Plug 'wincent/ferret'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" --- gruvbox color scheme ---
+Plug 'ellisonleao/gruvbox.nvim'
+
 " --- lightweight status line ---
 Plug 'itchyny/lightline.vim'
 
@@ -238,8 +241,23 @@ endfunction
 let g:LoupeVeryMagic = 0  " --- no automatic \v in :substitute ---
 
 
+" --- NeoSolarized ---------------------------------------------------
+" --- normal,  high, or low ---
+let g:neosolarized_contrast = "normal"
+" --- brightness of whitespace characters when shown ---
+let g:neosolarized_visibility = "normal"
+" --- vertical split bar is transparent, 1=True, 0=False ---
+let g:neosolarized_vertSplitBgTrans = 1
+" --- bold, underline, and italic are enabled, 1=True, 0=False ---
+let g:neosolarized_bold = 1
+let g:neosolarized_underline = 1
+let g:neosolarized_italic = 1
+" --- bold is displayed as brighter color ---
+let g:neosolarized_termBoldAsBright = 1
+
+
 " --- python-syntax --------------------------------------------------
-let g:python_highlight_all = 1
+let g:python_highlight_all = 0
 let g:python_slow_sync = 0
 
 
@@ -274,7 +292,7 @@ let g:riv_link_cursor_hl = 0
 " let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
 " let g:SimpylFold_fold_import = 0
-
+"
 
 " --- syntastic ------------------------------------------------------
 let g:syntastic_auto_loc_list = 1
@@ -317,7 +335,8 @@ else
     set background=dark
 endif
 
-colorscheme solarized
+" colorscheme solarized
+colorscheme NeoSolarized
 
 
 "" vim-json -------------------------------------------------
@@ -843,7 +862,11 @@ cnoremap <C-N> <Down>
 " }}}
 
 
-" --- visual mode ------------------------------------------ {{{
+" --- visual mode ------------------- Visual --
+
+" " -- Stay in indent mode while indenting a block --
+" vnoremap < <gv
+" vnoremap > >gv
 
 " --- search defaults to very-magic mode ---
 vnoremap / /\v

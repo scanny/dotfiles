@@ -1,9 +1,11 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
+local cmp = require("cmp")
+-- local cmp_status_ok, cmp = pcall(require, "cmp")
 -- if not cmp_status_ok then
 --   return
 -- end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
+local luasnip = require("luasnip")
+-- local snip_status_ok, luasnip = pcall(require, "luasnip")
 -- if not snip_status_ok then
 --   return
 -- end
@@ -110,9 +112,9 @@ cmp.setup {
     end,
   },
   sources = {
+    { name = "luasnip" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
   },
