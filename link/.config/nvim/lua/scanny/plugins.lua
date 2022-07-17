@@ -54,23 +54,70 @@ return require("packer").startup(function(use)
     -- 'Black'-ens Python code on save --
     use {"psf/black", tag="19.10b0"}
 
+    -- (legacy) completion ---
+    use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
+    -- Plug 'deoplete-plugins/deoplete-jedi'
+    use 'davidhalter/jedi-vim'
+
+    -- rip-grep in Vim; multi-file search ---
+    -- NOTE: installing ferret causes `E471: Argument required` error unless its :Black
+    -- command is remapped (conflicts with Python Black command).
+    use 'wincent/ferret'
+
+
+    -- fuzzy-file finding and more ---
+    -- Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    -- Plug 'junegunn/fzf.vim'
+
+    -- gruvbox color scheme ---
+    use 'ellisonleao/gruvbox.nvim'
+
+    -- lightweight status line ---
+    use 'itchyny/lightline.vim'
+
     -- status line --
     -- use {
     --     'nvim-lualine/lualine.nvim',
     --     requires = {'kyazdani42/nvim-web-devicons', opt=true}
     -- }
 
+    -- better highlighting of search matches ---
+    use 'wincent/loupe'
+
+    -- provides Solarized color scheme ---
+    use 'overcache/NeoSolarized'
+
     -- -- provides Solarized color scheme --
     -- use "ishan9299/nvim-solarized-lua"
+
+    -- Python syntax ---
+    use 'vim-python/python-syntax'
+
+    -- provides quick-fix window behavior improvements ---
+    use 'yssl/QFEnter'
+
+    -- reStructuredText support ---
+    use 'gu-fan/riv.vim'
+
+    -- Efficient code folding for Python, which is a hard case because of sig-space ---
+    use 'Konfekt/FastFold'
+    use 'tmhedberg/SimpylFold'
+
+    -- lints on every save ---
+    use 'scrooloose/syntastic'
 
     -- Tab naming --
     use "gcmt/taboo.vim"
 
+    -- -- Telescope --
+    -- use "nvim-telescope/telescope.nvim"
+
     -- Treesitter --
     -- use {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
 
-    -- -- Telescope --
-    -- use "nvim-telescope/telescope.nvim"
+    -- snippets ---
+    use 'SirVer/ultisnips'
+    use 'honza/vim-snippets'
 
     -- jump around git and merge conflicts --
     use "wincent/vcs-jump"
@@ -78,11 +125,23 @@ return require("packer").startup(function(use)
     -- more powerful camel/snake-case aware text substitution with :S instead of :s --
     use "tpope/vim-abolish"
 
+    -- split args onto separate lines ---
+    use 'FooSoft/vim-argwrap'
+
+    -- improved '*' search-under-cursor behaviors ---
+    use 'haya14busa/vim-asterisk'
+
     -- provides filetype-aware code commenting --
     use "tpope/vim-commentary"
 
+    -- provides Cucumber language syntax and folding ---
+    use 'tpope/vim-cucumber'
+
     -- press "minus" key to show directory and navigate using netrw --
     use "justinmk/vim-dirvish"
+
+    -- automatically choose right asynchronous 'compiler' for make ---
+    use 'tpope/vim-dispatch'
 
     -- allows renames etc. on a buffer and its file --
     use "tpope/vim-eunuch"
@@ -90,29 +149,44 @@ return require("packer").startup(function(use)
     -- git integration --
     use "tpope/vim-fugitive"
 
+    -- highlight individual lines ---
+    use 'airblade/vim-highline'
+
+    -- JSON language support ---
+    use 'elzr/vim-json'
+
+    -- Letters instead of numbers for relative lines ---
+    use 'skamsie/vim-lineletters'
+
+    -- markdown (plasticboy) ---
+    use 'plasticboy/vim-markdown'
+
     -- toggle maximize current split --
-    use "szw/vim-maximizer"
+    use 'szw/vim-maximizer'
 
     -- store dynamically updated session files --
-    use "tpope/vim-obsession"
+    use 'tpope/vim-obsession'
 
     -- better indent behavior after colon etc. on Python --
-    use "Vimjas/vim-python-pep8-indent"
+    use 'Vimjas/vim-python-pep8-indent'
 
-    -- repeat plugin actions with "." command --
-    use "tpope/vim-repeat"
+    -- repeat plugin actions with '.' command --
+    use 'tpope/vim-repeat'
 
     -- horizontal find with 2-letters --
-    use "justinmk/vim-sneak"
+    use 'justinmk/vim-sneak'
 
     -- write better buffer persistance (view) files --
-    use "zhimsel/vim-stay"
+    use 'zhimsel/vim-stay'
 
     -- enable changing surrounding pairs like quotes in single action --
-    use "tpope/vim-surround"
+    use 'tpope/vim-surround'
 
-    -- handy bracket mappings like "]q" for :cnext --
-    use "tpope/vim-unimpaired"
+    -- handy bracket mappings like ']q' for :cnext --
+    use 'tpope/vim-unimpaired'
+
+    -- XML ---
+    use 'sukima/xmledit'
 
 
     -- ==== COMPLETION =================================================

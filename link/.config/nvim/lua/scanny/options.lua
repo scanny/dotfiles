@@ -24,13 +24,29 @@ vim.opt.fillchars = {
 set.foldmethod = "expr"
 
 -- fde - specify expression used for computing folds ---
-set.foldexpr = "nvim_treesitter#foldexpr()"
+-- set.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- fdn - specify number of fold levels (might customize by filetype) ---
 set.foldnestmax = 2
 
 -- fdt - specify the text displayed for a closed fold ---
-set.foldtext = "v:lua.scanny.foldtext()"
+-- set.foldtext = "v:lua.scanny.foldtext()"
+-- set.foldtext = v:lua.scanny.foldtext()
+-- set.foldtext = "v:lua.scanny.foldtext"
+-- set.foldtext = "luaeval(\"require('scanny.foldtext')()\""
+vim.cmd([[
+    let s:middot='·'
+    let s:raquo='»'
+    let s:small_l='ℓ'
+    function! MyFoldText() abort
+      " let l:lines='[' . printf('[%3d](v:foldend - v:foldstart + 1)) . s:small_l . ']'
+      let l:lines=printf('[%3d%s]', (v:foldend - v:foldstart + 1), s:small_l)
+      let l:first=substitute(getline(v:foldstart), '\v *', '', '')
+      let l:dashes=substitute(v:folddashes, '-', s:middot, 'g')
+      return s:raquo . s:middot . s:middot . l:lines . l:dashes . ': ' . l:first
+    endfunction
+    set foldtext=MyFoldText()
+]])
 
 -- cursor shapes and blink-rates ---
 set.guicursor = "n-v-c:block,i-c-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkon100"
