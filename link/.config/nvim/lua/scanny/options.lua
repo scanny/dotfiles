@@ -6,6 +6,9 @@ set.autoread = true
 -- cc - place line-width indicator in column 89 (one past wrap limit)
 set.colorcolumn = "89"
 
+-- cot - completion options {menu,menuone,noselect,longesst,preview,noinsert,noselect"
+set.completeopt = "menu,menuone,preview"
+
 -- cul - subtly highlight cursor-line in current file ---
 set.cursorline = true
 

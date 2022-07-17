@@ -1,5 +1,5 @@
 require("lspconfig")
 
-require("user.lsp.lsp-installer")
-require("user.lsp.null-ls")
-require("user.lsp.handlers").setup()
+require("scanny.lsp.lsp-installer")
+-- require("scanny.lsp.null-ls")
+require("scanny.lsp.handlers").setup()

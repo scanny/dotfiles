@@ -1,5 +1,4 @@
 
-
 -- FocusLost - automatically save all buffers after tabbing away from vim --
 local group = vim.api.nvim_create_augroup("OnLoseFocus", {clear = true})
 vim.api.nvim_create_autocmd("FocusLost", { command = ":silent wall", group = group })
@@ -14,12 +13,12 @@ vim.api.nvim_create_autocmd("FocusGained", { command = ":checktime", group = gro
 -- ignore CR mapping (to :noh) in special windows like quickfix --
 local group = vim.api.nvim_create_augroup("NoCRMapInQuickfix", {clear = true})
 vim.api.nvim_create_autocmd(
-    "BufReadPost",
-    {pattern="quickfix", command="nnoremap <buffer> <CR> <CR>", group=group}
+  "BufReadPost",
+  {pattern="quickfix", command="nnoremap <buffer> <CR> <CR>", group=group}
 )
 -- same for command-line window --
 vim.api.nvim_create_autocmd(
-    "CmdwinEnter", { command="nnoremap <buffer> <CR> <CR>", group=group }
+  "CmdwinEnter", { command="nnoremap <buffer> <CR> <CR>", group=group }
 )
 
 
@@ -28,15 +27,24 @@ vim.api.nvim_create_autocmd(
 -- ===================================================================
 
 
+-- lua -----------------------------------------------------
+local group = vim.api.nvim_create_augroup("LuaFileType", {clear = true})
+vim.api.nvim_create_autocmd(
+  "FileType",
+  {pattern="lua", command="set nowrap so=3 sts=2 sw=2 tw=88", group=group}
+)
+
+
+
 -- Python --------------------------------------------------
 local group = vim.api.nvim_create_augroup("PythonFileType", {clear = true})
 vim.api.nvim_create_autocmd(
-    "FileType",
-    {pattern="python", command="set fdm=expr nowrap so=3 tw=88", group=group}
+  "FileType",
+  {pattern="python", command="set fdm=expr nowrap so=3 tw=88", group=group}
 )
 -- execute Black on save --
 vim.api.nvim_create_autocmd(
-    "BufWritePre", {pattern="*.py", command=":Black", group=group}
+  "BufWritePre", {pattern="*.py", command=":Black", group=group}
 )
 
 
@@ -44,8 +52,8 @@ vim.api.nvim_create_autocmd(
 local group = vim.api.nvim_create_augroup("GitCommitFileType", {clear = true})
 -- cc = colorcolumn, fo = formatoptions, tw = textwidth 
 vim.api.nvim_create_autocmd(
-    "FileType",
-    {pattern="gitcommit", command="set cc=73 fo+=t tw=72", group=group}
+  "FileType",
+  {pattern="gitcommit", command="set cc=73 fo+=t tw=72", group=group}
 )
 
 

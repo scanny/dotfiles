@@ -51,13 +51,43 @@ return require("packer").startup(function(use)
     use "nvim-lua/popup.nvim"   -- An implementation of the Popup API from vim in Neovim
     use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
-    -- 'Black'-ens Python code on save --
-    use {"psf/black", tag="19.10b0"}
+    -- === COMPLETION =========================================================
 
     -- (legacy) completion ---
-    use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
-    -- Plug 'deoplete-plugins/deoplete-jedi'
-    use 'davidhalter/jedi-vim'
+    -- use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
+    -- use 'davidhalter/jedi-vim'
+
+    -- modern completion ---
+    use "hrsh7th/nvim-cmp"                     -- The completion plugin
+    use "hrsh7th/cmp-buffer"                   -- buffer completions
+    use "hrsh7th/cmp-path"                     -- path completions
+    use "hrsh7th/cmp-cmdline"                  -- cmdline completions
+    use 'quangnguyen30192/cmp-nvim-ultisnips'  -- UltiSnips completions
+    -- use "saadparwaiz1/cmp_luasnip"          -- snippet completions
+    use "hrsh7th/cmp-nvim-lsp"                 -- LSP completions
+    -- use "hrsh7th/cmp-nvim-lua"              -- Neovim's Lua runtime API (e.g. vim.*)
+
+
+    -- ==== SNIPPETS ===================================================
+
+    use 'SirVer/ultisnips'
+    use 'honza/vim-snippets'
+
+    -- use "L3MON4D3/LuaSnip"                --snippet engine
+    -- use "rafamadriz/friendly-snippets"    -- a bunch of snippets to use
+    --
+
+    -- ==== LANGUAGE SERVER PROTOCOL (LSP) =============================
+
+    use "neovim/nvim-lspconfig"              -- enable LSP
+    use "williamboman/nvim-lsp-installer"    -- simple to use language server installer
+    -- use "jose-elias-alvarez/null-ls.nvim"    -- LSP-ifies CLI linters etc.
+
+
+    -- ========================================================================
+
+    -- 'Black'-ens Python code on save --
+    use {"psf/black", tag="19.10b0"}
 
     -- rip-grep in Vim; multi-file search ---
     -- NOTE: installing ferret causes `E471: Argument required` error unless its :Black
@@ -114,10 +144,6 @@ return require("packer").startup(function(use)
 
     -- Treesitter --
     -- use {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
-
-    -- snippets ---
-    use 'SirVer/ultisnips'
-    use 'honza/vim-snippets'
 
     -- jump around git and merge conflicts --
     use "wincent/vcs-jump"
@@ -187,27 +213,5 @@ return require("packer").startup(function(use)
 
     -- XML ---
     use 'sukima/xmledit'
-
-
-    -- ==== COMPLETION =================================================
-
-    -- use "hrsh7th/nvim-cmp"                -- The completion plugin
-    -- use "hrsh7th/cmp-buffer"              -- buffer completions
-    -- use "hrsh7th/cmp-path"                -- path completions
-    -- use "hrsh7th/cmp-cmdline"             -- cmdline completions
-    -- -- use "saadparwaiz1/cmp_luasnip"        -- snippet completions
-    -- use "hrsh7th/cmp-nvim-lsp"            -- LSP completions
-    -- use "hrsh7th/cmp-nvim-lua"            -- Neovim's Lua runtime API (e.g. vim.*)
-
-
-    -- ==== SNIPPETS ===================================================
-
-    -- use "L3MON4D3/LuaSnip"                --snippet engine
-    -- use "rafamadriz/friendly-snippets"    -- a bunch of snippets to use
-
-    -- ==== LANGUAGE SERVER PROTOCOL (LSP) =============================
-    -- use "neovim/nvim-lspconfig"           -- enable LSP
-    -- use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-    -- use "jose-elias-alvarez/null-ls.nvim" -- LSP-ifies CLI linters etc.
 
 end)
