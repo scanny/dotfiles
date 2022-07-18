@@ -101,11 +101,21 @@ return require("packer").startup(function(use)
     -- gruvbox color scheme ---
     use 'ellisonleao/gruvbox.nvim'
 
+    -- kinder, gentler gruvbox ---
+    use 'sainnhe/gruvbox-material'
+
     -- provides Solarized color scheme ---
     use 'overcache/NeoSolarized'
 
-    -- -- provides Solarized color scheme --
-    -- use "ishan9299/nvim-solarized-lua"
+    -- provides Solarized color scheme --
+    use "ishan9299/nvim-solarized-lua"
+
+
+    -- === TREESITTER ==========================================================
+
+    -- provides AST-aware highlighting, folding, and indent --
+    use {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
+    use "nvim-treesitter/playground"
 
 
     -- === LANGUAGE SUPPORT ====================================================
@@ -146,11 +156,6 @@ return require("packer").startup(function(use)
     -- command is remapped (conflicts with Python Black command).
     use 'wincent/ferret'
 
-
-    -- fuzzy-file finding and more ---
-    -- Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    -- Plug 'junegunn/fzf.vim'
-
     -- lightweight status line ---
     use 'itchyny/lightline.vim'
 
@@ -168,9 +173,6 @@ return require("packer").startup(function(use)
 
     -- Tab naming --
     use "gcmt/taboo.vim"
-
-    -- Treesitter --
-    -- use {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
 
     -- jump around git and merge conflicts --
     use "wincent/vcs-jump"

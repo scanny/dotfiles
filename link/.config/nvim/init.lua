@@ -28,10 +28,14 @@ require 'scanny.autocommands'
 require 'scanny.plugins'
 require 'scanny.cmp'
 require 'scanny.lsp'
+require 'scanny.telescope'
+require 'scanny.treesitter'
+
 
 
 -- vim.cmd('colorscheme solarized')
-vim.cmd('colorscheme gruvbox')
+-- vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme gruvbox-material')
 
 
 vim.cmd [[

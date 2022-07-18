@@ -1,6 +1,5 @@
-local configs = require("nvim-treesitter.configs")
 
-configs.setup {
+require("nvim-treesitter.configs").setup {
     ensure_installed = {"bash", "json", "lua", "markdown", "python"},
     sync_install = false,
     -- List of parsers to ignore installing --
@@ -16,11 +15,31 @@ configs.setup {
     indent = {
         enable = true,
         disable = {"python", "yaml"},
+    },
+    playground = {
+        enable = true,
+        disable = {},
+        updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+        persist_queries = false, -- Whether the query persists across vim sessions
+        keybindings = {
+            toggle_query_editor = 'o',
+            toggle_hl_groups = 'i',
+            toggle_injected_languages = 't',
+            toggle_anonymous_nodes = 'a',
+            toggle_language_display = 'I',
+            focus_language = 'f',
+            unfocus_language = 'F',
+            update = 'R',
+            goto_node = '<cr>',
+            show_help = '?',
+        },
     }
 }
 
+require "nvim-treesitter.configs".setup {
+}
 -- fdm - specify method used for computing folds ---
-vim.opt.foldmethod = "expr"
+-- vim.opt.foldmethod = "expr"
 
 -- fde - specify expression used for computing folds ---
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
