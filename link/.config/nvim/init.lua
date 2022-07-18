@@ -73,9 +73,6 @@ nmap <leader>ju :call jedi#usages()<CR>
 " a - wrap function args in parens onto separate lines
 nnoremap <silent> <leader>a :ArgWrap<CR>
 
-" f - fzf file finder
-map <leader>f :Files<CR>
-
 " gd - :Gdiff
 map <leader>gd :Gdiff<CR>
 

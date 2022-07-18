@@ -35,6 +35,20 @@ keymap("n", "<leader>c", ":clo<CR>", opts)
 -- e - open file in same directory as current file ---
 keymap("n", "<leader>e", ":e %%", opts)
 
+-- f - Telescope file finder
+keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", opts)
+-- keymap(
+--     "n",
+--     "<leader>f",
+--     (
+--         "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes')"
+--         .. ".get_dropdown({previewer=false}))<CR>"
+--     ),
+--     opts
+-- )
+-- <C-t> - Telescope live_grep --
+keymap("n", "<C-t>", "<cmd>Telescope live_grep<CR>", opts)
+
 -- gw - :Gwrite ---
 keymap("n", "<leader>gw", ":Gwrite<CR>", opts)
 

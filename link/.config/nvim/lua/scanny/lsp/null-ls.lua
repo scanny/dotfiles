@@ -15,7 +15,7 @@ null_ls.setup(
               -- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
               -- timeout = 10000,
             }),
-            diagnostics.flake8,
+            -- diagnostics.flake8,
         }
     }
 )

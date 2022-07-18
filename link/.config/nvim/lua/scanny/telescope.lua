@@ -1,9 +1,4 @@
 local telescope = require "telescope"
--- local status_ok, telescope = pcall(require, "telescope")
--- if not status_ok then
---   return
--- end
-
 local actions = require "telescope.actions"
 
 telescope.setup {
@@ -15,11 +10,11 @@ telescope.setup {
 
     mappings = {
       i = {
-        ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev,
-
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
+
+        ["<C-n>"] = actions.cycle_history_next,
+        ["<C-p>"] = actions.cycle_history_prev,
 
         ["<C-c>"] = actions.close,
 
@@ -88,12 +83,12 @@ telescope.setup {
     -- builtin picker
   },
   extensions = {
-    media_files = {
-        -- filetypes whitelist
-        -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-        filetypes = {"png", "webp", "jpg", "jpeg"},
-        find_cmd = "rg" -- find command (defaults to `fd`)
-      }
+    -- media_files = {
+    --   -- filetypes whitelist
+    --   -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+    --   filetypes = {"png", "webp", "jpg", "jpeg"},
+    --   find_cmd = "rg" -- find command (defaults to `fd`)
+    -- }
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,

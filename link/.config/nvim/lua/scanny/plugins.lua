@@ -90,6 +90,12 @@ return require("packer").startup(function(use)
     use 'scrooloose/syntastic'
 
 
+    -- === FUZZY FINDING =======================================================
+
+    -- Telescope --
+    use "nvim-telescope/telescope.nvim"
+
+
     -- === COLORSCHEMES ========================================================
 
     -- gruvbox color scheme ---
@@ -162,9 +168,6 @@ return require("packer").startup(function(use)
 
     -- Tab naming --
     use "gcmt/taboo.vim"
-
-    -- -- Telescope --
-    -- use "nvim-telescope/telescope.nvim"
 
     -- Treesitter --
     -- use {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
