@@ -1,17 +1,19 @@
 
+local group
+
 -- FocusLost - automatically save all buffers after tabbing away from vim --
-local group = vim.api.nvim_create_augroup("OnLoseFocus", {clear = true})
+group = vim.api.nvim_create_augroup("OnLoseFocus", {clear = true})
 vim.api.nvim_create_autocmd("FocusLost", { command = ":silent wall", group = group })
 
 
 -- FocusGained - in conjunction with `set autoread`, automatically re-read
 -- externally-changed file when focus is regained
-local group = vim.api.nvim_create_augroup("OnGainFocus", {clear = true})
+group = vim.api.nvim_create_augroup("OnGainFocus", {clear = true})
 vim.api.nvim_create_autocmd("FocusGained", { command = ":checktime", group = group })
 
 
 -- ignore CR mapping (to :noh) in special windows like quickfix --
-local group = vim.api.nvim_create_augroup("NoCRMapInQuickfix", {clear = true})
+group = vim.api.nvim_create_augroup("NoCRMapInQuickfix", {clear = true})
 vim.api.nvim_create_autocmd(
   "BufReadPost",
   {pattern="quickfix", command="nnoremap <buffer> <CR> <CR>", group=group}
@@ -28,7 +30,7 @@ vim.api.nvim_create_autocmd(
 
 
 -- lua -----------------------------------------------------
-local group = vim.api.nvim_create_augroup("LuaFileType", {clear = true})
+group = vim.api.nvim_create_augroup("LuaFileType", {clear = true})
 vim.api.nvim_create_autocmd(
   "FileType",
   {pattern="lua", command="set nowrap so=3 sts=2 sw=2 tw=88", group=group}
@@ -37,7 +39,7 @@ vim.api.nvim_create_autocmd(
 
 
 -- Python --------------------------------------------------
-local group = vim.api.nvim_create_augroup("PythonFileType", {clear = true})
+group = vim.api.nvim_create_augroup("PythonFileType", {clear = true})
 vim.api.nvim_create_autocmd(
   "FileType",
   {pattern="python", command="set fdm=expr nowrap so=3 tw=88", group=group}
@@ -49,7 +51,7 @@ vim.api.nvim_create_autocmd(
 
 
 -- Git commit ----------------------------------------------
-local group = vim.api.nvim_create_augroup("GitCommitFileType", {clear = true})
+group = vim.api.nvim_create_augroup("GitCommitFileType", {clear = true})
 -- cc = colorcolumn, fo = formatoptions, tw = textwidth 
 vim.api.nvim_create_autocmd(
   "FileType",

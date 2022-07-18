@@ -48,10 +48,10 @@ return require("packer").startup(function(use)
     -- Packer can manage itself --
     use "wbthomason/packer.nvim"
     --- common dependencies --
-    use "nvim-lua/popup.nvim"   -- An implementation of the Popup API from vim in Neovim
+    -- use "nvim-lua/popup.nvim"   -- An implementation of the Popup API from vim in Neovim
     use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
-    -- === COMPLETION =========================================================
+    -- === COMPLETION ==========================================================
 
     -- (legacy) completion ---
     -- use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
@@ -68,7 +68,7 @@ return require("packer").startup(function(use)
     -- use "hrsh7th/cmp-nvim-lua"              -- Neovim's Lua runtime API (e.g. vim.*)
 
 
-    -- ==== SNIPPETS ===================================================
+    -- ==== SNIPPETS ===========================================================
 
     use 'SirVer/ultisnips'
     use 'honza/vim-snippets'
@@ -77,14 +77,60 @@ return require("packer").startup(function(use)
     -- use "rafamadriz/friendly-snippets"    -- a bunch of snippets to use
     --
 
-    -- ==== LANGUAGE SERVER PROTOCOL (LSP) =============================
+    -- ==== LANGUAGE SERVER PROTOCOL (LSP) =====================================
 
     use "neovim/nvim-lspconfig"              -- enable LSP
-    use "williamboman/nvim-lsp-installer"    -- simple to use language server installer
-    -- use "jose-elias-alvarez/null-ls.nvim"    -- LSP-ifies CLI linters etc.
+    -- use "williamboman/nvim-lsp-installer"  -- simple to use language server installer
+    use {                                    -- LSP-ifies CLI linters etc.
+      "jose-elias-alvarez/null-ls.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
+    }
+
+    -- lints on every save ---
+    use 'scrooloose/syntastic'
 
 
-    -- ========================================================================
+    -- === COLORSCHEMES ========================================================
+
+    -- gruvbox color scheme ---
+    use 'ellisonleao/gruvbox.nvim'
+
+    -- provides Solarized color scheme ---
+    use 'overcache/NeoSolarized'
+
+    -- -- provides Solarized color scheme --
+    -- use "ishan9299/nvim-solarized-lua"
+
+
+    -- === LANGUAGE SUPPORT ====================================================
+
+    -- Python syntax ---
+    use 'vim-python/python-syntax'
+
+    -- Efficient code folding for Python, which is a hard case because of sig-space ---
+    use 'Konfekt/FastFold'
+    use 'tmhedberg/SimpylFold'
+
+    -- reStructuredText support ---
+    use 'gu-fan/riv.vim'
+
+    -- provides Cucumber language syntax and folding ---
+    use 'tpope/vim-cucumber'
+
+    -- JSON language support ---
+    use 'elzr/vim-json'
+
+    -- markdown (plasticboy) ---
+    use 'plasticboy/vim-markdown'
+
+    -- better indent behavior after colon etc. on Python --
+    use 'Vimjas/vim-python-pep8-indent'
+
+    -- XML ---
+    use 'sukima/xmledit'
+
+
+    -- === EDITING =============================================================
 
     -- 'Black'-ens Python code on save --
     use {"psf/black", tag="19.10b0"}
@@ -99,9 +145,6 @@ return require("packer").startup(function(use)
     -- Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     -- Plug 'junegunn/fzf.vim'
 
-    -- gruvbox color scheme ---
-    use 'ellisonleao/gruvbox.nvim'
-
     -- lightweight status line ---
     use 'itchyny/lightline.vim'
 
@@ -114,27 +157,8 @@ return require("packer").startup(function(use)
     -- better highlighting of search matches ---
     use 'wincent/loupe'
 
-    -- provides Solarized color scheme ---
-    use 'overcache/NeoSolarized'
-
-    -- -- provides Solarized color scheme --
-    -- use "ishan9299/nvim-solarized-lua"
-
-    -- Python syntax ---
-    use 'vim-python/python-syntax'
-
     -- provides quick-fix window behavior improvements ---
     use 'yssl/QFEnter'
-
-    -- reStructuredText support ---
-    use 'gu-fan/riv.vim'
-
-    -- Efficient code folding for Python, which is a hard case because of sig-space ---
-    use 'Konfekt/FastFold'
-    use 'tmhedberg/SimpylFold'
-
-    -- lints on every save ---
-    use 'scrooloose/syntastic'
 
     -- Tab naming --
     use "gcmt/taboo.vim"
@@ -160,9 +184,6 @@ return require("packer").startup(function(use)
     -- provides filetype-aware code commenting --
     use "tpope/vim-commentary"
 
-    -- provides Cucumber language syntax and folding ---
-    use 'tpope/vim-cucumber'
-
     -- press "minus" key to show directory and navigate using netrw --
     use "justinmk/vim-dirvish"
 
@@ -178,23 +199,14 @@ return require("packer").startup(function(use)
     -- highlight individual lines ---
     use 'airblade/vim-highline'
 
-    -- JSON language support ---
-    use 'elzr/vim-json'
-
     -- Letters instead of numbers for relative lines ---
     use 'skamsie/vim-lineletters'
-
-    -- markdown (plasticboy) ---
-    use 'plasticboy/vim-markdown'
 
     -- toggle maximize current split --
     use 'szw/vim-maximizer'
 
     -- store dynamically updated session files --
     use 'tpope/vim-obsession'
-
-    -- better indent behavior after colon etc. on Python --
-    use 'Vimjas/vim-python-pep8-indent'
 
     -- repeat plugin actions with '.' command --
     use 'tpope/vim-repeat'
@@ -210,8 +222,5 @@ return require("packer").startup(function(use)
 
     -- handy bracket mappings like ']q' for :cnext --
     use 'tpope/vim-unimpaired'
-
-    -- XML ---
-    use 'sukima/xmledit'
 
 end)

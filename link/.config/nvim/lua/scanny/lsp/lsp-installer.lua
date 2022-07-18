@@ -1,27 +1,27 @@
 
-local lsp_installer = require("nvim-lsp-installer")
+local lsp_installer = require('nvim-lsp-installer')
 
 -- Register a handler that will be called for all installed servers. Alternatively, you
 -- may register handlers on specific server instances (see example below).
 lsp_installer.on_server_ready(function(server)
   local opts = {
-    on_attach = require("scanny.lsp.handlers").on_attach,
-    capabilities = require("scanny.lsp.handlers").capabilities,
+    on_attach = require('scanny.lsp.handlers').on_attach,
+    capabilities = require('scanny.lsp.handlers').capabilities,
   }
 
-  -- if server.name == "jsonls" then
-  --     local jsonls_opts = require("scanny.lsp.settings.jsonls")
-  --     opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+  -- if server.name == 'jsonls' then
+  --     local jsonls_opts = require('scanny.lsp.settings.jsonls')
+  --     opts = vim.tbl_deep_extend('force', jsonls_opts, opts)
   -- end
 
-  if server.name == "sumneko_lua" then
-    local sumneko_opts = require("scanny.lsp.settings.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  if server.name == 'sumneko_lua' then
+    local sumneko_opts = require('scanny.lsp.settings.sumneko_lua')
+    opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
   end
 
-  if server.name == "pyright" then
-    local pyright_opts = require("scanny.lsp.settings.pyright")
-    opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+  if server.name == 'pyright' then
+    local pyright_opts = require('scanny.lsp.settings.pyright')
+    opts = vim.tbl_deep_extend('force', pyright_opts, opts)
   end
 
   -- This setup() function is exactly the same as lspconfig's setup function.
@@ -37,9 +37,9 @@ end)
 --         automatic_installation = true,
 --         ui = {
 --             icons = {
---                 server_installed = "✓",
---                 server_pending = "➜",
---                 server_uninstalled = "✗"
+--                 server_installed = '✓',
+--                 server_pending = '➜',
+--                 server_uninstalled = '✗'
 --             }
 --         }
 --     }
