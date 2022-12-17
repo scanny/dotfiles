@@ -9,7 +9,7 @@
     type = cat-file -t
 
 [color]
-    diff = always
+    diff = auto
     ui   = true
 
 [core]
