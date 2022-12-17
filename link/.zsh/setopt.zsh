@@ -39,9 +39,10 @@ setopt always_to_end
 # show completion menu on successive tab press. needs unsetop menu_complete to work
 setopt auto_menu
 
-# any parameter that is set to the absolute name of a directory immediately
-# becomes a name for that directory
-setopt auto_name_dirs
+# (don't make) any parameter (env var) set to the absolute name of a directory
+# into a name for that directory. Otherwise like PYTHONPATH shows up in the prompt
+# instead of the directory you're in.
+unsetopt auto_name_dirs
 
 # Allow completion from within a word/phrase
 setopt complete_in_word
