@@ -80,11 +80,6 @@ return require("packer").startup(function(use)
     -- ==== LANGUAGE SERVER PROTOCOL (LSP) =====================================
 
     use "neovim/nvim-lspconfig"              -- enable LSP
-    -- use "williamboman/nvim-lsp-installer"  -- simple to use language server installer
-    use {                                    -- LSP-ifies CLI linters etc.
-      "jose-elias-alvarez/null-ls.nvim",
-      requires = { "nvim-lua/plenary.nvim" },
-    }
 
     -- lints on every save ---
     use 'scrooloose/syntastic'
