@@ -29,13 +29,62 @@ vim.api.nvim_create_autocmd(
 -- ===================================================================
 
 
+-- javascript ----------------------------------------------
+group = vim.api.nvim_create_augroup("JavascriptFileType", {clear = true})
+vim.api.nvim_create_autocmd(
+  "FileType",
+  {
+    pattern = "javascript",
+    command = (
+      "setl nowrap fdm=expr fde=nvim_treesitter#foldexpr() fdn=2 so=3 sts=2 sw=2 tw=88"
+    ),
+    group = group,
+  }
+)
+
+
+-- JSON ----------------------------------------------------
+group = vim.api.nvim_create_augroup("JsonFileType", {clear = true})
+vim.api.nvim_create_autocmd(
+  "FileType",
+  {
+    pattern = "json",
+    command = (
+      "setl nowrap fdm=expr fde=nvim_treesitter#foldexpr() fdn=4 so=3 sts=2 sw=2" ..
+      " ts=2 tw=0"
+    ),
+    group = group,
+  }
+)
+
+
+-- go ------------------------------------------------------
+group = vim.api.nvim_create_augroup("GolangFileType", {clear = true})
+vim.api.nvim_create_autocmd(
+  "FileType",
+  {
+    pattern = "go",
+    command = (
+      "setl noet nowrap fdm=expr fde=nvim_treesitter#foldexpr() fdn=1 so=3 sts=4" ..
+      " sw=4 ts=4 tw=88"
+    ),
+    group = group,
+  }
+)
+
+
 -- lua -----------------------------------------------------
 group = vim.api.nvim_create_augroup("LuaFileType", {clear = true})
 vim.api.nvim_create_autocmd(
   "FileType",
-  {pattern="lua", command="set nowrap so=3 sts=2 sw=2 tw=88", group=group}
+  {
+    pattern = "lua",
+    command = (
+      "setl nowrap fdm=expr fde=nvim_treesitter#foldexpr() so=3 sts=2 sw=2 tw=88"
+    ),
+    group = group,
+  }
 )
-
 
 
 -- Python --------------------------------------------------
@@ -46,7 +95,7 @@ vim.api.nvim_create_autocmd(
 )
 -- execute Black on save --
 vim.api.nvim_create_autocmd(
-  "BufWritePre", {pattern="*.py", command=":Black", group=group}
+  "BufWritePre", {pattern="*.py,*.pyi", command=":Black", group=group}
 )
 
 

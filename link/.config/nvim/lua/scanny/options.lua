@@ -23,6 +23,9 @@ vim.opt.fillchars = {
   vert = '┃',  -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
 }
 
+-- fdls - Sets foldlevel when starting to edit a buffer in a window ---
+set.foldlevelstart = 0  -- all folds closed
+
 -- fdm - specify method used for computing folds ---
 set.foldmethod = "expr"
 
@@ -58,6 +61,7 @@ set.guicursor = "n-v-c:block,i-c-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkon100"
 set.inccommand = "nosplit"
 
 -- lcs - use wincent symbols for tabs, trailing-spaces, etc ---
+set.list = true    -- show whitespace chars except carriage-return
 set.listchars = {
   -- eol      = '¬',
   nbsp     = '⦸',  -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)

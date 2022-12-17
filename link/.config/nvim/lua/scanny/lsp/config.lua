@@ -83,6 +83,6 @@ end
 --   return
 -- end
 
--- M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+-- M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 return M
