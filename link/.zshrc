@@ -28,4 +28,6 @@ source ~/.zsh/zsh_hooks.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(pyenv init -)"
+# --- turned off most of the time, we either use brew-installed (system) Python version
+# --- or we're in a virtualenv and use that version.
+# eval "$(pyenv init -)"
