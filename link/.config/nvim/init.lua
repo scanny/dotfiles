@@ -75,18 +75,8 @@ function! MakeCurrentBufferTestModule()
 endfunc
 nnoremap <silent> <leader>T :call MakeCurrentBufferTestModule()<CR>
 
-" j* - Jedi definitions
-nmap <leader>jd :call jedi#goto_definitions()<CR>
-nmap <leader>ju :call jedi#usages()<CR>
-
 " a - wrap function args in parens onto separate lines
 nnoremap <silent> <leader>a :ArgWrap<CR>
-
-" gd - :Gdiff
-map <leader>gd :Gdiff<CR>
-
-" gs - :Gstatus
-map <leader>gs :Gstatus<CR>
 
 " gw - :Gwrite
 map <leader>gw :Gwrite<CR>
@@ -102,15 +92,6 @@ nmap <leader>H <Plug>(HighlineClear)
 
 
 " === configure plugins ============================================== {{{
-
-" --- Language Server Protocol (LSP) ---------------------------------
-" lua require('lspconfig').pyls.setup{ on_attach=require'completion'.on_attach }
-
-" set completeopt-=preview
-
-" use omni completion provided by lsp
-" autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
-
 
 " --- argwrap --------------------------------------------------------
 let g:argwrap_tail_comma = 1

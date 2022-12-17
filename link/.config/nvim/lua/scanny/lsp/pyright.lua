@@ -1,5 +1,10 @@
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
+
 require('lspconfig').pyright.setup({
+  capabilities = capabilities,
   filetypes = {
     'python',
   },
@@ -10,7 +15,12 @@ require('lspconfig').pyright.setup({
         -- typeCheckingMode = 'off',
         -- typeCheckingMode = 'basic'
         typeCheckingMode = 'strict',
-        -- stubPath = '',
+        -- executionEnvironments = {
+        --   { root = '/Users/scanny/SpacedOut/chatbot/apps/cws', },
+        -- },
+        -- stubPath = '/Users/scanny/SpacedOut/chatbot/apps/cws/stubs',
+        -- venv = 'chatbot',
+        -- venvPath = '/Users/scanny/.virtualenvs',
       }
     }
   }
