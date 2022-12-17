@@ -43,14 +43,10 @@ export LC_COLLATE=C
 
 
 # --------------------------------------------------------------------
-# pip configuration
+# GO-related bits
 # --------------------------------------------------------------------
 
-export PIP_REQUIRE_VIRTUALENV=true
-
-function gpip {
-   PIP_REQUIRE_VIRTUALENV="" pip "$@"
-}
+export GOPATH=$HOME/go
 
 
 # --------------------------------------------------------------------
@@ -61,10 +57,22 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Dropbox/src
 source virtualenvwrapper.sh
 
+# --- I'll take care of the venv indicator in the prompt myself (so I can color it) ---
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+
+# --------------------------------------------------------------------
+# pip configuration
+# --------------------------------------------------------------------
+
+export PIP_REQUIRE_VIRTUALENV=true
+
+function gpip {
+   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
-export PIP_REQUIRE_VIRTUALENV=true
-export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 
 # --------------------------------------------------------------------
