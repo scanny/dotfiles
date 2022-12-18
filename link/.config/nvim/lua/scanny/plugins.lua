@@ -163,9 +163,6 @@ return require("packer").startup(function(use)
     -- better highlighting of search matches ---
     use 'wincent/loupe'
 
-    -- provides quick-fix window behavior improvements ---
-    use 'yssl/QFEnter'
-
     -- jump around git and merge conflicts --
     use "wincent/vcs-jump"
 
