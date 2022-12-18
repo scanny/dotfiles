@@ -23,13 +23,13 @@ vim.g.vim_markdown_new_list_item_indent = 2
 -- require 'scanny'
 
 require 'scanny.options'
-require 'scanny.keymaps'
 require 'scanny.autocommands'
 require 'scanny.plugins'
 require 'scanny.cmp'
 require 'scanny.lsp'
 require 'scanny.telescope'
 require 'scanny.treesitter'
+require 'scanny.keymaps'       -- keymaps last to override any set in plugins
 
 
 
