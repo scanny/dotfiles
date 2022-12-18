@@ -4,8 +4,6 @@ vim.g.ruby_host_prog = "/usr/local/lib/ruby/gems/3.1.0/bin/neovim-ruby-host"
 -- don't highlight matching bracket indefinitely and obscure cursor ---
 vim.g.loaded_matchparen = 1
 
--- require 'scanny'
-
 require 'scanny.options'
 require 'scanny.autocommands'
 require 'scanny.plugins'
@@ -15,11 +13,6 @@ require 'scanny.keymaps'       -- keymaps last to override any set in plugins
 
 -- this needs to be turned off early to avoid ferret interfering with Black
 vim.g.FerretCommandNames = { Black = 'Fblack'}
-
-
--- vim.cmd('colorscheme solarized')
--- vim.cmd('colorscheme gruvbox')
-vim.cmd('colorscheme gruvbox-material')
 
 
 vim.cmd [[
@@ -61,19 +54,5 @@ xmap <leader>h <Plug>(HighlineToggle)  # highlight selected lines
 nmap <leader>H <Plug>(HighlineClear)
 
 " }}}
-
-
-" --- Color Scheme ---------------------------------------------------
-
-" -- select solarized dark or light based on time-of-day ---
-if strftime("%H") > 7 && strftime("%H") < 21
-    set background=light
-else
-    set background=dark
-endif
-
-" colorscheme solarized
-" colorscheme NeoSolarized
-colorscheme gruvbox
 
 ]]
