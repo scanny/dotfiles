@@ -53,9 +53,6 @@ function! MakeCurrentBufferTestModule()
 endfunc
 nnoremap <silent> <leader>T :call MakeCurrentBufferTestModule()<CR>
 
-" a - wrap function args in parens onto separate lines
-nnoremap <silent> <leader>a :ArgWrap<CR>
-
 " gw - :Gwrite
 map <leader>gw :Gwrite<CR>
 
@@ -70,9 +67,6 @@ nmap <leader>H <Plug>(HighlineClear)
 
 
 " === configure plugins ============================================== {{{
-
-" --- argwrap --------------------------------------------------------
-let g:argwrap_tail_comma = 1
 
 
 " --- dirvish --------------------------------------------------------
