@@ -154,6 +154,9 @@ return require("packer").startup(function(use)
     -- git integration --
     use "tpope/vim-fugitive"
 
+    -- jump to github page for current file, commit, etc. --
+    use "tpope/vim-rhubarb"
+
     -- jump around git and merge conflicts --
     use "wincent/vcs-jump"
 
