@@ -35,9 +35,6 @@ keymap("n", "<leader>c", ":clo<CR>", opts)
 -- e - open file in same directory as current file ---
 keymap("n", "<leader>e", ":e %%", opts)
 
--- gw - :Gwrite ---
-keymap("n", "<leader>gw", ":Gwrite<CR>", opts)
-
 -- l - toggle show invisibles ---
 keymap("n", "<leader>l", ":set list!<CR>", opts)
 
@@ -49,9 +46,6 @@ keymap("n", "<leader>ob", ":split _scratch/blank.rst<CR><C-w>k", opts)
 
 -- od - open 'TODO.rst' ---
 keymap("n", "<leader>od", ":vsplit _scratch/TODO.md<CR><C-w>L", opts)
-
--- os - open spike:% in split above and place cursor there ---
-keymap("n", "<leader>os", ":split<CR><C-w>k:Gedit spike:%<CR>", opts)
 
 -- ov - open ~/.config/nvim/init.vim file in split below current ---
 keymap("n", "<leader>ov", ":split $MYVIMRC<CR>", opts)

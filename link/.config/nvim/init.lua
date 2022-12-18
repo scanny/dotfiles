@@ -53,9 +53,6 @@ function! MakeCurrentBufferTestModule()
 endfunc
 nnoremap <silent> <leader>T :call MakeCurrentBufferTestModule()<CR>
 
-" gw - :Gwrite
-map <leader>gw :Gwrite<CR>
-
 " h - Highline Toggle
 nmap <leader>h <Plug>(HighlineToggle)  # highlight current line
 xmap <leader>h <Plug>(HighlineToggle)  # highlight selected lines
