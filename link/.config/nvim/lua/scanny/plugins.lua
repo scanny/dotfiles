@@ -53,10 +53,6 @@ return require("packer").startup(function(use)
 
     -- === COMPLETION ==========================================================
 
-    -- (legacy) completion ---
-    -- use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
-    -- use 'davidhalter/jedi-vim'
-
     -- modern completion ---
     use "hrsh7th/nvim-cmp"                     -- The completion plugin
     use "hrsh7th/cmp-buffer"                   -- buffer completions

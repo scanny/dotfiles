@@ -97,24 +97,12 @@ nmap <leader>H <Plug>(HighlineClear)
 let g:argwrap_tail_comma = 1
 
 
-" --- deoplete -------------------------------------------------------
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#enable_typeinfo = 0
-" --- Tab for autocomplete ---
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-
 " --- dirvish --------------------------------------------------------
 let g:dirvish_relative_paths = 1  " --- paths relative to pwd ---
 
 
 " --- FastFold -------------------------------------------------------
 let g:fastfold_savehook = 1
-
-
-" --- jedi-vim -------------------------------------------------------
-let g:jedi#rename_command = ""
-let g:jedi#usages_command = ""
 
 
 " --- Loupe ----------------------------------------------------------
