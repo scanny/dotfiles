@@ -4,9 +4,7 @@ local actions = require "telescope.actions"
 telescope.setup {
   defaults = {
 
-    prompt_prefix = " ",
-    selection_caret = " ",
-    path_display = { "smart" },
+    layout_strategy = "vertical",
 
     mappings = {
       i = {
@@ -42,6 +40,7 @@ telescope.setup {
 
       n = {
         ["<esc>"] = actions.close,
+        ["<C-[>"] = actions.close,
         ["<CR>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
@@ -72,15 +71,10 @@ telescope.setup {
         ["?"] = actions.which_key,
       },
     },
-  },
-  pickers = {
-    -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
+
+    path_display = { "smart" },
+    prompt_prefix = " ",
+    selection_caret = " ",
   },
   extensions = {
     -- media_files = {
@@ -95,4 +89,40 @@ telescope.setup {
     -- }
     -- please take a look at the readme of the extension you want to configure
   },
+  pickers = {
+    -- Default configuration for builtin pickers goes here:
+    -- picker_name = {
+    --   picker_config_key = value,
+    --   ...
+    -- }
+    -- Now the picker_config_key will be applied every time you call this
+    -- builtin picker
+  },
 }
+
+
+-- TELESCOPE ---------------------------
+
+local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- f: - find-commands - Telescope commands
+keymap("n", "<leader>f:", "<cmd>Telescope commands<CR>", opts)
+-- fb - find-buffer - Telescope buffers
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
+-- fc - find-command-history - Telescope command-history
+keymap("n", "<leader>fc", "<cmd>Telescope command_history<CR>", opts)
+-- ff - find-files - Telescope file finder
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
+-- fg - find-grep - Telescope live_grep --
+keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
+-- fh - find-help - Telescope live_grep --
+keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+-- fk - find-keymaps - Telescope key mappings --
+keymap("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", opts)
+-- f/ - find-search - Telescope search-history
+keymap("n", "<leader>f/", "<cmd>Telescope search_history<cr>", opts)
+-- fsf - find-sense-files - find-files in sense repo --
+keymap("n", "<leader>fsf", "<cmd>lua require('telescope.builtin').find_files({cwd='/Users/scanny/SpacedOut/sense'})<cr>", opts)
+-- fsg - grep-sense-files - Telescope live_grep sense repo --
+keymap("n", "<leader>fsg", "<cmd>lua require('telescope.builtin').live_grep({cwd='/Users/scanny/SpacedOut/sense'})<cr>", opts)

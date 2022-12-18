@@ -35,20 +35,6 @@ keymap("n", "<leader>c", ":clo<CR>", opts)
 -- e - open file in same directory as current file ---
 keymap("n", "<leader>e", ":e %%", opts)
 
--- f - Telescope file finder
-keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", opts)
--- keymap(
---     "n",
---     "<leader>f",
---     (
---         "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes')"
---         .. ".get_dropdown({previewer=false}))<CR>"
---     ),
---     opts
--- )
--- <C-t> - Telescope live_grep --
-keymap("n", "<C-t>", "<cmd>Telescope live_grep<CR>", opts)
-
 -- gw - :Gwrite ---
 keymap("n", "<leader>gw", ":Gwrite<CR>", opts)
 
@@ -179,14 +165,5 @@ keymap("c", "%%", "<C-R>=expand('%:h').'/'<CR>", opts)
 -- get prior (and next) command that starts-with current string
 keymap("c", "<C-p>", "<Up>", {})
 keymap("c", "<C-n>", "<Down>", {})
-
--- }}}
-
-
--- -- === TELESCOPE KEY BINDINGS ======================================== {{{
-
--- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
--- -- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
--- keymap("n", "<C-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 -- }}}
