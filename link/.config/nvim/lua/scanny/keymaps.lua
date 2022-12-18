@@ -38,9 +38,6 @@ keymap("n", "<leader>e", ":e %%", opts)
 -- l - toggle show invisibles ---
 keymap("n", "<leader>l", ":set list!<CR>", opts)
 
--- m - maximize current split ---
-keymap("n", "<leader>m", ":MaximizerToggle<CR>", opts)
-
 -- ob - open _scratch/blank.rst in split below, stay in current window ---
 keymap("n", "<leader>ob", ":split _scratch/blank.rst<CR><C-w>k", opts)
 
