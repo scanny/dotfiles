@@ -63,24 +63,6 @@ nmap <leader>H <Plug>(HighlineClear)
 " }}}
 
 
-" === configure plugins ============================================== {{{
-
-
-" --- NeoSolarized ---------------------------------------------------
-" --- normal,  high, or low ---
-let g:neosolarized_contrast = "normal"
-" --- brightness of whitespace characters when shown ---
-let g:neosolarized_visibility = "normal"
-" --- vertical split bar is transparent, 1=True, 0=False ---
-let g:neosolarized_vertSplitBgTrans = 1
-" --- bold, underline, and italic are enabled, 1=True, 0=False ---
-let g:neosolarized_bold = 1
-let g:neosolarized_underline = 1
-let g:neosolarized_italic = 1
-" --- bold is displayed as brighter color ---
-let g:neosolarized_termBoldAsBright = 1
-
-
 " --- Color Scheme ---------------------------------------------------
 
 " -- select solarized dark or light based on time-of-day ---
@@ -93,7 +75,5 @@ endif
 " colorscheme solarized
 " colorscheme NeoSolarized
 colorscheme gruvbox
-
-" }}}
 
 ]]
