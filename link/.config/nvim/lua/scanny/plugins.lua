@@ -166,9 +166,6 @@ return require("packer").startup(function(use)
     -- provides quick-fix window behavior improvements ---
     use 'yssl/QFEnter'
 
-    -- Tab naming --
-    use "gcmt/taboo.vim"
-
     -- jump around git and merge conflicts --
     use "wincent/vcs-jump"
 
