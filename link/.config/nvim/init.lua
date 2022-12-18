@@ -4,8 +4,6 @@ vim.g.ruby_host_prog = "/usr/local/lib/ruby/gems/3.1.0/bin/neovim-ruby-host"
 -- don't highlight matching bracket indefinitely and obscure cursor ---
 vim.g.loaded_matchparen = 1
 
-vim.g.FerretCommandNames = { Black = 'Fblack'}
-
 -- require 'scanny'
 
 require 'scanny.options'
@@ -15,6 +13,10 @@ require 'scanny.cmp'
 require 'scanny.lsp'
 require 'scanny.lualine'
 require 'scanny.keymaps'       -- keymaps last to override any set in plugins
+
+
+-- this needs to be turned off early to avoid ferret interfering with Black
+vim.g.FerretCommandNames = { Black = 'Fblack'}
 
 
 -- vim.cmd('colorscheme solarized')
