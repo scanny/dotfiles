@@ -254,10 +254,6 @@ endif
 colorscheme gruvbox
 
 
-"" vim-json -------------------------------------------------
-let g:vim_json_syntax_conceal = 0
-
-
 "" XML Syntax -----------------------------------------------
 let g:xml_syntax_folding=1
 

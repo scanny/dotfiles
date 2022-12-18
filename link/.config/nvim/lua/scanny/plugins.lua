@@ -128,9 +128,6 @@ return require("packer").startup(function(use)
     -- provides Cucumber language syntax and folding ---
     use 'tpope/vim-cucumber'
 
-    -- JSON language support ---
-    use 'elzr/vim-json'
-
     -- markdown (plasticboy) ---
     use 'plasticboy/vim-markdown'
 
