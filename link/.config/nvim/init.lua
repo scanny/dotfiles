@@ -22,13 +22,7 @@ require 'scanny.keymaps'       -- keymaps last to override any set in plugins
 vim.cmd('colorscheme gruvbox-material')
 
 
--- vim-go config -----------------------------------------------------
--- disable default key bindings that interfere ---
-vim.g.go_def_mapping_enabled = 0
-
-
 vim.cmd [[
-
 
 " === custom and plugin-specific key mappings ======================== {{{
 
