@@ -81,20 +81,6 @@ let g:neosolarized_italic = 1
 let g:neosolarized_termBoldAsBright = 1
 
 
-" --- vim-asterisk ---------------------------------------------------
-
-" --- cursor does not jump to next match on '*' ---
-let g:asterisk#keeppos = 1
-map *   <Plug>(asterisk-*)
-map #   <Plug>(asterisk-#)
-map g*  <Plug>(asterisk-g*)
-map g#  <Plug>(asterisk-g#)
-map z*  <Plug>(asterisk-z*)
-map gz* <Plug>(asterisk-gz*)
-map z#  <Plug>(asterisk-z#)
-map gz# <Plug>(asterisk-gz#)
-
-
 " --- Color Scheme ---------------------------------------------------
 
 " -- select solarized dark or light based on time-of-day ---
