@@ -204,6 +204,12 @@ return require("packer").startup(function(use)
     -- enable changing surrounding pairs like quotes in single action --
     use 'tpope/vim-surround'
 
+    -- add text object for segment (like "bar" in foo_bar_baz) in a variable --
+    use {
+      'Julian/vim-textobj-variable-segment',
+      requires = { "kana/vim-textobj-user" },
+    }
+
     -- handy bracket mappings like ']q' for :cnext --
     use 'tpope/vim-unimpaired'
 
