@@ -184,9 +184,6 @@ return require("packer").startup(function(use)
     -- press "minus" key to show directory and navigate using netrw --
     use "justinmk/vim-dirvish"
 
-    -- automatically choose right asynchronous 'compiler' for make ---
-    use 'tpope/vim-dispatch'
-
     -- allows renames etc. on a buffer and its file --
     use "tpope/vim-eunuch"
 
