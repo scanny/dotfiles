@@ -81,12 +81,6 @@ let g:neosolarized_italic = 1
 let g:neosolarized_termBoldAsBright = 1
 
 
-" --- UltiSnips ------------------------------------------------------
-let g:UltiSnipsExpandTrigger="<C-u>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-
-
 " --- vim-asterisk ---------------------------------------------------
 
 " --- cursor does not jump to next match on '*' ---
