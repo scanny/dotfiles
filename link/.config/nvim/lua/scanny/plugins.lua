@@ -118,6 +118,12 @@ return require("packer").startup(function(use)
     use "nvim-treesitter/playground"
 
 
+    -- === TERMINAL ============================================================
+
+    -- bring up floating terminal window without leaving vim --
+    use "akinsho/toggleterm.nvim"
+
+
     -- === LANGUAGE SUPPORT ====================================================
 
     -- Python syntax ---
