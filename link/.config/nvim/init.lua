@@ -80,13 +80,6 @@ let g:neosolarized_italic = 1
 " --- bold is displayed as brighter color ---
 let g:neosolarized_termBoldAsBright = 1
 
-
-" --- SimpylFold -----------------------------------------------------
-" let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_docstring = 0
-" let g:SimpylFold_fold_import = 0
-"
-
 " --- syntastic ------------------------------------------------------
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_cursor_columns = 0
