@@ -81,38 +81,6 @@ let g:neosolarized_italic = 1
 let g:neosolarized_termBoldAsBright = 1
 
 
-" --- python-syntax --------------------------------------------------
-let g:python_highlight_all = 0
-let g:python_slow_sync = 0
-
-
-" --- riv ------------------------------------------------------------
-
-" disable pesky table auto-formatting
-let g:riv_auto_format_table = 0
-
-" update folds on file save
-let g:riv_fold_auto_update = 1
-
-" show blank lines at end of fold, except the first one
-let g:riv_fold_blank = 0
-
-" turn folding on
-let g:rst_fold_enabled = 1
-
-" don't fold lists
-let g:riv_fold_level = 1
-
-" Ctrl-Q is leader for Riv commands
-let g:riv_global_leader = '<C-q>'
-
-" Let <CR> stay as :nohlsearch
-let g:riv_ignored_nmaps = '<CR>'
-
-" Avoid 'maxmempattern' error on certain lines
-let g:riv_link_cursor_hl = 0
-
-
 " --- SimpylFold -----------------------------------------------------
 " let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
