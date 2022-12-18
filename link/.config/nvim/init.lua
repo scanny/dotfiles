@@ -80,18 +80,6 @@ let g:neosolarized_italic = 1
 " --- bold is displayed as brighter color ---
 let g:neosolarized_termBoldAsBright = 1
 
-" --- syntastic ------------------------------------------------------
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_cursor_columns = 0
-let g:syntastic_echo_current_error = 0
-let g:syntastic_enable_baloons = 0
-let g:syntastic_enable_signs = 0
-let g:syntastic_mode_map = {"mode": "active", "passive_filetypes": ["rst"]}
-let g:syntastic_python_checkers = ['flake8', 'mypy']
-" let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_mypy_args = ""
-let g:syntastic_rst_checkers = []
-
 
 " --- UltiSnips ------------------------------------------------------
 let g:UltiSnipsExpandTrigger="<C-u>"
