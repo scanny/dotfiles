@@ -81,10 +81,13 @@ return require("packer").startup(function(use)
     use 'scrooloose/syntastic'
 
 
-    -- === FUZZY FINDING =======================================================
+    -- === FUZZY FINDING / SEARCH / FILE NAVIGATION ============================
 
     -- Telescope --
     use "nvim-telescope/telescope.nvim"
+
+    -- press "minus" key to show directory and navigate using netrw --
+    use "justinmk/vim-dirvish"
 
 
     -- === COLORSCHEMES ========================================================
@@ -149,6 +152,15 @@ return require("packer").startup(function(use)
     use 'Vimjas/vim-python-pep8-indent'
 
 
+    -- === GIT =================================================================
+
+    -- git integration --
+    use "tpope/vim-fugitive"
+
+    -- jump around git and merge conflicts --
+    use "wincent/vcs-jump"
+
+
     -- === EDITING =============================================================
 
     -- 'Black'-ens Python code on save --
@@ -162,9 +174,6 @@ return require("packer").startup(function(use)
     -- better highlighting of search matches ---
     use 'wincent/loupe'
 
-    -- jump around git and merge conflicts --
-    use "wincent/vcs-jump"
-
     -- more powerful camel/snake-case aware text substitution with :S instead of :s --
     use "tpope/vim-abolish"
 
@@ -177,14 +186,8 @@ return require("packer").startup(function(use)
     -- provides filetype-aware code commenting --
     use "tpope/vim-commentary"
 
-    -- press "minus" key to show directory and navigate using netrw --
-    use "justinmk/vim-dirvish"
-
     -- allows renames etc. on a buffer and its file --
     use "tpope/vim-eunuch"
-
-    -- git integration --
-    use "tpope/vim-fugitive"
 
     -- highlight individual lines ---
     use 'airblade/vim-highline'
