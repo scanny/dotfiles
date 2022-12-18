@@ -20,26 +20,21 @@ local M = {}
 
 -- buffer-local LSP keymaps set when server attaches to buffer ---
 local function lsp_keymaps(bufnr)
+  local opts =  { buffer=bufnr, remap=false, silent=true }
   local bufopts = { noremap=true, silent=true }
   local buf_set_keymap = vim.api.nvim_buf_set_keymap
 
   -- AST-aware navigation ------------------------------------------------------
   buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', bufopts)
   buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', bufopts)
+  vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
   buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', bufopts)
   buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', bufopts)
-  buf_set_keymap(bufnr, 'n', '<leaderD>', '<cmd>lua vim.lsp.buf.type_definition()<CR>', bufopts)
+  buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', bufopts)
 
   -- help ----------------------------------------------------------------------
   buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', bufopts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', bufopts)
-  buf_set_keymap(
-    bufnr,
-    'n',
-    'gl',
-    "<cmd>lua vim.diagnostic.open_float(0, { scope = 'line', source = 'always', border = 'single' })<CR>",
-    bufopts
-  )
+  vim.keymap.set('n', 'gk', vim.lsp.buf.signature_help, opts)
 
   -- navigation ----------------------------------------------------------------
   buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', bufopts)
@@ -58,7 +53,7 @@ local function lsp_keymaps(bufnr)
 
   -- virtual-text display ------------------------------------------------------
   -- ,d - clear <leader>d set by VcsJump plugin ---
-  -- vim.api.nvim_del_keymap("n", "<leader>d")
+  vim.api.nvim_del_keymap("n", "<leader>d")
   -- ,dh - diagnostics-hide ---
   buf_set_keymap(bufnr, "n", "<leader>dh", "<cmd>lua vim.diagnostic.disable(0)<CR>", bufopts)
   -- ,ds - diagnostics-show ---

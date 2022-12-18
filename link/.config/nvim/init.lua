@@ -28,10 +28,8 @@ require 'scanny.plugins'
 require 'scanny.cmp'
 require 'scanny.lsp'
 require 'scanny.telescope'
-require 'scanny.treesitter'
 require 'scanny.lualine'
 require 'scanny.keymaps'       -- keymaps last to override any set in plugins
-
 
 
 -- vim.cmd('colorscheme solarized')

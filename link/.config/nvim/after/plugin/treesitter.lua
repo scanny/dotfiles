@@ -1,6 +1,6 @@
 
 require("nvim-treesitter.configs").setup {
-    ensure_installed = {"bash", "json", "lua", "markdown", "python"},
+    ensure_installed = {"bash", "json", "lua", "markdown", "python", "rst"},
     sync_install = false,
     -- List of parsers to ignore installing --
     ignore_install = { "" },
@@ -36,10 +36,13 @@ require("nvim-treesitter.configs").setup {
     }
 }
 
-require "nvim-treesitter.configs".setup {
-}
+-- --------------------------------------------------------------------------------
+-- Folding is still pretty funky, resets when Black runs, etc. Maybe set in autocmd
+-- based on filetype
+-- --------------------------------------------------------------------------------
 -- fdm - specify method used for computing folds ---
 -- vim.opt.foldmethod = "expr"
 
 -- fde - specify expression used for computing folds ---
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- --------------------------------------------------------------------------------
