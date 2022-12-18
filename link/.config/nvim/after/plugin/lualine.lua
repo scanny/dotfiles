@@ -1,11 +1,10 @@
 
 local lualine = require("lualine")
-local custom_powerline = require("lualine.themes.powerline")
 local gruvbox = require("lualine.themes.gruvbox")
 
--- change forground of inactive bar ---
-custom_powerline.inactive.c.fg = "#bebebe"
-custom_powerline.normal.c.fg = "#bebebe"
+-- change middle color of inactive bar ---
+-- gruvbox.inactive.c.fg = "#ffffff"
+-- gruvbox.inactive.c.bg = "#ccbbaa"
 
 -- better file position segment ---
 local custom_location = "%-14.(ℓ %l/%L 𝚌 %-2c%)"
@@ -14,7 +13,6 @@ local custom_location = "%-14.(ℓ %l/%L 𝚌 %-2c%)"
 lualine.setup {
     options = {
         icons_enabled = true,
-        -- theme = custom_powerline,
         theme = gruvbox,
         component_separators = { left = "", right = ""},
         section_separators = { left = "", right = ""},

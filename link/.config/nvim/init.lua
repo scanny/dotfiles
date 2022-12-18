@@ -11,7 +11,6 @@ require 'scanny.autocommands'
 require 'scanny.plugins'
 require 'scanny.cmp'
 require 'scanny.lsp'
-require 'scanny.lualine'
 require 'scanny.keymaps'       -- keymaps last to override any set in plugins
 
 
