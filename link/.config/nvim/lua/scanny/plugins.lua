@@ -145,9 +145,6 @@ return require("packer").startup(function(use)
     -- command is remapped (conflicts with Python Black command).
     use 'wincent/ferret'
 
-    -- lightweight status line ---
-    use 'itchyny/lightline.vim'
-
     -- status line --
     -- use {
     --     'nvim-lualine/lualine.nvim',

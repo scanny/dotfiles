@@ -117,39 +117,6 @@ let g:jedi#rename_command = ""
 let g:jedi#usages_command = ""
 
 
-" --- lightline ------------------------------------------------------
-let g:lightline = {
-      \ 'colorscheme': 'powerline',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch' ], [ 'readonly', 'filename' ] ],
-      \   'right': [ [ 'lineinfo' ], ['filetype'] ]
-      \ },
-      \ 'component': {
-      \   'filetype': '%{&ft!=#""?&ft." ":"no ft"}',
-      \   'lineinfo': '%-14.(ℓ %l/%L 𝚌 %-2c%)',
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \   'gitbranch': 'LightlineBranchName',
-      \ },
-      \ 'separator': {'left': "\ue0b0", 'right': "\ue0b2"},
-      \ 'subseparator': {'left': ''},
-      \ }
-
-function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%') : '[No Name]'
-  let modified = &modified ? ' ⭕️' : ''
-  return filename . modified
-endfunction
-
-function! LightlineBranchName()
-    if FugitiveHead() == ''
-        return ' '
-    endif
-    return ' ' . FugitiveHead()
-endfunction
-
-
 " --- Loupe ----------------------------------------------------------
 let g:LoupeVeryMagic = 0  " --- no automatic \v in :substitute ---
 
