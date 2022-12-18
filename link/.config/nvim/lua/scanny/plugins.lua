@@ -133,6 +133,9 @@ return require("packer").startup(function(use)
     -- provides Cucumber language syntax and folding ---
     use 'tpope/vim-cucumber'
 
+    -- Golang support ---
+    use 'fatih/vim-go'
+
     -- markdown (plasticboy) ---
     use 'plasticboy/vim-markdown'
 
