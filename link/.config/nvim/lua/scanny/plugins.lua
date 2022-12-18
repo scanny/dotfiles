@@ -134,9 +134,6 @@ return require("packer").startup(function(use)
     -- better indent behavior after colon etc. on Python --
     use 'Vimjas/vim-python-pep8-indent'
 
-    -- XML ---
-    use 'sukima/xmledit'
-
 
     -- === EDITING =============================================================
 

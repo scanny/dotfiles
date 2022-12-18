@@ -253,10 +253,6 @@ endif
 " colorscheme NeoSolarized
 colorscheme gruvbox
 
-
-"" XML Syntax -----------------------------------------------
-let g:xml_syntax_folding=1
-
 " }}}
 
 ]]
