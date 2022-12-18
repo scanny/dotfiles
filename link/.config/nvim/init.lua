@@ -66,10 +66,6 @@ nmap <leader>H <Plug>(HighlineClear)
 " === configure plugins ============================================== {{{
 
 
-" --- dirvish --------------------------------------------------------
-let g:dirvish_relative_paths = 1  " --- paths relative to pwd ---
-
-
 " --- FastFold -------------------------------------------------------
 let g:fastfold_savehook = 1
 
