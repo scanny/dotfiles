@@ -145,9 +145,6 @@ return require("packer").startup(function(use)
     -- Golang support ---
     use 'fatih/vim-go'
 
-    -- markdown (plasticboy) ---
-    use 'plasticboy/vim-markdown'
-
     -- better indent behavior after colon etc. on Python --
     use 'Vimjas/vim-python-pep8-indent'
 

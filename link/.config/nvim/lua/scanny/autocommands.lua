@@ -117,13 +117,6 @@ augroup filetype_cucumber
 augroup END
 
 
-" markdown file settings ---------------
-" augroup filetype_md
-"     autocmd!
-"     autocmd FileType markdown syn clear mkdLineBreak
-" augroup END
-
-
 " rst file settings --------------------
 augroup filetype_rst
     autocmd!

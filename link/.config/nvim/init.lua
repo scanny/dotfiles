@@ -6,20 +6,6 @@ vim.g.loaded_matchparen = 1
 
 vim.g.FerretCommandNames = { Black = 'Fblack'}
 
--- vim-markdown config -----------------------------------------------
--- disable broken auto-insert of bullets ---
-vim.g.vim_markdown_auto_insert_bullets = 0
-
--- disable conceal of e.g. ``` ---
-vim.g.vim_markdown_conceal = 0
-vim.g.vim_markdown_conceal_code_blocks = 0
-
--- Next line after bullet is indented 2 spaces (not 4) ---
-vim.g.vim_markdown_new_list_item_indent = 2
--- Don't indent on new-line after bullet ---
--- vim.g.vim_markdown_new_list_item_indent = 0
-----------------------------------------------------------------------
-
 -- require 'scanny'
 
 require 'scanny.options'
