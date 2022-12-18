@@ -219,4 +219,10 @@ return require("packer").startup(function(use)
     -- handy bracket mappings like ']q' for :cnext --
     use 'tpope/vim-unimpaired'
 
+
+    -- === EDITING =============================================================
+
+    -- vimwiki - note-taking, HTML generation, document tree, etc. --
+    use "vimwiki/vimwiki"
+
 end)
