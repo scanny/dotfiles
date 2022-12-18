@@ -102,6 +102,15 @@ return require("packer").startup(function(use)
     use "ishan9299/nvim-solarized-lua"
 
 
+    -- === STATUS LINE =========================================================
+
+    -- status line --
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt=true}
+    }
+
+
     -- === TREESITTER ==========================================================
 
     -- provides AST-aware highlighting, folding, and indent --
@@ -140,12 +149,6 @@ return require("packer").startup(function(use)
     -- NOTE: installing ferret causes `E471: Argument required` error unless its :Black
     -- command is remapped (conflicts with Python Black command).
     use 'wincent/ferret'
-
-    -- status line --
-    -- use {
-    --     'nvim-lualine/lualine.nvim',
-    --     requires = {'kyazdani42/nvim-web-devicons', opt=true}
-    -- }
 
     -- better highlighting of search matches ---
     use 'wincent/loupe'
