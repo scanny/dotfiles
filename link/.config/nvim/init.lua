@@ -66,10 +66,6 @@ nmap <leader>H <Plug>(HighlineClear)
 " === configure plugins ============================================== {{{
 
 
-" --- FastFold -------------------------------------------------------
-let g:fastfold_savehook = 1
-
-
 " --- Loupe ----------------------------------------------------------
 let g:LoupeVeryMagic = 0  " --- no automatic \v in :substitute ---
 
