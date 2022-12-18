@@ -66,10 +66,6 @@ nmap <leader>H <Plug>(HighlineClear)
 " === configure plugins ============================================== {{{
 
 
-" --- Loupe ----------------------------------------------------------
-let g:LoupeVeryMagic = 0  " --- no automatic \v in :substitute ---
-
-
 " --- NeoSolarized ---------------------------------------------------
 " --- normal,  high, or low ---
 let g:neosolarized_contrast = "normal"

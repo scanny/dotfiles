@@ -94,10 +94,6 @@ keymap("v", "<leader>z", "<C-Z>", {})
 -- space - toggle fold --
 keymap("n", "<space>", "za", opts)
 
--- Enter - :noh - turn off search highlighting (autocmd suppresses this in quickfix) --
--- keymap("n", "<CR>", ":nohlsearch<CR>", opts)
-keymap("n", "<CR>", "<Plug>(LoupeClearHighlight)", {})
-
 -- reselect pasted text --
 keymap("n", "gp", "`[v`]", opts)
 
