@@ -88,6 +88,7 @@ keymap("v", "<leader>z", "<C-Z>", {})
 
 -- === NORMAL-MODE COMMANDS ========================================== {{{
 
+
 -- space - toggle fold --
 keymap("n", "<space>", "za", opts)
 
@@ -97,7 +98,10 @@ keymap("n", "gp", "`[v`]", opts)
 -- gs - move to first non-blank on line --
 keymap("n", "gs", "^", opts)
 
--- always screen lines for up and down motion --
+-- J - keep cursor where it is when joining lines, not moving it to end --
+keymap("n", "J", "mzJ`z", opts)
+
+-- always use screen lines for up and down motion --
 keymap("n", "j", "gj", opts)
 keymap("n", "k", "gk", opts)
 
@@ -134,8 +138,12 @@ keymap("i", "<C-k>", "<C-\\><C-O>D", opts)
 
 -- === VISUAL-MODE COMMANDS ========================================== {{{
 
--- pasting over selection preserves default register ---
+-- pasting over selection preserves default register --
 keymap("v", "p", "\"_dP", opts)
+
+-- move selected block up and down with capital JK --
+keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
+keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 -- -- Stay in indent mode while indenting a block --
 -- keymap("v", "<", "<gv", opts)

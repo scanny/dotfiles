@@ -15,9 +15,14 @@ require 'scanny.keymaps'       -- keymaps last to override any set in plugins
 vim.g.FerretCommandNames = { Black = 'Fblack'}
 
 
-vim.cmd [[
+vim.cmd([[
 
-" === custom and plugin-specific key mappings ======================== {{{
+" -- highlight cursor-line in active window only --
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 " R - run current module on ,t
 function! MakeCurrentBufferRunModule()
@@ -53,6 +58,4 @@ xmap <leader>h <Plug>(HighlineToggle)  # highlight selected lines
 " H - Highline Clear (all highlighted lines)
 nmap <leader>H <Plug>(HighlineClear)
 
-" }}}
-
-]]
+]])
