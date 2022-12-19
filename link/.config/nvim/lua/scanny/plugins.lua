@@ -14,7 +14,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     install_path,
   }
   print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
+  vim.cmd([[packadd packer.nvim]])
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
@@ -53,15 +53,14 @@ return require("packer").startup(function(use)
 
     -- === COMPLETION ==========================================================
 
-    -- modern completion ---
+    ---- modern completion ---
     use "hrsh7th/nvim-cmp"                     -- The completion plugin
     use "hrsh7th/cmp-buffer"                   -- buffer completions
     use "hrsh7th/cmp-path"                     -- path completions
     use "hrsh7th/cmp-cmdline"                  -- cmdline completions
     use 'quangnguyen30192/cmp-nvim-ultisnips'  -- UltiSnips completions
-    -- use "saadparwaiz1/cmp_luasnip"          -- snippet completions
     use "hrsh7th/cmp-nvim-lsp"                 -- LSP completions
-    -- use "hrsh7th/cmp-nvim-lua"              -- Neovim's Lua runtime API (e.g. vim.*)
+    use "hrsh7th/cmp-nvim-lua"                 -- Neovim's Lua runtime API (e.g. vim.*)
 
 
     -- ==== SNIPPETS ===========================================================
@@ -69,11 +68,8 @@ return require("packer").startup(function(use)
     use 'SirVer/ultisnips'
     use 'honza/vim-snippets'
 
-    -- use "L3MON4D3/LuaSnip"                --snippet engine
-    -- use "rafamadriz/friendly-snippets"    -- a bunch of snippets to use
-    --
 
-    -- ==== LANGUAGE SERVER PROTOCOL (LSP) =====================================
+    ---- ==== LANGUAGE SERVER PROTOCOL (LSP) =====================================
 
     use "neovim/nvim-lspconfig"              -- enable LSP
 
@@ -94,15 +90,6 @@ return require("packer").startup(function(use)
 
     -- gruvbox color scheme ---
     use 'ellisonleao/gruvbox.nvim'
-
-    -- kinder, gentler gruvbox ---
-    use 'sainnhe/gruvbox-material'
-
-    -- provides Solarized color scheme ---
-    use 'overcache/NeoSolarized'
-
-    -- provides Solarized color scheme --
-    use "ishan9299/nvim-solarized-lua"
 
 
     -- === STATUS LINE =========================================================
@@ -129,11 +116,7 @@ return require("packer").startup(function(use)
 
     -- === LANGUAGE SUPPORT ====================================================
 
-    -- Python syntax ---
-    use 'vim-python/python-syntax'
-
     -- Efficient code folding for Python, which is a hard case because of sig-space ---
-    use 'Konfekt/FastFold'
     use 'tmhedberg/SimpylFold'
 
     -- reStructuredText support ---
