@@ -52,8 +52,6 @@ local function lsp_keymaps(bufnr)
   -- )
 
   -- virtual-text display ------------------------------------------------------
-  -- ,d - clear <leader>d set by VcsJump plugin ---
-  vim.api.nvim_del_keymap("n", "<leader>d")
   -- ,dh - diagnostics-hide ---
   buf_set_keymap(bufnr, "n", "<leader>dh", "<cmd>lua vim.diagnostic.disable(0)<CR>", bufopts)
   -- ,ds - diagnostics-show ---
