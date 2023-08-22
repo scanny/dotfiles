@@ -3,6 +3,10 @@ doc/tags
 # --- allow working flake8 config in non-package root directories ---
 .flake8
 *.pyc
+# --- VSCode project files ---
+.project
+.vscode/
+
 .pytest_cache/
 .python-version
 Session.vim
