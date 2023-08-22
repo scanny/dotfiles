@@ -4,7 +4,8 @@
 local signs = {
   { name = 'DiagnosticSignError', text = '' },
   { name = 'DiagnosticSignWarn', text = '' },
-  { name = 'DiagnosticSignHint', text = '' },
+  -- { name = 'DiagnosticSignHint', text = '' },
+  { name = 'DiagnosticSignHint', text = '' },
   { name = 'DiagnosticSignInfo', text = '' },
 }
 
@@ -18,7 +19,7 @@ local config = {
     -- don't show warnings in virtual text, to avoid unused param warnings on methods
     -- like `.__exit__()` that have prescribed params.
     severity = {
-      min = vim.diagnostic.severity.ERROR,
+      min = vim.diagnostic.severity.WARN,
     },
     source = false,  -- true places this at front, include at end instead via format --
     format = function(diagnostic)

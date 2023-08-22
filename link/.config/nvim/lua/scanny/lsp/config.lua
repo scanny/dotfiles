@@ -38,7 +38,7 @@ local function lsp_keymaps(bufnr)
 
   -- navigation ----------------------------------------------------------------
   buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', bufopts)
-  buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', bufopts)
+  buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded", severity = vim.diagnostic.severity.ERROR })<CR>', bufopts)
   buf_set_keymap(bufnr, 'n', '<leader>L', '<cmd>lua vim.diagnostic.setloclist()<CR>', bufopts)
 
   -- workspace support ---------------------------------------------------------
@@ -52,9 +52,11 @@ local function lsp_keymaps(bufnr)
   -- )
 
   -- virtual-text display ------------------------------------------------------
-  -- ,dh - diagnostics-hide ---
+  -- ,dh - diagnostics-hide --
   buf_set_keymap(bufnr, "n", "<leader>dh", "<cmd>lua vim.diagnostic.disable(0)<CR>", bufopts)
-  -- ,ds - diagnostics-show ---
+  -- ,dr - LspRestart --
+  buf_set_keymap(bufnr, "n", "<leader>dr", "<cmd>LspRestart<CR>", bufopts)
+  -- ,ds - diagnostics-show --
   buf_set_keymap(bufnr, "n", "<leader>ds", "<cmd>lua vim.diagnostic.enable(0)<CR>", bufopts)
 
   -- refactoring ---------------------------------------------------------------
