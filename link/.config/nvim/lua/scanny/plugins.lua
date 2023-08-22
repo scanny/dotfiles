@@ -149,12 +149,7 @@ return require("packer").startup(function(use)
     -- 'Black'-ens Python code on save --
     use {"psf/black", tag="19.10b0"}
 
-    -- rip-grep in Vim; multi-file search ---
-    -- NOTE: installing ferret causes `E471: Argument required` error unless its :Black
-    -- command is remapped (conflicts with Python Black command).
-    use 'wincent/ferret'
-
-    -- better highlighting of search matches ---
+    -- better highlighting of search matches --
     use 'wincent/loupe'
 
     -- more powerful camel/snake-case aware text substitution with :S instead of :s --
