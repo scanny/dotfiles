@@ -58,15 +58,17 @@ return require("packer").startup(function(use)
     use "hrsh7th/cmp-buffer"                   -- buffer completions
     use "hrsh7th/cmp-path"                     -- path completions
     use "hrsh7th/cmp-cmdline"                  -- cmdline completions
-    use 'quangnguyen30192/cmp-nvim-ultisnips'  -- UltiSnips completions
     use "hrsh7th/cmp-nvim-lsp"                 -- LSP completions
     use "hrsh7th/cmp-nvim-lua"                 -- Neovim's Lua runtime API (e.g. vim.*)
+    use "saadparwaiz1/cmp_luasnip"             -- Suggest LuaSnip completions
 
 
     -- ==== SNIPPETS ===========================================================
 
-    use 'SirVer/ultisnips'
-    use 'honza/vim-snippets'
+    -- use 'SirVer/ultisnips'
+    -- use 'honza/vim-snippets'
+    use 'L3MON4D3/LuaSnip'
+    use 'rafamadriz/friendly-snippets'
 
 
     ---- ==== LANGUAGE SERVER PROTOCOL (LSP) =====================================

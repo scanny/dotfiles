@@ -2,4 +2,4 @@
 
 vim.g.UltiSnipsExpandTrigger = "<C-u>"
 vim.g.UltiSnipsJumpForwardTrigger = "<C-j>"
-vim.g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+-- vim.g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
