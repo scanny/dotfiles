@@ -12,6 +12,8 @@ require 'scanny.lsp'
 require 'scanny.keymaps'       -- keymaps last to override any set in plugins
 
 
+-- this only works when set early -- no automatic \v added to :s/ ---
+vim.g.LoupeVeryMagic = 0
 
 
 vim.cmd([[
