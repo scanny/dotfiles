@@ -198,6 +198,9 @@ return require("packer").startup(function(use)
     -- toggle maximize current split --
     use 'szw/vim-maximizer'
 
+    -- auto-insert closing pairs for paren, brackets, quotes, etc. --
+    use 'windwp/nvim-autopairs'
+
     -- store dynamically updated session files --
     use 'tpope/vim-obsession'
 
