@@ -228,7 +228,5 @@ return require("packer").startup(function(use)
 
     -- === EDITING =============================================================
 
-    -- vimwiki - note-taking, HTML generation, document tree, etc. --
-    use "vimwiki/vimwiki"
 
 end)
