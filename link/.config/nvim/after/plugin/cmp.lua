@@ -1,9 +1,10 @@
 local cmp = require('cmp')
+local luasnip = require('luasnip')
 
-local check_backspace = function()
-  local col = vim.fn.col '.' - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s'
-end
+
+-- cot - completion options {menu,menuone,noselect,longesst,preview,noinsert,noselect"
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
@@ -45,113 +46,87 @@ cmp.setup {
     format = function(entry, vim_item)
       vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
       vim_item.menu = ({
-        buffer = '[Buffer]',
+        buffer = '[buf]',
         nvim_lsp = '[LSP]',
-        -- nvim_lua = '[LUA]',
-        path = '[Path]',
-        ultisnips = '[Snippet]',
+        nvim_lua = '[api]',
+        path = '[path]',
+        luasnip = '[snip]',
       })[entry.source.name]
       return vim_item
     end,
   },
   mapping = {
-    -- command-mode mappings --
-    -- ['<C-p>'] = cmp.mapping(function(fallback) end, { 'c' }),
-    -- ['<C-n>'] = cmp.mapping(cmp.mapping.disable, { 'c' }),
-    -- ['<C-p>'] = cmp.mapping(cmp.mapping.disable, { 'c' }),
-    -- ['<C-p>'] = cmp.mapping { 'c' = cmp.config.disable },
-    ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'c' }),
-    ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'c' }),
-    -- ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
-    -- ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
-    -- ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ['<C-y>'] = cmp.mapping(cmp.mapping.confirm(), { 'i', 'c' }),
-    ['<C-e>'] = cmp.mapping {
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
+    ["<Tab>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+    ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<C-y>"] = cmp.mapping(
+      cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      },
+      { "i", "c" }
+    ),
+    ["<M-y>"] = cmp.mapping(
+      cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = false,
+      },
+      { "i", "c" }
+    ),
+
+    ["<c-space>"] = cmp.mapping {
+      i = cmp.mapping.complete(),
+      c = function(
+        _ --[[fallback]]
+      )
+        if cmp.visible() then
+          if not cmp.confirm { select = true } then
+            return
+          end
+        else
+          cmp.complete()
+        end
+      end,
     },
-    -- Accept currently selected item. If none selected, `select` first item.
-    -- Set `select` to `false` to only confirm explicitly selected items.
-    -- ['<CR>'] = cmp.mapping.confirm { select = true },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      -- elseif luasnip.expandable() then
-      --   luasnip.expand()
-      -- elseif luasnip.expand_or_jumpable() then
-      --   luasnip.expand_or_jump()
-      elseif check_backspace() then
-        fallback()
-      else
-        fallback()
-      end
-    end, {
-      'i',
-      's',
-    }),
-    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_prev_item()
-    --   elseif luasnip.jumpable(-1) then
-    --     luasnip.jump(-1)
-    --   else
-    --     fallback()
-    --   end
-    -- end, {
-    --   'i',
-    --   's',
-    -- }),
+    -- ['<C-e>'] = cmp.mapping {
+    --   i = cmp.mapping.abort(),
+    --   c = cmp.mapping.close(),
+    -- },
+
   },
   snippet = {
     expand = function(args)
-      vim.fn['UltiSnips#Anon'](args.body)
+      -- vim.fn['UltiSnips#Anon'](args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   sources = {
-    { name = 'ultisnips' },
-    -- { name = 'luasnip' },
+    -- { name = 'ultisnips' },
+    { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
-    -- { name = 'nvim_lua' },
-    { name = 'buffer', keyword_length = 4 },
+    { name = 'nvim_lsp_signature_help' },
     { name = 'path' },
-  },
-  -- view = {
-  --   entries = native,
-  -- },
-  window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
+    { name = 'luasnip' },
+    { name = 'buffer', keyword_length = 3 },
   },
 }
 
--- `/` cmdline setup.
-cmp.setup.cmdline('/', {
-  -- mapping = cmp.mapping.preset.cmdline(),
-  -- adapted from cmp.mapping.preset.cmdline -- preset cmdline-mode configuration.
-  mapping = {
-    ['<Tab>'] = { c = function() cmp.select_next_item() end },
-    ['<S-Tab>'] = { c = function() cmp.select_prev_item() end },
-    ['<C-e>'] = { c = cmp.mapping.close() },
-  },
+-- `/` (search) cmdline setup.
+cmp.setup.cmdline( { '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer' }
+    { name = 'buffer', keyword_length = 3 }
   }
 })
 
--- `:` cmdline setup.
-cmp.setup.cmdline(
-  ':',
-  {
-    -- adapted from cmp.mapping.preset.cmdline -- preset cmdline-mode configuration.
-    mapping = {
-      ['<Tab>'] = { c = function() cmp.select_next_item() end },
-      ['<S-Tab>'] = { c = function() cmp.select_prev_item() end },
-      ['<C-e>'] = { c = cmp.mapping.close() },
-    },
-    sources = cmp.config.sources({
-      { name = 'path' },
-      { name = 'cmdline' },
-    })
-  }
-)
+-- `:` (command) cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path', keyword_length = 5 }
+  }, {
+    { name = 'cmdline', keyword_length = 5 }
+  })
+})
