@@ -132,9 +132,6 @@ return require("packer").startup(function(use)
 
     -- === LANGUAGE SUPPORT ====================================================
 
-    -- Efficient code folding for Python, which is a hard case because of sig-space ---
-    use 'tmhedberg/SimpylFold'
-
     -- reStructuredText support ---
     use 'gu-fan/riv.vim'
 
