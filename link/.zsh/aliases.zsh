@@ -69,6 +69,8 @@ alias gcm='cat $(git rev-parse --show-toplevel)/.git/rebase-merge/message'
 alias gco='git checkout'
 alias gcof='git checkout fixit'
 alias gcom='git checkout master'
+alias gcoo='git checkout --ours .'
+alias gcooa='git checkout --ours . && git add --all'
 alias gcos='git checkout spike'
 alias gcp='git cherry-pick'
 alias gcpc='git cherry-pick --continue'
@@ -78,7 +80,7 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 
 # --- git HEAD, on one line ---
-alias gh='git lawg -1'
+alias gH='git lawg -1'
 
 gl() { git lawg $@ | less -EFXRS }
 alias gla='gl --all'
@@ -95,12 +97,14 @@ alias gn='git n'
 # --- show patch/diff for HEAD ---
 alias gp='git log -p -1 --oneline HEAD'
 
+alias gr='git restore'
 alias grb='git rebase'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grbo='git rebase --onto'
 alias grbs='git rebase --skip'
+alias grs='git restore --staged'
 alias grsh='git reset --hard'
 alias grsH='git reset HEAD'
 
@@ -114,6 +118,7 @@ alias gentags='ctags .'
 # ---allow access to global Python environment---
 alias gpip='PIP_REQUIRE_VIRTUALENV="" pip'
 # alias history='fc -l 1'
+
 alias n='next'
 alias oz="vim ~/.zshrc"
 alias p='prev'
