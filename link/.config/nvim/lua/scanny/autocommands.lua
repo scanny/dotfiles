@@ -41,6 +41,34 @@ vim.api.nvim_create_autocmd(
 )
 
 
+-- Git commit ----------------------------------------------
+group = vim.api.nvim_create_augroup("GitCommitFileType", {clear = true})
+-- cc = colorcolumn, fo = formatoptions, tw = textwidth 
+vim.api.nvim_create_autocmd(
+  "FileType",
+  {
+    pattern="gitcommit",
+    command="set cc=73 fo+=t sts=4 sw=4 ts=4 tw=72",
+    group=group,
+  }
+)
+
+
+-- go ------------------------------------------------------
+group = vim.api.nvim_create_augroup("GolangFileType", {clear = true})
+vim.api.nvim_create_autocmd(
+  "FileType",
+  {
+    pattern = "go",
+    command = (
+      "setl noet nowrap fdm=expr fde=nvim_treesitter#foldexpr() fdn=1 so=3 sts=4" ..
+      " sw=4 ts=4 tw=88"
+    ),
+    group = group,
+  }
+)
+
+
 -- javascript ----------------------------------------------
 group = vim.api.nvim_create_augroup("JavascriptFileType", {clear = true})
 vim.api.nvim_create_autocmd(
@@ -64,21 +92,6 @@ vim.api.nvim_create_autocmd(
     command = (
       "setl nowrap fdm=expr fde=nvim_treesitter#foldexpr() fdn=4 so=3 sts=2 sw=2" ..
       " ts=2 tw=0"
-    ),
-    group = group,
-  }
-)
-
-
--- go ------------------------------------------------------
-group = vim.api.nvim_create_augroup("GolangFileType", {clear = true})
-vim.api.nvim_create_autocmd(
-  "FileType",
-  {
-    pattern = "go",
-    command = (
-      "setl noet nowrap fdm=expr fde=nvim_treesitter#foldexpr() fdn=1 so=3 sts=4" ..
-      " sw=4 ts=4 tw=88"
     ),
     group = group,
   }
@@ -118,20 +131,19 @@ vim.api.nvim_create_autocmd(
 group = vim.api.nvim_create_augroup("PythonFileType", {clear = true})
 vim.api.nvim_create_autocmd(
   "FileType",
-  {pattern="python", command="set fdm=expr nowrap so=3 tw=88", group=group}
+  {
+    pattern = "python",
+    -- callback = function()
+    --   vim.cmd("set fde=nvim_treesitter#foldexpr() fdl=0 fdm=expr nowrap so=3 tw=88")
+    --   vim.cmd("let b:AutoPairs = AutoPairsDefine({'\"\"\"':'\"\"\"'})")
+    -- end,
+    command=("set fde=nvim_treesitter#foldexpr() fdl=0 fdm=expr nowrap so=3 tw=88"),
+    group=group
+  }
 )
 -- execute Black on save --
 vim.api.nvim_create_autocmd(
   "BufWritePre", {pattern="*.py,*.pyi", command=":Black", group=group}
-)
-
-
--- Git commit ----------------------------------------------
-group = vim.api.nvim_create_augroup("GitCommitFileType", {clear = true})
--- cc = colorcolumn, fo = formatoptions, tw = textwidth 
-vim.api.nvim_create_autocmd(
-  "FileType",
-  {pattern="gitcommit", command="set cc=73 fo+=t tw=72", group=group}
 )
 
 
