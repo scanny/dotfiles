@@ -138,6 +138,9 @@ return require("packer").startup(function(use)
     -- Golang support ---
     use 'fatih/vim-go'
 
+    -- JSON --
+    use 'gennaro-tedesco/nvim-jqx'
+
     -- better indent behavior after colon etc. on Python --
     use 'Vimjas/vim-python-pep8-indent'
 
