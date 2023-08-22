@@ -228,5 +228,8 @@ return require("packer").startup(function(use)
 
     -- === EDITING =============================================================
 
+    -- seems like this is overridden if it doesn't appear last --
+    use '~/Dropbox/src/nvim-treesitter-pyfold'
+    -- use 'eddiebergman/nvim-treesitter-pyfold'
 
 end)

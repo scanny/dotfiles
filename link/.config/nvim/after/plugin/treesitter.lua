@@ -33,7 +33,11 @@ require("nvim-treesitter.configs").setup {
             goto_node = '<cr>',
             show_help = '?',
         },
-    }
+    },
+    pyfold = {
+        enable = true,
+        custom_foldtext = false
+  }
 }
 
 -- --------------------------------------------------------------------------------
