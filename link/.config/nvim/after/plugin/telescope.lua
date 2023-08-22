@@ -101,6 +101,11 @@ telescope.setup {
 }
 
 
+-- LOAD EXTENSIONS ---------------------
+
+telescope.load_extension("dap")
+
+
 -- TELESCOPE ---------------------------
 
 local keymap = vim.api.nvim_set_keymap

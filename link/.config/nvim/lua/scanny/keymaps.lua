@@ -10,6 +10,10 @@ local opts = { noremap = true, silent = true }
 --  x - visual_block_mode
 
 
+-- leader is comma ---
+vim.g.mapleader = ","
+
+
 -- === GLOBAL MAPPINGS ===============================================
 
 -- use F5 to toggle between light and dark background ---
@@ -17,70 +21,77 @@ vim.cmd([[
     map <F5> :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
 ]])
 
+-- DAP key mappings
+vim.keymap.set("n", "<F1>", ":lua require'dap-python'.test_method()<CR>")
+vim.keymap.set("n", "<leader>di", ":lua require'dap'.step_into()<CR>")
+vim.keymap.set("n", "<leader>do", ":lua require'dap'.step_over()<CR>")
+vim.keymap.set("n", "<leader>du", ":lua require'dap'.step_out()<CR>")
+vim.keymap.set("n", "<leader>dc", ":lua require'dap'.continue()<CR>")
+vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>")
+vim.keymap.set("n", "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+vim.keymap.set("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
+vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>")
+vim.keymap.set("n", '<leader>dv', ":lua require'dap.ui.widgets'.hover()<CR>")
+vim.keymap.set("n", '<leader>df', ":Telescope dap frames<CR>")
+
 
 -- === LEADER COMMANDS =============================================== {{{
-
--- leader is comma ---
-vim.g.mapleader = ","
 
 -- double-<leader> - switch to alternate buffer ---
 keymap("n", "<leader><leader>", "<C-^>", opts)
 
--- b - wipe current buffer (and close window) ---
+-- ,b - wipe current buffer (and close window) ---
 keymap("n", "<leader>b", ":bw<CR>", opts)
 
--- c - close current window ---
+-- ,c - close current window ---
 keymap("n", "<leader>c", ":clo<CR>", opts)
 
--- e - open file in same directory as current file ---
+-- ,e - open file in same directory as current file ---
 keymap("n", "<leader>e", ":e %%", opts)
 
--- l - toggle show invisibles ---
+-- ,l - toggle show invisibles ---
 keymap("n", "<leader>l", ":set list!<CR>", opts)
 
--- ob - open _scratch/blank.rst in split below, stay in current window ---
+-- ,ob - open _scratch/blank.rst in split below, stay in current window ---
 keymap("n", "<leader>ob", ":split _scratch/blank.rst<CR><C-w>k", opts)
 
--- od - open 'TODO.rst' ---
+-- ,od - open 'TODO.rst' ---
 keymap("n", "<leader>od", ":vsplit _scratch/TODO.md<CR><C-w>L", opts)
 
--- ov - open ~/.config/nvim/init.vim file in split below current ---
+-- ,ov - open ~/.config/nvim/init.vim file in split below current ---
 keymap("n", "<leader>ov", ":split $MYVIMRC<CR>", opts)
 
--- p - paste from clipboard ---
+-- ,p - paste from clipboard ---
 keymap("n", "<leader>p", "\"*p", opts)
 
--- P - paste before from clipboard
+-- ,P - paste before from clipboard
 keymap("n", "<leader>P", "\"*P", opts)
 
--- q - hardwrap current paragraph (like Ctrl-Q) ---
+-- ,q - hardwrap current paragraph (like Ctrl-Q) ---
 keymap("n", "<leader>q", "gqip", opts)
 
--- sp - open horizontal split window ---
+-- ,sp - open horizontal split window ---
 keymap("n", "<leader>sp", ":split<CR>", opts)
 
--- ss - reSync syntax from Start ---
+-- ,ss - reSync syntax from Start ---
 keymap("n", "<leader>ss", ":syntax sync fromstart<CR>", opts)
 
--- -- sv - source ~/.vimrc (after changes) ---
--- keymap("n", "<leader>sv", ":source $MYVIMRC<CR>", opts)
-
--- t - test ---
+-- ,t - test ---
 keymap("n", "<leader>t", ":w|!py.test -x<CR>", opts)
 
--- v - vertical split ---
+-- ,v - vertical split ---
 keymap("n", "<leader>v", ":vsplit<CR>", opts)
 
--- w - write current buffer ---
+-- ,w - write current buffer ---
 keymap("n", "<leader>w", ":write<CR>", opts)
 
--- x - cut to system pasteboard (for cut/paste) ---
+-- ,x - cut to system pasteboard (for cut/paste) ---
 keymap("n", "<leader>x", "\"*x", opts)
 
--- y - yank to system pasteboard ('copy' for copy/paste) ---
+-- ,y - yank to system pasteboard ('copy' for copy/paste) ---
 keymap("v", "<leader>y", '"*y', {})
 
--- z - suspend to shell prompt ---
+-- ,z - suspend to shell prompt ---
 keymap("v", "<leader>z", "<C-Z>", {})
 
 -- }}}

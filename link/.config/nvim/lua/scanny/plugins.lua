@@ -116,6 +116,20 @@ return require("packer").startup(function(use)
     use "akinsho/toggleterm.nvim"
 
 
+    -- === DEBUG ADAPTER PROTOCOL (DAP) SUPPORT ================================
+
+    -- DAP support for neovim ---
+    use {
+      'mfussenegger/nvim-dap',
+      requires = {
+        'theHamsta/nvim-dap-virtual-text',
+        'nvim-telescope/telescope-dap.nvim',
+      }
+    }
+    use 'mfussenegger/nvim-dap-python'
+    use {'rcarriga/nvim-dap-ui', requires = {"mfussenegger/nvim-dap"} }
+
+
     -- === LANGUAGE SUPPORT ====================================================
 
     -- Efficient code folding for Python, which is a hard case because of sig-space ---
