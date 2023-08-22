@@ -140,6 +140,9 @@ return require("packer").startup(function(use)
     -- jump to github page for current file, commit, etc. --
     use "tpope/vim-rhubarb"
 
+    -- show +/- in buffer --
+    -- use "lewis6991/gitsigns.nvim"
+
     -- jump around git and merge conflicts --
     use "wincent/vcs-jump"
 
