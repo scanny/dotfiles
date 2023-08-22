@@ -6,9 +6,6 @@ set.autoread = true
 -- cc - place line-width indicator in column 89 (one past wrap limit)
 set.colorcolumn = "89"
 
--- cot - completion options {menu,menuone,noselect,longesst,preview,noinsert,noselect"
-set.completeopt = "menu,menuone,preview"
-
 -- cul - subtly highlight cursor-line in current file ---
 set.cursorline = true
 
@@ -60,8 +57,15 @@ set.guicursor = "n-v-c:block,i-c-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkon100"
 -- icm - show incremental search results in :substitute command ---
 set.inccommand = "nosplit"
 
+-- js - inserts two spaces on join after period or ?, ! ---
+set.joinspaces = false
+
+-- ls - (=3) global status line, only one, full width, reflecting current window. --
+set.laststatus = 3
+
 -- lcs - use wincent symbols for tabs, trailing-spaces, etc ---
-set.list = true    -- show whitespace chars except carriage-return
+-- set.list = true    -- show whitespace chars except carriage-return
+set.list = false
 set.listchars = {
   -- eol      = '¬',
   nbsp     = '⦸',  -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
@@ -70,9 +74,6 @@ set.listchars = {
   tab      = '▷┅', -- WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7) + BOX DRAWINGS HEAVY TRIPLE DASH HORIZONTAL (U+2505, UTF-8: E2 94 85)
   trail    = '•',  -- BULLET (U+2022, UTF-8: E2 80 A2)
 }
-
--- js - inserts two spaces on join after period or ?, ! ---
-set.joinspaces = false
 
 -- enable mouse in all modes ---
 set.mouse = "chinv"
@@ -139,8 +140,11 @@ set.viewoptions = "cursor,slash,unix"
 -- ve - allow cursor to travel where there is no actual character ---
 set.virtualedit = "block"
 
--- command-line completion ---
+-- wim - command-line completion ---
 set.wildmode = "longest:full,full"
+
+-- wbr - show filename at top of each window, right justified with saved status --
+set.winbar="%=%m %f"
 
 -- wh - make current window as tall as possible ---
 set.winheight = 199
