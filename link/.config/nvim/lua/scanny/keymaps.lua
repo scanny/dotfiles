@@ -52,6 +52,9 @@ keymap("n", "<leader>e", ":e %%", opts)
 -- ,fr - Telescope lsp-references --
 keymap("n", "<leader>fr", ":Telescope lsp_references<CR>", opts)
 
+-- ,gs - :Git (status) ---
+keymap("n", "<leader>gs", ":Git<CR>", opts)
+
 -- ,l - toggle show invisibles ---
 keymap("n", "<leader>l", ":set list!<CR>", opts)
 
@@ -114,9 +117,6 @@ keymap("n", "gp", "`[v`]", opts)
 -- gs - move to first non-blank on line --
 keymap("n", "gs", "^", opts)
 
--- J - keep cursor where it is when joining lines, not moving it to end --
-keymap("n", "J", "mzJ`z", opts)
-
 -- always use screen lines for up and down motion --
 keymap("n", "j", "gj", opts)
 keymap("n", "k", "gk", opts)
@@ -156,10 +156,6 @@ keymap("i", "<C-k>", "<C-\\><C-O>D", opts)
 
 -- pasting over selection preserves default register --
 keymap("v", "p", "\"_dP", opts)
-
--- move selected block up and down with capital JK --
-keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
-keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 -- -- Stay in indent mode while indenting a block --
 -- keymap("v", "<", "<gv", opts)
