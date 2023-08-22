@@ -49,6 +49,9 @@ keymap("n", "<leader>c", ":clo<CR>", opts)
 -- ,e - open file in same directory as current file ---
 keymap("n", "<leader>e", ":e %%", opts)
 
+-- ,fr - Telescope lsp-references --
+keymap("n", "<leader>fr", ":Telescope lsp_references<CR>", opts)
+
 -- ,l - toggle show invisibles ---
 keymap("n", "<leader>l", ":set list!<CR>", opts)
 
