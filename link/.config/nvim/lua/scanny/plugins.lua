@@ -132,9 +132,6 @@ return require("packer").startup(function(use)
 
     -- === LANGUAGE SUPPORT ====================================================
 
-    -- reStructuredText support ---
-    use 'gu-fan/riv.vim'
-
     -- provides Cucumber language syntax and folding ---
     use 'tpope/vim-cucumber'
 
