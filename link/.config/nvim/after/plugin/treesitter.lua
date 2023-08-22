@@ -1,6 +1,8 @@
 
 require("nvim-treesitter.configs").setup {
-    ensure_installed = { "bash", "go", "javascript", "json", "lua", "python", "rst" },
+    ensure_installed = {
+        "bash", "go", "html", "javascript", "json", "lua", "python", "rst"
+    },
     sync_install = false,
     -- List of parsers to ignore installing --
     ignore_install = { "markdown" },
