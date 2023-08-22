@@ -122,8 +122,8 @@ alias pt='py.test'
 alias pu='pushd'
 alias rm='rm -i'
 alias sz="source ~/.zshrc"
-alias t='make clean && flake8 && py.test && behave --stop'
-alias tw='make clean && flake8 && py.test && behave --stop --tags=-wip'
+alias t='make clean && ruff . && py.test && behave --stop'
+alias tw='make clean && ruff . && py.test && behave --stop --tags=-wip'
 alias view='nvim -R'
 # --- V-cs-jump M-erge ---
 alias vm=vim\ -c\ 'VcsJump\ merge'
