@@ -62,6 +62,7 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 
 -- ============================================================================
 
+require('scanny.lsp.bashls')
 require('scanny.lsp.gopls')
 require('scanny.lsp.jsonls')
 require('scanny.lsp.lua-ls')

@@ -29,6 +29,18 @@ vim.api.nvim_create_autocmd(
 -- ===================================================================
 
 
+-- bash ----------------------------------------------------
+group = vim.api.nvim_create_augroup("BashFileType", {clear = true})
+vim.api.nvim_create_autocmd(
+  "FileType",
+  {
+    pattern="sh",
+    command="set fde=nvim_treesitter#foldexpr() fdm=expr fdn=1 nowrap so=3 tw=88",
+    group=group
+  }
+)
+
+
 -- javascript ----------------------------------------------
 group = vim.api.nvim_create_augroup("JavascriptFileType", {clear = true})
 vim.api.nvim_create_autocmd(
