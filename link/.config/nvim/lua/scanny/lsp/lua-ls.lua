@@ -1,5 +1,4 @@
-
-require('lspconfig').sumneko_lua.setup({
+require('lspconfig').lua_ls.setup({
     on_attach = require('scanny.lsp.config').on_attach,
     settings = {
         Lua = {
@@ -15,4 +14,3 @@ require('lspconfig').sumneko_lua.setup({
         }
     },
 })
--- }
