@@ -16,6 +16,7 @@
     autocrlf = input
     safecrlf = true
     editor = nvim
+	pager = sed 's/\t/    /g' | less
 
 [credential]
     helper = osxkeychain
