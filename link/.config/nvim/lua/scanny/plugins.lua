@@ -141,6 +141,9 @@ return require("packer").startup(function(use)
     -- JSON --
     use 'gennaro-tedesco/nvim-jqx'
 
+    -- Markdown support ---
+    use 'preservim/vim-markdown'
+
     -- better indent behavior after colon etc. on Python --
     use 'Vimjas/vim-python-pep8-indent'
 

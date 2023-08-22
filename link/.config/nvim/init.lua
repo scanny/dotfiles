@@ -27,6 +27,9 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
+" -- avoid red-blocks in signature help caused by them being a markdown error
+highlight link markdownError NONE
+
 " R - run current module on ,t
 function! MakeCurrentBufferRunModule()
     let l:path=expand('%')

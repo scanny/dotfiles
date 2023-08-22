@@ -87,6 +87,21 @@ vim.api.nvim_create_autocmd(
 )
 
 
+-- markdown ------------------------------------------------
+group = vim.api.nvim_create_augroup("MarkdownFileType", {clear = true})
+vim.api.nvim_create_autocmd(
+  "FileType",
+  {
+    pattern = "markdown",
+    command = (
+      "setl cole=2 fde=nvim_treesitter#foldexpr() fdm=expr fdn=2 fo-=q nowrap so=3" ..
+      " sts=2 sw=2 ts=2 tw=88"
+    ),
+    group = group,
+  }
+)
+
+
 -- Python --------------------------------------------------
 group = vim.api.nvim_create_augroup("PythonFileType", {clear = true})
 vim.api.nvim_create_autocmd(
