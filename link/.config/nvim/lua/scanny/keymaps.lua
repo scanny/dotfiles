@@ -79,6 +79,9 @@ keymap("n", "<leader>ss", ":syntax sync fromstart<CR>", opts)
 -- ,t - test ---
 keymap("n", "<leader>t", ":w|!py.test -x<CR>", opts)
 
+-- ,u - toggle undo-tree window --
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
 -- ,v - vertical split ---
 keymap("n", "<leader>v", ":vsplit<CR>", opts)
 
@@ -98,7 +101,6 @@ keymap("v", "<leader>z", "<C-Z>", {})
 
 
 -- === NORMAL-MODE COMMANDS ========================================== {{{
-
 
 -- space - toggle fold --
 keymap("n", "<space>", "za", opts)

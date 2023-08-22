@@ -171,6 +171,9 @@ return require("packer").startup(function(use)
     -- better highlighting of search matches --
     use 'wincent/loupe'
 
+    -- show and navigate full undo tree --
+    use 'mbbill/undotree'
+
     -- more powerful camel/snake-case aware text substitution with :S instead of :s --
     use "tpope/vim-abolish"
 
