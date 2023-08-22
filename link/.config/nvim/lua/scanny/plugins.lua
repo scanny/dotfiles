@@ -60,6 +60,7 @@ return require("packer").startup(function(use)
     use "hrsh7th/cmp-cmdline"                  -- cmdline completions
     use "hrsh7th/cmp-nvim-lsp"                 -- LSP completions
     use "hrsh7th/cmp-nvim-lua"                 -- Neovim's Lua runtime API (e.g. vim.*)
+    use "hrsh7th/cmp-nvim-lsp-signature-help"  -- function signatures
     use "saadparwaiz1/cmp_luasnip"             -- Suggest LuaSnip completions
 
 
@@ -70,14 +71,12 @@ return require("packer").startup(function(use)
     use 'L3MON4D3/LuaSnip'
     use 'rafamadriz/friendly-snippets'
 
-
-    ---- ==== LANGUAGE SERVER PROTOCOL (LSP) =====================================
+    -- ==== LANGUAGE SERVER PROTOCOL (LSP) =====================================
 
     use "neovim/nvim-lspconfig"              -- enable LSP
 
     -- lints on every save ---
     use 'scrooloose/syntastic'
-
 
     -- === FUZZY FINDING / SEARCH / FILE NAVIGATION ============================
 
