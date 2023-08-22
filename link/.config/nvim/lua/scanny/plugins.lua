@@ -107,6 +107,7 @@ return require("packer").startup(function(use)
     -- provides AST-aware highlighting, folding, and indent --
     use {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
     use "nvim-treesitter/playground"
+    use "nvim-treesitter/nvim-treesitter-context"
 
 
     -- === TERMINAL ============================================================
