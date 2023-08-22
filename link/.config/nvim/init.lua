@@ -17,6 +17,10 @@ vim.g.FerretCommandNames = { Black = 'Fblack'}
 
 vim.cmd([[
 
+" Enable italics
+set t_ZH=[3m
+set t_ZR=[23m
+
 " -- highlight cursor-line in active window only --
 augroup CursorLine
   au!
