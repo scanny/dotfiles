@@ -12,6 +12,7 @@ if is_mac; then
     PATH="/opt/X11/bin:$PATH"
     PATH="/usr/local/opt/python/libexec/bin:$PATH"
     PATH="$PATH:$HOME/go/bin"
+    PATH="$PATH:$HOME/.cargo/bin"
     export PATH
 fi
 
