@@ -1,5 +1,5 @@
 vim.g.python3_host_prog = "/Users/scanny/.virtualenvs/nvim/bin/python3"
-vim.g.ruby_host_prog = "/usr/local/lib/ruby/gems/3.1.0/bin/neovim-ruby-host"
+vim.g.ruby_host_prog = "/usr/local/lib/ruby/gems/3.2.0/bin/neovim-ruby-host"
 
 -- don't highlight matching bracket indefinitely and obscure cursor ---
 vim.g.loaded_matchparen = 1
