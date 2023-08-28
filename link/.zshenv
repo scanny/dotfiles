@@ -17,8 +17,8 @@
 #
 
 source ~/.zsh/checks.zsh
-# --- PATH is set here (in ~/.zsh/path.zsh), but can be clobbered by later /etc/zprofile
-# --- so must be set again in ~/.zprofile
+# -- PATH is set here (in ~/.zsh/path.zsh), but can be clobbered by later /etc/zprofile
+# -- so must be set again in ~/.zprofile
 source ~/.zsh/path.zsh
 source ~/.zsh/aliases.zsh
 
@@ -27,4 +27,8 @@ export LAUNCH_DB=0
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
   source "${VIRTUAL_ENV}/bin/activate"
 fi
-. "$HOME/.cargo/env"
+
+# -- initialize Rust environment if Rust is installed --
+if [ -e "$HOME/.cargo/env" ]; then
+    source "$HOME/.cargo/env"
+fi
