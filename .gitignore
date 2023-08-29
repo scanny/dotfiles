@@ -1,5 +1,6 @@
 /link/.config/git/config-local
 /link/.config/nvim/.netrwhist
+/link/.config/nvim/lazy-lock.json
 /link/.config/nvim/plugin/packer_compiled.lua
 /link/.vim/.netrwhist
 /link/.vim/black/
