@@ -85,6 +85,37 @@ keymap("n", "<leader>P", "\"*P", opts)
 -- ,q - hardwrap current paragraph (like Ctrl-Q) ---
 keymap("n", "<leader>q", "gqip", opts)
 
+-- ,rl - reload current buffer ---
+vim.keymap.set(
+  "n",
+  "<leader>rl",
+  function ()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local is_modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+
+    -- short-circuit if the buffer has unsaved-changes --
+    if is_modified then
+      print("buffer has unsaved changes")
+      return
+    end
+
+    -- get the path so we can reload this same file --
+    local file_path = vim.fn.expand("%:p")
+
+    -- move to next buffer so split doesn't close when we wipe original buffer. If this
+    -- is the only buffer it still works because window doesn't close, just gets the
+    -- [No Name] buffer.
+    vim.api.nvim_command("bnext")
+
+    -- wipe the current buffer; force false should be redundant but doesn't hurt --
+    vim.api.nvim_buf_delete(bufnr, { force = false })
+
+    -- open the file again, getting a new buffer and fresh reparse --
+    vim.api.nvim_command("edit " .. vim.fn.fnameescape(file_path))
+  end,
+  opts
+)
+
 -- ,sp - open horizontal split window ---
 keymap("n", "<leader>sp", ":split<CR>", opts)
 
