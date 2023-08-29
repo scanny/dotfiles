@@ -60,10 +60,16 @@ return {
           )
         ),
 
+        -- ----------------------------------------------------------------------------
+        -- UNSAFE in luasnip, because it is short-lived. After it is deleted, random
+        -- text is copied and placed where it used to be, very odd and disturbing. So
+        -- don't make snippets that use dynamic-repetition that are temporary like this
+        -- one and frequently deleted.
+        -- ----------------------------------------------------------------------------
         -- print formatted
-        s("prf",
-          fmt("print(f\"{} == {{{}}}\")", { i( 1, "value"), rep(1) })
-        ),
+        -- s("prf",
+        --   fmt("print(f\"{} == {{{}}}\")", { i( 1, "value"), rep(1) })
+        -- ),
 
         -- raise NotImplementedError
         s("rni", { t({"raise NotImplementedError"}) }),
