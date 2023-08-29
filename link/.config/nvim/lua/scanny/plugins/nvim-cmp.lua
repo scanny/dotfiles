@@ -2,11 +2,11 @@ return {
   "hrsh7th/nvim-cmp",  -- The completion plugin
   dependencies = {
     "hrsh7th/cmp-buffer",                   -- buffer completions
-    "hrsh7th/cmp-path",                     -- path completions
     "hrsh7th/cmp-cmdline",                  -- cmdline completions
     "hrsh7th/cmp-nvim-lsp",                 -- LSP completions
-    "hrsh7th/cmp-nvim-lua",                 -- Neovim's Lua runtime API (e.g. vim.*)
     "hrsh7th/cmp-nvim-lsp-signature-help",  -- function signatures
+    "hrsh7th/cmp-nvim-lua",                 -- Neovim's Lua runtime API (e.g. vim.*)
+    "hrsh7th/cmp-path",                     -- path completions
     "saadparwaiz1/cmp_luasnip",             -- Suggest LuaSnip completions
     "L3MON4D3/LuaSnip",
     "rafamadriz/friendly-snippets",
@@ -51,11 +51,13 @@ return {
       Variable = '',
     }
 
+    -- global setup --
     cmp.setup {
       experimental = {
         native_menu = false,
         ghost_text = true,
       },
+
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
@@ -70,6 +72,7 @@ return {
           return vim_item
         end,
       },
+
       mapping = {
         ["<Tab>"] = cmp.mapping.select_next_item {
           behavior = cmp.SelectBehavior.Insert
@@ -80,51 +83,23 @@ return {
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-y>"] = cmp.mapping(
-          cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-          },
-          { "i", "c" }
-        ),
-        ["<M-y>"] = cmp.mapping(
-          cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-          },
-          { "i", "c" }
-        ),
-
-        ["<c-space>"] = cmp.mapping {
-          i = cmp.mapping.complete(),
-          c = function(
-            _ --[[fallback]]
-          )
-            if cmp.visible() then
-              if not cmp.confirm { select = true } then
-                return
-              end
-            else
-              cmp.complete()
-            end
-          end,
-        },
-        -- ['<C-e>'] = cmp.mapping {
-        --   i = cmp.mapping.abort(),
-        --   c = cmp.mapping.close(),
-        -- },
-
+        ["<C-y>"] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
+        }),
+        ["<C-space>"] = cmp.mapping.complete(),
       },
+
       snippet = {
         expand = function(args)
-          -- vim.fn['UltiSnips#Anon'](args.body)
           luasnip.lsp_expand(args.body)
         end,
       },
+
+      -- completions are prioritized according to the order of these sources --
       sources = {
-        -- { name = 'ultisnips' },
         { name = 'nvim_lua' },
-        { name = 'nvim_lsp' },
+        { name = 'nvim_lsp', max_item_count = 5 },
         { name = 'nvim_lsp_signature_help' },
         { name = 'path' },
         { name = 'luasnip' },
@@ -142,11 +117,22 @@ return {
 
     -- `:` (command) cmdline setup.
     cmp.setup.cmdline(':', {
-      -- mapping = cmp.mapping.preset.cmdline(),
+      -- avoid a mile-long list of suggested completions for a command like "3,4t." --
+      enabled = function ()
+        return not string.match(vim.fn.getcmdline(), "^%d")
+      end,
+
+      -- cmp.mapping.preset.cmdline() doesn't play nicely with my <C-p/n> mapping for
+      -- getting previous and next matching prefix from command history because it
+      -- defines <C-p> and <C-n>. Redefine mappings leaving those out.
       mapping = {
-        ["<Tab>"] = cmp.mapping.select_next_item {
-          behavior = cmp.SelectBehavior.Insert
-        },
+        ["<Tab>"] = function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end,
         ["<C-e>"] = cmp.mapping.abort(),
         ["<C-y>"] = cmp.mapping(
           cmp.mapping.confirm({
@@ -155,6 +141,7 @@ return {
           })
         ),
       },
+
       sources = {
         { name = 'path', keyword_length = 5 },
         { name = 'cmdline', keyword_length = 5 },
