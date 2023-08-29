@@ -10,6 +10,10 @@ local opts = { noremap = true, silent = true }
 --  x - visual_block_mode
 
 
+-- DELETEME - convenient mapping while developing treesitter-plugin --
+keymap("n", "vx", ':lua require"nvim-plugin".select()<CR>', opts)
+
+
 -- leader is comma ---
 vim.g.mapleader = ","
 
@@ -46,9 +50,6 @@ keymap("n", "<leader>b", ":bw<CR>", opts)
 -- ,c - close current window ---
 keymap("n", "<leader>c", ":clo<CR>", opts)
 
--- ,e - open file in same directory as current file ---
-keymap("n", "<leader>e", ":e %%", opts)
-
 -- ,fr - Telescope lsp-references --
 keymap("n", "<leader>fr", ":Telescope lsp_references<CR>", opts)
 
@@ -63,6 +64,14 @@ keymap("n", "<leader>ob", ":split _scratch/blank.rst<CR><C-w>k", opts)
 
 -- ,od - open 'TODO.rst' ---
 keymap("n", "<leader>od", ":vsplit _scratch/TODO.md<CR><C-w>L", opts)
+
+-- ,op - open 'plugins.lua' (packer file) ---
+keymap(
+  "n",
+  "<leader>op",
+  ":vsplit " .. vim.fn.stdpath("config") .. "/lua/scanny/plugins.lua<CR><C-W>H",
+  opts
+)
 
 -- ,ov - open ~/.config/nvim/init.vim file in split below current ---
 keymap("n", "<leader>ov", ":split $MYVIMRC<CR>", opts)
@@ -107,6 +116,10 @@ keymap("v", "<leader>z", "<C-Z>", {})
 
 
 -- === NORMAL-MODE COMMANDS ========================================== {{{
+
+-- ][t - tabnext/prev --
+keymap("n", "[t", ":tabprev<CR>", opts)
+keymap("n", "]t", ":tabnext<CR>", opts)
 
 -- space - toggle fold --
 keymap("n", "<space>", "za", opts)

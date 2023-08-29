@@ -28,6 +28,7 @@ source ~/.zsh/zsh_hooks.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# --- turned off most of the time, we either use brew-installed (system) Python version
-# --- or we're in a virtualenv and use that version.
-# eval "$(pyenv init -)"
+# -- turned off most of the time, we either use brew-installed (system) Python version
+# -- or we're in a virtualenv and use that version. tox seems to need it though, to
+# -- find Python versions for .tox virtualenvs.
+eval "$(pyenv init -)"

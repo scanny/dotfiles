@@ -1,13 +1,20 @@
 vim.g.python3_host_prog = "/Users/scanny/.virtualenvs/nvim/bin/python3"
 vim.g.ruby_host_prog = "/usr/local/lib/ruby/gems/3.2.0/bin/neovim-ruby-host"
+-- don't try to load a Perl provider --
+vim.g.loaded_perl_provider = 0
 
 -- don't highlight matching bracket indefinitely and obscure cursor ---
 vim.g.loaded_matchparen = 1
 
+-- specify leader before loading plugins so plugin mappings use right key --
+vim.g.mapleader = ","
+
 require 'scanny.options'
 require 'scanny.autocommands'
+
+require 'scanny.lazy'
+
 require 'scanny.dap-config'
-require 'scanny.plugins'
 require 'scanny.lsp'
 require 'scanny.keymaps'       -- keymaps last to override any set in plugins
 

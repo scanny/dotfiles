@@ -13,7 +13,7 @@ for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
 end
 
-local config = {
+vim.diagnostic.config({
   -- virtual text shows message at end of line --
   virtual_text = {
     -- don't show warnings in virtual text, to avoid unused param warnings on methods
@@ -49,9 +49,7 @@ local config = {
     source = 'always',
     style = 'minimal',
   },
-}
-
-vim.diagnostic.config(config)
+})
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   vim.lsp.handlers.hover, { border = 'rounded' }
