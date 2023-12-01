@@ -76,6 +76,13 @@ export PIP_RESPECT_VIRTUALENV=true
 
 
 # --------------------------------------------------------------------
+# ripgrep configuration location
+# --------------------------------------------------------------------
+# ripgrep has no default config-file location, we need to specify
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep
+
+
+# --------------------------------------------------------------------
 # base16-shell configuration
 # --------------------------------------------------------------------
 

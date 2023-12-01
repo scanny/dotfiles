@@ -11,7 +11,9 @@ local opts = { noremap = true, silent = true }
 
 
 -- DELETEME - convenient mapping while developing treesitter-plugin --
-keymap("n", "vx", ':lua require"nvim-plugin".select()<CR>', opts)
+-- keymap("n", "vx", ':lua require"nvim-plugin".select()<CR>', opts)
+-- mnemonic: run-plugin
+keymap("n", "<leader>rp", ':luafile ./lua/nvim-plugin/init.lua<CR>', opts)
 
 
 -- leader is comma ---
@@ -36,7 +38,7 @@ vim.keymap.set("n", "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input(
 vim.keymap.set("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
 vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>")
 vim.keymap.set("n", '<leader>dv', ":lua require'dap.ui.widgets'.hover()<CR>")
-vim.keymap.set("n", '<leader>df', ":Telescope dap frames<CR>")
+-- vim.keymap.set("n", '<leader>df', ":Telescope dap frames<CR>")
 
 
 -- === LEADER COMMANDS =============================================== {{{
@@ -49,6 +51,9 @@ keymap("n", "<leader>b", ":bw<CR>", opts)
 
 -- ,c - close current window ---
 keymap("n", "<leader>c", ":clo<CR>", opts)
+
+-- ,fo - Telescope oldfiles --
+keymap("n", "<leader>fo", ":Telescope oldfiles<CR>", opts)
 
 -- ,fr - Telescope lsp-references --
 keymap("n", "<leader>fr", ":Telescope lsp_references<CR>", opts)
@@ -65,16 +70,37 @@ keymap("n", "<leader>ob", ":split _scratch/blank.rst<CR><C-w>k", opts)
 -- ,od - open 'TODO.rst' ---
 keymap("n", "<leader>od", ":vsplit _scratch/TODO.md<CR><C-w>L", opts)
 
--- ,op - open 'plugins.lua' (packer file) ---
+-- ,ok - open 'scanny/keymaps.lua' folder to inspect/edit key mappings ---
 keymap(
   "n",
-  "<leader>op",
-  ":vsplit " .. vim.fn.stdpath("config") .. "/lua/scanny/plugins.lua<CR><C-W>H",
+  "<leader>ok",
+  ":vsplit " .. vim.fn.stdpath("config") .. "/lua/scanny/keymaps.lua<CR><C-W>H",
   opts
 )
 
--- ,ov - open ~/.config/nvim/init.vim file in split below current ---
-keymap("n", "<leader>ov", ":split $MYVIMRC<CR>", opts)
+-- ,op - open 'plugins/' folder (lazy.nvim plugins folder) ---
+keymap(
+  "n",
+  "<leader>op",
+  ":vsplit " .. vim.fn.stdpath("config") .. "/lua/scanny/plugins<CR><C-W>H",
+  opts
+)
+
+-- ,ov - open vim plugins folder (.local/share/nvim/lasy) ---
+keymap(
+  "n",
+  "<leader>ov",
+  ":vsplit " .. vim.fn.stdpath("data") .. "/lazy<CR><C-W>H",
+  opts
+)
+
+-- ,oz - open zsh config folder (~/.zsh) ---
+keymap(
+  "n",
+  "<leader>oz",
+  ":vsplit " .. vim.fn.expand("$HOME/.zsh") .. "<CR><C-W>H",
+  opts
+)
 
 -- ,p - paste from clipboard ---
 keymap("n", "<leader>p", "\"*p", opts)
@@ -113,7 +139,7 @@ vim.keymap.set(
     -- open the file again, getting a new buffer and fresh reparse --
     vim.api.nvim_command("edit " .. vim.fn.fnameescape(file_path))
   end,
-  opts
+  { desc = "Wipe and reload current buffer" }
 )
 
 -- ,sp - open horizontal split window ---
@@ -131,11 +157,19 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 -- ,v - vertical split ---
 keymap("n", "<leader>v", ":vsplit<CR>", opts)
 
+-- ,V - open full-height vertical split in left-most position ---
+vim.keymap.set(
+  "n",
+  "<leader>V",
+  ":vsplit .<CR><C-W>H",
+  {desc="Open full-height vertical split in leftmost position at pwd"}
+)
+
 -- ,w - write current buffer ---
 keymap("n", "<leader>w", ":write<CR>", opts)
 
 -- ,x - cut to system pasteboard (for cut/paste) ---
-keymap("n", "<leader>x", "\"*x", opts)
+keymap("n", "<leader>x", '"*x', {})
 
 -- ,y - yank to system pasteboard ('copy' for copy/paste) ---
 keymap("v", "<leader>y", '"*y', {})
@@ -170,6 +204,9 @@ keymap("n", "Q", ":qa<CR>", opts)
 
 -- Y - yanks to end of line (instead of entire line, like yy)
 keymap("n", "Y", "y$", opts)
+
+-- z* - search (highlight) word under cursor without moving cursor to next occurence --
+keymap("n", "z*", "<Plug>(asterisk-z*)", opts)
 
 -- zx - refold around current and center in vertical space --
 keymap("n", "zx", "zxzz", opts)

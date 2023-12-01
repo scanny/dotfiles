@@ -24,6 +24,7 @@
 [diff]
     mnemonicprefix = true
     tool = vimdiff
+	algorithm = histogram
 
 [difftool]
     prompt = false

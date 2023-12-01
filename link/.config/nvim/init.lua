@@ -13,6 +13,10 @@ vim.g.mapleader = ","
 -- Black runs in Python-provider (nvim virtualenv) --
 vim.g.black_use_virtualenv = 0
 
+-- this only works when set early -- no automatic \v added to :s/ ---
+vim.g.LoupeVeryMagic = 0
+
+
 require 'scanny.options'
 require 'scanny.autocommands'
 
@@ -21,10 +25,8 @@ require 'scanny.lazy'
 require 'scanny.dap-config'
 require 'scanny.lsp'
 require 'scanny.keymaps'       -- keymaps last to override any set in plugins
+require 'scanny.globals'       -- load a few Lua globals serving as plugin dev utils
 
-
--- this only works when set early -- no automatic \v added to :s/ ---
-vim.g.LoupeVeryMagic = 0
 
 
 vim.cmd([[

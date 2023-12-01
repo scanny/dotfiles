@@ -24,7 +24,7 @@ alias b='behave'
 # show work-in-progress (WIP) behave scenarios
 alias bw='behave --tags=wip --no-skipped --dry-run'
 
-alias csb='clear && printf "\e[3J"'  # --- C-lear S-croll B-ack ---
+alias csb='clear && printf "\e[3J"'  # -- C-lear S-croll B-ack --
 
 # -------------------------------------------------------------------
 # directory movement
@@ -39,15 +39,15 @@ alias dc='dirs -c'
 # ---------------------------------------------------------
 # docker aliases
 # ---------------------------------------------------------
-# --- list images ---
+# -- list images --
 alias di=docker\ images
-# --- list running containers ---
+# -- list running containers --
 alias dps=docker\ ps
-# --- list all containers, running or stopped ---
+# -- list all containers, running or stopped --
 alias dpsa=docker\ ps\ -a
-# --- remove docker container ---
+# -- remove docker container --
 alias drm=docker\ rm
-# --- remove docker image ---
+# -- remove docker image --
 alias drmi=docker\ rmi
 
 alias e='nvim -S'
@@ -67,26 +67,30 @@ alias gcar='git commit --amend --reuse-message=HEAD'
 alias gcl='git config --list'
 alias gcm='cat $(git rev-parse --show-toplevel)/.git/rebase-merge/message'
 alias gco='git checkout'
+alias gco-='git checkout -'
+alias gcod='git checkout develop'
 alias gcof='git checkout fixit'
 alias gcom='git checkout master'
 alias gcoo='git checkout --ours .'
 alias gcooa='git checkout --ours . && git add --all'
 alias gcos='git checkout spike'
 alias gcp='git cherry-pick'
+alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
 alias gcpnc='git cherry-pick --no-commit'
 
 alias gd='git diff'
 alias gdc='git diff --cached'
 
-# --- git HEAD, on one line ---
+# -- git HEAD, on one line --
 alias gH='git lawg -1'
 
 gl() { git lawg $@ | less -EFXRS }
 alias gla='gl --all'
-# --- git log "recent", 42 is adjustable for window size ---
+# -- git log "recent", 42 is adjustable for window size --
 alias glr='git lawg -42'
-alias glra='git lawg -42 --all'
+# -- see glra() function definition for new and better implementation --
+# alias glra='git lawg -42 --all'
 alias glrf='glr fixit'
 alias glrs='glr spike'
 
@@ -94,7 +98,7 @@ alias gm='git merge'
 
 alias gn='git n'
 
-# --- show patch/diff for HEAD ---
+# -- show patch/diff for HEAD --
 alias gp='git log -p -1 --oneline HEAD'
 
 alias gr='git restore'
@@ -130,7 +134,7 @@ alias sz="source ~/.zshrc"
 alias t='make clean && ruff . && py.test && behave --stop'
 alias tw='make clean && ruff . && py.test && behave --stop --tags=-wip'
 alias view='nvim -R'
-# --- V-cs-jump M-erge ---
+# -- V-cs-jump M-erge --
 alias vm=vim\ -c\ 'VcsJump\ merge'
 
 # -------------------------------------------------------------------

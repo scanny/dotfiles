@@ -26,7 +26,7 @@ return {
 
       -- select dark or light based on time-of-day --
       vim.cmd [[
-        if strftime("%H") > 7 && strftime("%H") < 16
+        if strftime("%H") > 6 && strftime("%H") < 15
           set background=light
         else
           set background=dark

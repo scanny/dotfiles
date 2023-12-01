@@ -99,7 +99,7 @@ return {
       -- completions are prioritized according to the order of these sources --
       sources = {
         { name = 'nvim_lua' },
-        { name = 'nvim_lsp', max_item_count = 5 },
+        { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'path' },
         { name = 'luasnip' },
@@ -109,7 +109,12 @@ return {
 
     -- `/` (search) cmdline setup.
     cmp.setup.cmdline( { '/', '?' }, {
-      mapping = cmp.mapping.preset.cmdline(),
+      mapping = cmp.mapping.preset.cmdline(
+        {
+          ["<C-n>"] = cmp.config.disable,
+          ["<C-p>"] = cmp.config.disable,
+        }
+      ),
       sources = {
         { name = 'buffer', keyword_length = 3 }
       }
@@ -125,26 +130,19 @@ return {
       -- cmp.mapping.preset.cmdline() doesn't play nicely with my <C-p/n> mapping for
       -- getting previous and next matching prefix from command history because it
       -- defines <C-p> and <C-n>. Redefine mappings leaving those out.
-      mapping = {
-        ["<Tab>"] = function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          else
-            fallback()
-          end
-        end,
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-y>"] = cmp.mapping(
-          cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-          })
-        ),
-      },
-
+      -- Tab = complete (bring up list) and select_next_item 
+      mapping = cmp.mapping.preset.cmdline(
+        {
+          -- ["<C-d>"] = cmp.mapping.select_prev_item(),
+          -- ["<C-d>"] = cmp.mapping.select_prev_item(),
+          -- ["<C-f>"] = cmp.mapping.select_next_item(),
+          ["<C-n>"] = cmp.config.disable,
+          ["<C-p>"] = cmp.config.disable,
+        }
+      ),
       sources = {
         { name = 'path', keyword_length = 5 },
-        { name = 'cmdline', keyword_length = 5 },
+        { name = 'cmdline', keyword_length = 3 },
       },
     })
 

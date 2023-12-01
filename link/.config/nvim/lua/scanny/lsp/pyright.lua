@@ -15,20 +15,16 @@ require('lspconfig').pyright.setup({
     if not unpack then
       unpack = table.unpack
     end
-    return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
+    return (
+      util.root_pattern(unpack(root_files))(fname)
+      or util.find_git_ancestor(fname)
+      or util.path.dirname(fname)
+    )
   end,
   settings = {
     python = {
       analysis = {
-        -- typeCheckingMode = 'off',
-        -- typeCheckingMode = 'basic'
         typeCheckingMode = 'strict',
-        -- executionEnvironments = {
-        --   { root = '/Users/scanny/SpacedOut/chatbot/apps/cws', },
-        -- },
-        -- stubPath = '/Users/scanny/SpacedOut/chatbot/apps/cws/stubs',
-        -- venv = 'chatbot',
-        -- venvPath = '/Users/scanny/.virtualenvs',
       }
     }
   }

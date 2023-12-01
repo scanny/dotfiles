@@ -1,6 +1,6 @@
 local set = vim.opt
 
--- ar - automatically re-read an externally-changed file ---
+-- ar - automatically re-read an externally-changed file --
 set.autoread = true
 
 -- cc - place line-width indicator in column 89 (one past wrap limit)
@@ -9,13 +9,16 @@ set.colorcolumn = "89"
 -- cot - completion options menu,menuone,noselect,longesst,preview,noinsert,noselect
 -- vim.opt.completeopt is set in scanny/plugins/nvim-cmp.lua
 
--- cul - subtly highlight cursor-line in current file ---
+-- cul - subtly highlight cursor-line in current file --
 set.cursorline = true
 
--- et - enter spaces when tab is pressed ---
+-- et - enter spaces when tab is pressed --
 set.expandtab = true
 
--- fcs - characters to fill the statuslines and vertical separators ---
+-- ex - include project-specific .nvim.lua in startp --
+set.exrc = true
+
+-- fcs - characters to fill the statuslines and vertical separators --
 vim.opt.fillchars = {
   diff = '∙',  -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
   eob  = ' ',  -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
@@ -23,19 +26,19 @@ vim.opt.fillchars = {
   vert = '┃',  -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
 }
 
--- fdls - Sets foldlevel when starting to edit a buffer in a window ---
+-- fdls - Sets foldlevel when starting to edit a buffer in a window --
 set.foldlevelstart = 0  -- all folds closed
 
--- fdm - specify method used for computing folds ---
+-- fdm - specify method used for computing folds --
 set.foldmethod = "expr"
 
--- fde - specify expression used for computing folds ---
+-- fde - specify expression used for computing folds --
 -- set.foldexpr = "nvim_treesitter#foldexpr()"
 
--- fdn - specify number of fold levels (might customize by filetype) ---
+-- fdn - specify number of fold levels (might customize by filetype) --
 set.foldnestmax = 2
 
--- fdt - specify the text displayed for a closed fold ---
+-- fdt - specify the text displayed for a closed fold --
 -- set.foldtext = "v:lua.scanny.foldtext()"
 -- set.foldtext = v:lua.scanny.foldtext()
 -- set.foldtext = "v:lua.scanny.foldtext"
@@ -54,19 +57,22 @@ vim.cmd([[
     set foldtext=MyFoldText()
 ]])
 
--- cursor shapes and blink-rates ---
+-- cursor shapes and blink-rates --
 set.guicursor = "n-v-c:block,i-c-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkon100"
 
--- icm - show incremental search results in :substitute command ---
+-- icm - show incremental search results in :substitute command --
 set.inccommand = "nosplit"
 
--- js - inserts two spaces on join after period or ?, ! ---
+-- js - inserts two spaces on join after period or ?, ! --
 set.joinspaces = false
 
 -- ls - (=3) global status line, only one, full width, reflecting current window. --
 set.laststatus = 3
 
--- lcs - use wincent symbols for tabs, trailing-spaces, etc ---
+-- lbr - wrap lines longer than window at word boundaries (does not insert \n). --
+set.linebreak = true
+
+-- lcs - use wincent symbols for tabs, trailing-spaces, etc --
 -- set.list = true    -- show whitespace chars except carriage-return
 set.list = false
 set.listchars = {
@@ -78,82 +84,82 @@ set.listchars = {
   trail    = '•',  -- BULLET (U+2022, UTF-8: E2 80 A2)
 }
 
--- enable mouse in all modes ---
+-- enable mouse in all modes --
 set.mouse = "chinv"
 
--- mouse point changes with mode ---
+-- mouse point changes with mode --
 set.mouseshape = "n:arrow,i:beam"
 
--- nu - set line numbering on ---
+-- nu - set line numbering on --
 set.number = true
 
--- rnu - line numbers are relative to current line ---
+-- rnu - line numbers are relative to current line --
 set.relativenumber = false
 
--- so - minimum context lines at top/bottom on scrolling ---
+-- so - minimum context lines at top/bottom on scrolling --
 set.scrolloff = 3
 
--- ssop - change effect of :mksession command ---
+-- ssop - change effect of :mksession command --
 set.sessionoptions:append("tabpages,globals")
 
--- sw - set width of indents/dedents ---
+-- sw - set width of indents/dedents --
 set.shiftwidth = 4
 
--- shm - suppress mid-screen "Intro" message on startup ---
+-- shm - suppress mid-screen "Intro" message on startup --
 set.shortmess:append("I")
 
--- sm - briefly jump to matching bracket with bracket is inserted ---
+-- sm - briefly jump to matching bracket with bracket is inserted --
 set.showmatch = true
 
--- smd - show modellike '-- INSERT ---' at bottom ---
+-- smd - show modellike '-- INSERT ---' at bottom --
 set.showmode = false
 
--- sts - set tab width for backspacing ---
+-- sts - set tab width for backspacing --
 set.softtabstop = 4
 
--- sb - place new pane underneath current on horz-split ---
+-- sb - place new pane underneath current on horz-split --
 set.splitbelow = true
 
--- spr - place new pane to right of current on vert-split ---
+-- spr - place new pane to right of current on vert-split --
 set.splitright = true
 
 -- sol - keep cursor in same column when paging up/down
 -- turned off so << and >> work as expected
 set.startofline = true
 
--- swf - don't create a swapfile ---
+-- swf - don't create a swapfile --
 set.swapfile = false
 
--- ts - set tab width ---
+-- ts - set tab width --
 set.tabstop = 4
 
--- terminal supports true colors (24-bit RGB) ---
+-- terminal supports true colors (24-bit RGB) --
 set.termguicolors = true
 
--- tw - max line length before wrapping ---
+-- tw - max line length before wrapping --
 set.textwidth = 88
 
--- udf - create persisted undo history ---
+-- udf - create persisted undo history --
 set.undofile = true
 
--- vop - view options, remove some for vim-stay plugin ---
+-- vop - view options, remove some for vim-stay plugin --
 -- set.viewoptions = "cursor,folds,slash,unix"
 set.viewoptions = "cursor,slash,unix"
 
--- ve - allow cursor to travel where there is no actual character ---
+-- ve - allow cursor to travel where there is no actual character --
 set.virtualedit = "block"
 
--- wim - command-line completion ---
+-- wim - command-line completion --
 set.wildmode = "longest:full,full"
 
 -- wbr - show filename at top of each window, right justified with saved status --
 set.winbar="%=%m %f"
 
--- wh - make current window as tall as possible ---
+-- wh - make current window as tall as possible --
 set.winheight = 199
 
--- wmh - minimum number of lines for non-current windows ---
+-- wmh - minimum number of lines for non-current windows --
 set.winminheight = 3
 
--- wiw - minimum number of columns for current window ---
+-- wiw - minimum number of columns for current window --
 set.winwidth = 96

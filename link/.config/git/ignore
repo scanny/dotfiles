@@ -1,9 +1,19 @@
 *~
 doc/tags
-# --- allow working flake8 config in non-package root directories ---
+# -- allow working flake8 config in non-package root directories --
 .flake8
 *.pyc
-# --- VSCode project files ---
+
+# -- ripgrep/fd/etc. ignore files --
+.ignore
+.fdignore
+.rgignore
+
+# -- Neovim project-specific files --
+.nvim.lua
+.projections.json
+
+# -- VSCode project files --
 .project
 .vscode/
 

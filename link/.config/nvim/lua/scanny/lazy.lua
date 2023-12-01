@@ -19,15 +19,23 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup(
   "scanny.plugins",
   {
-    install = {
-      colorscheme = { "gruvbox" },
+    change_detection = {
+      notify = false,
     },
     checker = {
       enabled = true,
       notify = false,
     },
-    change_detection = {
-      notify = false,
+    dev = {
+      -- directory local plugin projects are stored --
+      path = "~/Dropbox/src",
+      -- @type string[] plugins that match these patterns will use your local versions
+      -- instead of being fetched from GitHub
+      patterns = {}, -- For example {"folke"}
+      fallback = false, -- Fallback to git when local plugin doesn't exist
+    },
+    install = {
+      colorscheme = { "gruvbox" },
     },
   }
 )

@@ -38,8 +38,24 @@ return {
         sections = {
             lualine_a = {"mode"},
             -- lualine_b = {"branch", "diff", "diagnostics"},
-            -- lualine_b = {"branch"},
-            lualine_b = {"branch", "diff", "selectioncount"},
+            -- lualine_b = {"branch", "diff", "selectioncount"},
+            lualine_b = {
+              "branch",
+              {
+                "diff",
+                source = function()
+                  local gitsigns = vim.b.gitsigns_status_dict
+                  if gitsigns then
+                    return {
+                      added = gitsigns.added,
+                      modified = gitsigns.changed,
+                      removed = gitsigns.removed
+                    }
+                  end
+                end,
+              },
+              "selectioncount"
+            },
             lualine_c = {
                 {
                     "filename",

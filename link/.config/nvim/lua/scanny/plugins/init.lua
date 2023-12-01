@@ -1,6 +1,12 @@
 return {
 
-  --- common dependencies --
+  -- === LOCAL DEVELOPMENT PLUGINS ===========================================
+  {
+    "scanny/nvim-plugin",
+    dev = true
+  },
+
+  -- common dependencies --
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 
 
@@ -16,15 +22,11 @@ return {
     "nvim-treesitter/playground",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-  },
 
 
   -- === DEBUG ADAPTER PROTOCOL (DAP) SUPPORT ================================
 
-  -- DAP support for neovim ---
+  -- DAP support for neovim --
   {
     'mfussenegger/nvim-dap',
     dependencies = {
@@ -38,7 +40,7 @@ return {
 
   -- === LANGUAGE SUPPORT ====================================================
 
-  -- provides Cucumber language syntax and folding ---
+  -- provides Cucumber language syntax and folding --
   "tpope/vim-cucumber",
 
   -- GO ------------------------------------
@@ -46,7 +48,7 @@ return {
   {
     "fatih/vim-go",
     config = function ()
-      -- disable default key bindings that interfere ---
+      -- disable default key bindings that interfere --
       vim.g.go_def_mapping_enabled = 0
     end
   },
@@ -55,7 +57,7 @@ return {
 
   "gennaro-tedesco/nvim-jqx",
 
-  -- Markdown support ---
+  -- Markdown support --
   {
     "preservim/vim-markdown",
     config = function ()
@@ -63,10 +65,10 @@ return {
       vim.g.vim_markdown_conceal = 0
       vim.g.vim_markdown_conceal_code_blocks = 0
 
-      -- folds include the heading ---
+      -- folds include the heading --
       vim.g.vim_markdown_folding_style_pythonic = 1
 
-      -- set indent after list item ---
+      -- set indent after list item --
       vim.g.vim_markdown_new_list_item_indent = 2
     end
   },
@@ -95,13 +97,21 @@ return {
 
   -- === EDITING =============================================================
 
+  -- visible-space navigation --
+  {
+    "ggandor/leap.nvim",
+    config = function ()
+      require("leap").set_default_keymaps()
+    end,
+  },
+
   -- show and navigate full undo tree --
   "mbbill/undotree",
 
   -- more powerful camel/snake-case aware text substitution with :S instead of :s --
   "tpope/vim-abolish",
 
-  -- improved '*' search-under-cursor behaviors ---
+  -- improved '*' search-under-cursor behaviors --
   "haya14busa/vim-asterisk",
 
   -- provides filetype-aware code commenting --
@@ -110,7 +120,7 @@ return {
   -- allows renames etc. on a buffer and its file --
   "tpope/vim-eunuch",
 
-  -- highlight individual lines ---
+  -- highlight individual lines --
   "airblade/vim-highline",
 
   -- store dynamically updated session files --
@@ -118,9 +128,6 @@ return {
 
   -- repeat plugin actions with '.' command --
   "tpope/vim-repeat",
-
-  -- horizontal find with 2-letters --
-  "justinmk/vim-sneak",
 
   -- write better buffer persistance (view) files --
   "zhimsel/vim-stay",
@@ -133,8 +140,5 @@ return {
     "Julian/vim-textobj-variable-segment",
     dependencies = { "kana/vim-textobj-user" },
   },
-
-  -- handy bracket mappings like ']q' for :cnext --
-  "tpope/vim-unimpaired",
 
 }

@@ -53,9 +53,9 @@ return {
       {
         -- parameters for a pytest test-method
         s("par",
-          fmt("@pytest.mark.parametrize(\n    \"{}\",\n    (\n"
+          fmt("@pytest.mark.parametrize(\n    \"{}\",\n    [\n"
               ..  "        # -DELETEME--------------------------------------------------"
-              ..  "-------------\n        (),\n    )\n)",
+              ..  "-------------\n        (),\n    ]\n)",
               { i( 1, "params") }
           )
         ),
@@ -70,6 +70,9 @@ return {
         -- s("prf",
         --   fmt("print(f\"{} == {{{}}}\")", { i( 1, "value"), rep(1) })
         -- ),
+
+        -- # pyright: ingore[reportGeneralTypeIssues]
+        s("pri", { t({" # pyright: ignore[reportGeneralTypeIssues]"}) }),
 
         -- raise NotImplementedError
         s("rni", { t({"raise NotImplementedError"}) }),

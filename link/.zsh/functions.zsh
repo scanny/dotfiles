@@ -1,3 +1,13 @@
+# ------------------------------------------------------------------------------------
+# glra() -- git-log-recent-all(branches)
+# ------------------------------------------------------------------------------------
+# Single-line graphical log including all local branches and their corresponding
+# upstream branches, when present.
+# ------------------------------------------------------------------------------------
+glra () {
+    git lawg -42 $(git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads)
+}
+
 # -------------------------------------------------------------------
 # spectrum() -- show available colors
 # -------------------------------------------------------------------
