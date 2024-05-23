@@ -63,6 +63,11 @@ M.on_attach = function(client, bufnr)
   if client.name == 'lua_ls' then
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
   end
+
+  -- work around pyright lacking formatting support --
+  if client.name == 'pyright' then
+    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
+  end
 end
 
 return M

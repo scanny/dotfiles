@@ -8,10 +8,11 @@
 # --- This is the OS X PATH --------------------------------
 if is_mac; then
     # --- most of PATH is set by /etc/zprofile, but we need our own order ---
-    PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    # PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     PATH="/opt/X11/bin:$PATH"
-    PATH="/usr/local/opt/python/libexec/bin:$PATH"
-    PATH="$PATH:$HOME/go/bin"
+    # PATH="/usr/local/opt/python/libexec/bin:$PATH"
+    # PATH="$PATH:$HOME/go/bin"
     PATH="$PATH:$HOME/.cargo/bin"
     export PATH
 fi

@@ -156,3 +156,12 @@ givedef() {
 # pg_stop {
 #   /usr/local/bin/pg_ctl -D /usr/local/var/postgres stop -s -m fast
 # }
+
+
+# -------------------------------------------------------------------
+# load fzf-git.sh functions
+#
+# Enables using `fzf` to find Git hashes, branches, etc. using
+# keyboard shortcuts.
+# -------------------------------------------------------------------
+source ~/.zsh/fzf-git.sh/fzf-git.sh

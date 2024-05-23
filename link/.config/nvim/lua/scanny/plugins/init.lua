@@ -27,15 +27,15 @@ return {
   -- === DEBUG ADAPTER PROTOCOL (DAP) SUPPORT ================================
 
   -- DAP support for neovim --
-  {
-    'mfussenegger/nvim-dap',
-    dependencies = {
-      'theHamsta/nvim-dap-virtual-text',
-      'nvim-telescope/telescope-dap.nvim',
-    }
-  },
-  "mfussenegger/nvim-dap-python",
-  {"rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },
+  -- {
+  --   'mfussenegger/nvim-dap',
+  --   dependencies = {
+  --     'theHamsta/nvim-dap-virtual-text',
+  --     'nvim-telescope/telescope-dap.nvim',
+  --   }
+  -- },
+  -- "mfussenegger/nvim-dap-python",
+  -- {"rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },
 
 
   -- === LANGUAGE SUPPORT ====================================================
@@ -58,20 +58,20 @@ return {
   "gennaro-tedesco/nvim-jqx",
 
   -- Markdown support --
-  {
-    "preservim/vim-markdown",
-    config = function ()
-      -- enable conceal of inline formatting characters --
-      vim.g.vim_markdown_conceal = 0
-      vim.g.vim_markdown_conceal_code_blocks = 0
+  -- {
+  --   "preservim/vim-markdown",
+  --   config = function ()
+  --     -- enable conceal of inline formatting characters --
+  --     vim.g.vim_markdown_conceal = 0
+  --     vim.g.vim_markdown_conceal_code_blocks = 0
 
-      -- folds include the heading --
-      vim.g.vim_markdown_folding_style_pythonic = 1
+  --     -- folds include the heading --
+  --     vim.g.vim_markdown_folding_style_pythonic = 1
 
-      -- set indent after list item --
-      vim.g.vim_markdown_new_list_item_indent = 2
-    end
-  },
+  --     -- set indent after list item --
+  --     vim.g.vim_markdown_new_list_item_indent = 2
+  --   end
+  -- },
 
   -- PYTHON --------------------------------
 

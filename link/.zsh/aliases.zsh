@@ -6,10 +6,10 @@
 if is_mac; then
     # set iTerm2 cursor back to vertical bar
     alias curs='echo -e -n "\033]50;CursorShape=1\007"'
-    alias l='/usr/local/bin/gls -la --color --group-directories-first'
-    alias lh='/usr/local/bin/gls -dl --color --group-directories-first .*'
-    alias ll='/usr/local/bin/gls -l --color --group-directories-first'
-    alias lla='/usr/local/bin/gls -la --color --group-directories-first'
+    alias l='gls -la --color --group-directories-first'
+    alias lh='gls -dl --color --group-directories-first .*'
+    alias ll='gls -l --color --group-directories-first'
+    alias lla='gls -la --color --group-directories-first'
     alias vim='nvim'
 else
     alias l='ls -la --color --group-directories-first'
@@ -70,7 +70,7 @@ alias gco='git checkout'
 alias gco-='git checkout -'
 alias gcod='git checkout develop'
 alias gcof='git checkout fixit'
-alias gcom='git checkout master'
+alias gcom='git checkout main'
 alias gcoo='git checkout --ours .'
 alias gcooa='git checkout --ours . && git add --all'
 alias gcos='git checkout spike'

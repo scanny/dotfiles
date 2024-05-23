@@ -3,7 +3,7 @@ return {
   -- branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    'nvim-telescope/telescope-dap.nvim',
+    -- 'nvim-telescope/telescope-dap.nvim',
     'nvim-telescope/telescope-live-grep-args.nvim',
     "nvim-tree/nvim-web-devicons",
   },
@@ -141,7 +141,7 @@ return {
 
     -- LOAD EXTENSIONS ---------------------
 
-    telescope.load_extension("dap")
+    -- telescope.load_extension("dap")
     telescope.load_extension("live_grep_args")
 
 

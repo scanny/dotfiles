@@ -1,6 +1,7 @@
 return {
   {
     "ellisonleao/gruvbox.nvim",
+    lazy = false,
     priority = 1000,  -- make sure to load this before all the other start plugins
 
     config = function()
@@ -19,19 +20,21 @@ return {
         overrides = {},
         palette_overrides = {},
         strikethrough = true,
+        terminal_colors = true,
         transparent_mode = false,
         undercurl = true,
         underline = true,
       })
 
       -- select dark or light based on time-of-day --
-      vim.cmd [[
-        if strftime("%H") > 6 && strftime("%H") < 15
-          set background=light
-        else
-          set background=dark
-        endif
-      ]]
+      vim.cmd [[ set background=dark ]]
+      -- vim.cmd [[
+      --   if strftime("%H") > 6 && strftime("%H") < 14
+      --     set background=light
+      --   else
+      --     set background=dark
+      --   endif
+      -- ]]
 
       -- load the colorscheme --
       vim.cmd([[colorscheme gruvbox]])

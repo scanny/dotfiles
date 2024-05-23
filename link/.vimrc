@@ -584,7 +584,8 @@ set fillchars+=stl:\ ,stlnc:\
 set formatoptions=cnoqrt1
 
 " gfn - choose display font and size
-set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+set guifont=SauceCodePro\ Nerd\ Font:h13
+" set guifont=Source\ Code\ Pro\ for\ Powerline:h13
 " set guifont=Source\ Code\ Pro\ for\ Powerline\ Light:h12
 " set guifont=Source\ Code\ Pro:h13
 

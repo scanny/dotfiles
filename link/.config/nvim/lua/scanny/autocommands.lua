@@ -139,7 +139,7 @@ vim.api.nvim_create_autocmd(
       -- folding settings --
       winset(0, "foldexpr", "nvim_treesitter#foldexpr()")
       winset(0, "foldmethod", "expr")
-      winset(0, "foldnestmax", 2)
+      winset(0, "foldnestmax", 6)
       -- formatting - turn off formatting comments with `gq`, not sure why --
       vim.cmd("setl fo-=q")
       -- wrap long lines --

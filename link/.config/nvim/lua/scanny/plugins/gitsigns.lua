@@ -3,8 +3,8 @@
 
 return {
   "lewis6991/gitsigns.nvim",
-  -- enabled = false,
-  enabled = true,
+  enabled = false,
+  -- enabled = true,
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     signs = {

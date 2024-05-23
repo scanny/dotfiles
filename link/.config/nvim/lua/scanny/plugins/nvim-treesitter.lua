@@ -25,6 +25,7 @@ return {
         "yaml",
         "xml",
       },
+      modules = {},
       -- List of parsers to ignore installing --
       ignore_install = { "markdown" },
       sync_install = false,

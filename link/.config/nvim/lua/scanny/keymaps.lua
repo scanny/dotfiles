@@ -78,7 +78,7 @@ keymap(
   opts
 )
 
--- ,op - open 'plugins/' folder (lazy.nvim plugins folder) ---
+-- ,op - open vim plugins folder (.config/nvim/nvim/lasy) ---
 keymap(
   "n",
   "<leader>op",
@@ -86,11 +86,11 @@ keymap(
   opts
 )
 
--- ,ov - open vim plugins folder (.local/share/nvim/lasy) ---
+-- ,ov - open vim configuration folder (.config/nvim/nvim/lasy) ---
 keymap(
   "n",
   "<leader>ov",
-  ":vsplit " .. vim.fn.stdpath("data") .. "/lazy<CR><C-W>H",
+  ":vsplit " .. vim.fn.stdpath("config") .. "/lua/scanny<CR><C-W>H",
   opts
 )
 

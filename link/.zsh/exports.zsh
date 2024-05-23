@@ -18,7 +18,46 @@ export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 fpath=(~/.zsh $fpath)
 
 # CDPATH allows quick directory changes
-export CDPATH=~/Dropbox:~/Dropbox/src
+export CDPATH=.:~/Dropbox:~/Dropbox/src
+
+
+# --------------------------------------------------------------------
+# bat config
+# --------------------------------------------------------------------
+
+export BAT_THEME=gruvbox-dark
+
+# --------------------------------------------------------------------
+# fzf config
+# --------------------------------------------------------------------
+
+# -- Use fd instead of find to find paths --
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+
+# --------------------------------------------------------------------
+# Homebrew bits
+# --------------------------------------------------------------------
+
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 
 
 # --------------------------------------------------------------------
@@ -55,9 +94,10 @@ export GOPATH=$HOME/go
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Dropbox/src
+export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python
 source virtualenvwrapper.sh
 
-# --- I'll take care of the venv indicator in the prompt myself (so I can color it) ---
+# -- I'll take care of the venv indicator in the prompt myself (so I can color it) --
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 
@@ -97,4 +137,5 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep
 # --------------------------------------------------------------------
 # Wouldn't strictly be required but allows for multiple named AWS profile and for
 # whatever reason, Sense uses a named profile, not the [default] one.
-export AWS_PROFILE=sense
+# --------------------------------------------------------------------
+# export AWS_PROFILE=sense

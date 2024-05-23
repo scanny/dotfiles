@@ -1,6 +1,7 @@
 -- language providers --
 vim.g.python3_host_prog = "/Users/scanny/.virtualenvs/nvim/bin/python3"
-vim.g.ruby_host_prog = "/usr/local/lib/ruby/gems/3.2.0/bin/neovim-ruby-host"
+-- vim.g.ruby_host_prog = "/usr/local/lib/ruby/gems/3.2.0/bin/neovim-ruby-host"
+vim.g.ruby_host_prog = "/opt/homebrew/Cellar/gem-neovim/0.9.1/bin/neovim-ruby-host"
 -- don't try to load a Perl provider --
 vim.g.loaded_perl_provider = 0
 
@@ -22,7 +23,7 @@ require 'scanny.autocommands'
 
 require 'scanny.lazy'
 
-require 'scanny.dap-config'
+-- require 'scanny.dap-config'
 require 'scanny.lsp'
 require 'scanny.keymaps'       -- keymaps last to override any set in plugins
 require 'scanny.globals'       -- load a few Lua globals serving as plugin dev utils

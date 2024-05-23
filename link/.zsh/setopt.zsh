@@ -129,3 +129,10 @@ fi
 
 # perform implicit tees or cats when multiple redirections are attempted
 # setopt multios
+
+
+# ------------------------------------------------------------------------------
+# disable CTRL-S freezes terminal (interferes with fzf-git.sh)
+# ------------------------------------------------------------------------------
+
+stty -ixon
