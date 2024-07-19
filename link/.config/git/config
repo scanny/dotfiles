@@ -4,6 +4,9 @@
 # vim: ft=gitconfig
 #
 
+[advice]
+    skippedCherryPics = false
+
 [alias]
     dump = cat-file -p
     type = cat-file -t
@@ -16,7 +19,7 @@
     autocrlf = input
     safecrlf = true
     editor = nvim
-	pager = sed 's/\t/    /g' | less
+    pager = sed 's/\t/    /g' | less
 
 [credential]
     helper = osxkeychain
@@ -24,36 +27,43 @@
 [diff]
     mnemonicprefix = true
     tool = vimdiff
-	algorithm = patience
+    algorithm = patience
 
 [difftool]
     prompt = false
 
 [filter "media"]
-	required = true
-	clean  = git-media-clean %f
-	smudge = git-media-smudge %f
+    required = true
+    clean  = git-media-clean %f
+    smudge = git-media-smudge %f
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 
 [include]
     path = config-local
 
+[init]
+    defaultBranch = main
+
 [pager]
-	stash = false
+    stash = false
 
 [push]
     default = upstream
 
-[user]
-	name = Steve Canny
-	email = stcanny@gmail.com
+[rebase]
+    updateRefs = true
+
+[rerere]
+    enabled = true
 
 [url "git@github.com:"]
     insteadOf = https://github.com/
-[init]
-	defaultBranch = main
+
+[user]
+    name = Steve Canny
+    email = stcanny@gmail.com
