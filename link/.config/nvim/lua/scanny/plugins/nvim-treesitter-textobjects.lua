@@ -1,13 +1,15 @@
 return {
   "nvim-treesitter/nvim-treesitter-textobjects",
   dependencies = "nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPre", "BufNewFile" },
+  lazy = true,
+  -- event = { "BufReadPre", "BufNewFile" },
 
   config = function()
     local treesitter = require("nvim-treesitter.configs")
 
     -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
+    ---@diagnostic disable-next-line: missing-fields
+    treesitter.setup({
 
       textobjects = {
 
@@ -23,11 +25,12 @@ return {
           enable = true,
           set_jumps = true,
           goto_next_start = {
-            ["]f"] = "@function.outer.start",
+            -- ["]f"] = "@function.outer.start",
+            ["]f"] = "@function.inner",
             ["]]"] = { query = "@class.outer", desc = "Next class start" },
           },
           goto_previous_start = {
-            ["[f"] = "@function.outer.start",
+            ["[f"] = "@function.outer",
             ["[["] = "@class.outer",
           },
         },
@@ -41,7 +44,7 @@ return {
 
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
-            ["af"] = "@function.outer.start",
+            ["af"] = "@function.outer",
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",
             -- You can optionally set descriptions to the mappings (used in the desc
@@ -70,7 +73,7 @@ return {
           -- mapping query_strings to modes.
           selection_modes = {
             ['@parameter.outer'] = 'v',
-            ['@function.outer.start'] = 'v',
+            ['@function.outer'] = 'v',
             ['@class.outer'] = 'V',
           },
 
@@ -90,10 +93,10 @@ return {
         swap = {
           enable = true,
           swap_previous = {
-            ["<leader>su"] = "@function.outer.start",
+            ["<leader>su"] = "@function.outer",
           },
           swap_next = {
-            ["<leader>sd"] = "@function.outer.start",
+            ["<leader>sd"] = "@function.outer",
           },
         },
       },
@@ -111,10 +114,10 @@ return {
    -- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
 
    -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-   vim.keymap.set({ "n", "x"      }, "f", ts_repeat_move.builtin_f)
-   vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
-   vim.keymap.set({ "n", "x",     }, "t", ts_repeat_move.builtin_t)
-   vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+   vim.keymap.set({ "n", "x"      }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
+   vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
+   vim.keymap.set({ "n", "x",     }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
+   vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
 
   end,
 

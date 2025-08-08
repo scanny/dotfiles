@@ -26,7 +26,7 @@ return {
         --
         disable_in_replace_mode = true,
         -- disable when insert after visual block mode
-        disable_in_visualblock = false,
+        disable_in_visualblock = true,
         -- trigger abbreviation
         enable_abbr = false,
         -- add bracket pairs after quote
