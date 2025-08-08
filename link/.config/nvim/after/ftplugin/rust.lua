@@ -4,7 +4,7 @@ vim.opt_local.scrolloff = 3
 -- wrap comments at 98 so they can be commented out without a lint error. Code that breaks early
 -- will be reformatted to 100 on save so isn't a problem.
 vim.opt_local.textwidth = 98
-vim.opt_local.winwidth = 110
+vim.opt_local.winwidth = 108
 vim.opt_local.wrap = false
 
 -- indent --
@@ -16,14 +16,9 @@ vim.opt_local.tabstop = 4
 -- folding settings --
 vim.opt.foldlevelstart = 0  -- collapse all folds in new window --
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.wo.foldmethod = "expr"
-vim.wo.foldlevel = 0
-vim.opt_local.foldnestmax = 2
+vim.opt_local.foldlevel = 0
+vim.opt_local.foldmethod = "expr"
+vim.opt_local.foldnestmax = 3
 
--- set leap.nvim highlight color to black-on-white for visibility --
-vim.api.nvim_set_hl(
-  0,
-  'LeapLabelPrimary',
-  -- {fg = 'black', bg = 'white', bold = true, nocombine = true },
-  {fg = 'white', bg = 'black', bold = true, nocombine = true }
-)
+-- formatoptions - Don't add comment prefix on (o)pen a line below --
+vim.opt_local.formatoptions:remove("o")
