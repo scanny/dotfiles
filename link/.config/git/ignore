@@ -19,10 +19,12 @@ doc/tags
 
 .pytest_cache/
 .python-version
-Session.vim
-_scratch/
 tags
 /tmp
+
+# -- scanny convention files --
+Session.vim
+_scratch/
 
 # Thumbnails
 ._*
@@ -50,3 +52,5 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+**/.claude/settings.local.json
