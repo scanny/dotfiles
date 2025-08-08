@@ -3,6 +3,9 @@ local set = vim.opt
 -- ar - automatically re-read an externally-changed file --
 set.autoread = true
 
+-- cb - copy to and paste from system clipboard --
+set.clipboard = "unnamedplus"
+
 -- cc - place line-width indicator in column 89 (one past wrap limit)
 set.colorcolumn = "89"
 
@@ -88,7 +91,8 @@ set.listchars = {
 set.mouse = "chinv"
 
 -- mouse point changes with mode --
-set.mouseshape = "n:arrow,i:beam"
+-- sc: not a neovim option so far so commented out --
+-- set.mouseshape = "n:arrow,i:beam"
 
 -- nu - set line numbering on --
 set.number = true

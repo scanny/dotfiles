@@ -22,6 +22,11 @@ config.freetype_render_target = "VerticalLcd"
 
 config.line_height = 1.0
 
+-- KEY BINDINGS ----------------------------------
+config.keys = {
+  {key="0", mods="CTRL", action=wezterm.action.DisableDefaultAssignment},
+}
+
 -- WINDOW ----------------------------------------
 config.use_fancy_tab_bar = true
 -- config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
