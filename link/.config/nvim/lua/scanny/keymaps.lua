@@ -27,19 +27,6 @@ vim.cmd([[
     map <F5> :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
 ]])
 
--- DAP key mappings
-vim.keymap.set("n", "<F1>", ":lua require'dap-python'.test_method()<CR>")
-vim.keymap.set("n", "<leader>di", ":lua require'dap'.step_into()<CR>")
-vim.keymap.set("n", "<leader>do", ":lua require'dap'.step_over()<CR>")
-vim.keymap.set("n", "<leader>du", ":lua require'dap'.step_out()<CR>")
-vim.keymap.set("n", "<leader>dc", ":lua require'dap'.continue()<CR>")
-vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>")
-vim.keymap.set("n", "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
-vim.keymap.set("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
-vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>")
-vim.keymap.set("n", '<leader>dv', ":lua require'dap.ui.widgets'.hover()<CR>")
--- vim.keymap.set("n", '<leader>df', ":Telescope dap frames<CR>")
-
 
 -- === LEADER COMMANDS =============================================== {{{
 
@@ -65,7 +52,7 @@ keymap("n", "<leader>gs", ":Git<CR>", opts)
 keymap("n", "<leader>l", ":set list!<CR>", opts)
 
 -- ,ob - open _scratch/blank.rst in split below, stay in current window ---
-keymap("n", "<leader>ob", ":split _scratch/blank.rst<CR><C-w>k", opts)
+keymap("n", "<leader>ob", ":split _scratch/blank.md<CR><C-w>k", opts)
 
 -- ,od - open 'TODO.rst' ---
 keymap("n", "<leader>od", ":vsplit _scratch/TODO.md<CR><C-w>L", opts)
@@ -94,6 +81,14 @@ keymap(
   opts
 )
 
+-- ,ow - open WezTerm configuration ---
+keymap(
+  "n",
+  "<leader>ow",
+  ":vsplit " .. vim.fn.expand("$HOME/.config/wezterm/wezterm.lua") .. "<CR><C-W>H",
+  opts
+)
+
 -- ,oz - open zsh config folder (~/.zsh) ---
 keymap(
   "n",
@@ -111,13 +106,25 @@ keymap("n", "<leader>P", "\"*P", opts)
 -- ,q - hardwrap current paragraph (like Ctrl-Q) ---
 keymap("n", "<leader>q", "gqip", opts)
 
+-- ,rf - refold current buffer and center in vertical space ---
+vim.keymap.set('n', '<leader>rf', function()
+  vim.cmd('edit')
+  vim.defer_fn(function()
+    vim.cmd('normal! zx')
+  end, 200) -- delay in milliseconds
+  vim.defer_fn(function()
+    vim.cmd('normal! zz')
+  end, 300) -- delay in milliseconds
+end)
+
 -- ,rl - reload current buffer ---
 vim.keymap.set(
   "n",
   "<leader>rl",
   function ()
     local bufnr = vim.api.nvim_get_current_buf()
-    local is_modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+    local is_modified = vim.bo[0].modified
+    -- Deprecated: local is_modified = vim.api.nvim_buf_get_option(bufnr, "modified")
 
     -- short-circuit if the buffer has unsaved-changes --
     if is_modified then

@@ -1,7 +1,6 @@
 -- language providers --
 vim.g.python3_host_prog = "/Users/scanny/.virtualenvs/nvim/bin/python3"
--- vim.g.ruby_host_prog = "/usr/local/lib/ruby/gems/3.2.0/bin/neovim-ruby-host"
-vim.g.ruby_host_prog = "/opt/homebrew/Cellar/gem-neovim/0.9.1/bin/neovim-ruby-host"
+vim.g.ruby_host_prog = "/opt/homebrew/Cellar/gem-neovim/0.10.0/bin/neovim-ruby-host"
 -- don't try to load a Perl provider --
 vim.g.loaded_perl_provider = 0
 
@@ -11,12 +10,12 @@ vim.g.loaded_matchparen = 1
 -- specify leader before loading plugins so plugin mappings use right key --
 vim.g.mapleader = ","
 
--- Black runs in Python-provider (nvim virtualenv) --
-vim.g.black_use_virtualenv = 0
-
 -- this only works when set early -- no automatic \v added to :s/ ---
 vim.g.LoupeVeryMagic = 0
 
+-- NEEDED when running --MAIN brew install --
+---@diagnostic disable-next-line duplicate-set-field
+vim.deprecate = function() end
 
 require 'scanny.options'
 require 'scanny.autocommands'
@@ -54,7 +53,7 @@ function! MakeCurrentBufferRunModule()
 endfunc
 nnoremap <silent> <leader>R :call MakeCurrentBufferRunModule()<CR>
 
-" r - toggle relative line numbers
+" ,rt - toggle relative line numbers
 function! ToggleRelativeNumber()
   if (&relativenumber == 1)
     set number
@@ -63,7 +62,7 @@ function! ToggleRelativeNumber()
     set relativenumber
   endif
 endfunc
-nnoremap <leader>r :call ToggleRelativeNumber()<CR>
+nnoremap <leader>rt :call ToggleRelativeNumber()<CR>
 
 " T - set current (test) module to run on ,t
 function! MakeCurrentBufferTestModule()
