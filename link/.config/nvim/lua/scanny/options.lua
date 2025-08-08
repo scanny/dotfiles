@@ -159,6 +159,9 @@ set.wildmode = "longest:full,full"
 -- wbr - show filename at top of each window, right justified with saved status --
 set.winbar="%=%m %f"
 
+-- give floating windows rounded borders --
+vim.o.winborder = "rounded"
+
 -- wh - make current window as tall as possible --
 set.winheight = 199
 

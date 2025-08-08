@@ -1,5 +1,7 @@
 -- Configure the built-in `ruff` LSP server.
-require('lspconfig').ruff.setup({
+return {
+  cmd = { 'ruff', 'server', '--preview' },
+  filetypes = { 'python' },
   init_options = {
     -- Ruff language server settings go here
     settings = {
@@ -43,4 +45,4 @@ require('lspconfig').ruff.setup({
       },
     }
   }
-})
+}

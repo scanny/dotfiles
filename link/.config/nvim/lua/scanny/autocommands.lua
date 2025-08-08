@@ -1,6 +1,17 @@
 
 local group
 
+-- Auto-command to customize chat buffer behavior
+group = vim.api.nvim_create_augroup("CopilotChatSettings", {clear = true})
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = 'copilot-*',
+  callback = function()
+    vim.opt.foldlevel = 2  -- don't collapse folds in new window --
+    vim.opt_local.conceallevel = 0
+  end,
+  group = group,
+})
+
 -- FocusLost - automatically save all buffers after tabbing away from vim --
 group = vim.api.nvim_create_augroup("OnLoseFocus", {clear = true})
 vim.api.nvim_create_autocmd("FocusLost", { command = ":silent wall", group = group })

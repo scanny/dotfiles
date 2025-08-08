@@ -20,6 +20,11 @@ return {
   "lukas-reineke/cmp-under-comparator",
 
 
+  -- ==== LANGUAGE SERVER PROTOCOL (LSP) =====================================
+
+  "neovim/nvim-lspconfig", -- enable LSP cofiguration library and some utils --
+
+
   -- === LOCAL DEVELOPMENT PLUGINS ===========================================
   {
     "scanny/nvim-plugin",
@@ -28,11 +33,6 @@ return {
 
   -- common dependencies --
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
-
-
-  -- ==== LANGUAGE SERVER PROTOCOL (LSP) =====================================
-
-  "neovim/nvim-lspconfig",              -- enable LSP
 
 
   -- === TREESITTER ==========================================================

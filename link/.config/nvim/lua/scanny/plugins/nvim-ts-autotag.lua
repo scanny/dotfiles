@@ -3,7 +3,7 @@
 
 return {
   "windwp/nvim-ts-autotag",
-  enabled = true,
+  enabled = false,
   dependencies = "nvim-treesitter/nvim-treesitter",
   -- config = true,
   -- config = function ()

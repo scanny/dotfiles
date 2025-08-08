@@ -23,7 +23,7 @@ require 'scanny.autocommands'
 require 'scanny.lazy'
 
 -- require 'scanny.dap-config'
-require 'scanny.lsp'
+-- LSP config is in after/plugin/lsp.lua
 require 'scanny.keymaps'       -- keymaps last to override any set in plugins
 require 'scanny.globals'       -- load a few Lua globals serving as plugin dev utils
 
