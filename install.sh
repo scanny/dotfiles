@@ -11,7 +11,6 @@ function establish_symlink {
 # --- ensure `~/.config` directory exists ---
 mkdir -p ~/.config
 
-establish_symlink ~/.config/flake8  ~/.dotfiles/link/.config/flake8
 establish_symlink ~/.config/git     ~/.dotfiles/link/.config/git
 establish_symlink ~/.config/nvim    ~/.dotfiles/link/.config/nvim
 establish_symlink ~/.dircolors      ~/.dotfiles/link/.dircolors
