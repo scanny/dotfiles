@@ -5,7 +5,7 @@
 # upstream branches, when present.
 # ------------------------------------------------------------------------------------
 glra () {
-    git lawg -42 $(git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads)
+    git lawg -38 $(git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads)
 }
 
 # -------------------------------------------------------------------
@@ -165,3 +165,37 @@ givedef() {
 # keyboard shortcuts.
 # -------------------------------------------------------------------
 source ~/.zsh/fzf-git.sh/fzf-git.sh
+
+
+# -------------------------------------------------------------------
+# Rust utility functions
+# -------------------------------------------------------------------
+
+# -- cargo watch install - install current project so it is available from the
+# -- command-line. Usage: `cwi`
+function cwi() {
+    cargo watch -x "install --path ."
+}
+
+# -- cargo watch example - usage `cwe xp_file_name` --
+function cwe() {
+    cargo watch -q -c -x "run -q --example '$1'"
+}
+
+# -- cargo watch run - usage `cwr xp_file_name` --
+function cwr() {
+    cargo watch -q -c -x "run -q --example '$1'"
+}
+
+# -- cargo watch test
+# -- Usage `cwt test_my_fn` OR
+# --       `cwt test_file_name test_my_fn`
+function cwt() {
+    if [[ $# -eq 1 ]]; then
+        cargo watch -q -c -x "test '$1' -- --nocapture"
+    elif [[ $# -eq 2 ]]; then
+        cargo watch -q -c -x "test --test '$1' '$2' -- --nocapture"
+    else
+        cargo watch -q -c -x "test -- --nocapture"
+    fi
+}

@@ -28,8 +28,9 @@ source ~/.zsh/zsh_hooks.zsh
 
 eval "$(fzf --zsh)"
 
-# -- pyenv --
-# export PYENV_ROOT=$HOME/.pyenv
-# export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-# eval "$(pyenv init -)"
-# pyenv virtualenvwrapper_lazy
+# -- redefining `cd` turns out to be a pain when just using cd normally --
+# eval "$(zoxide init --cmd cd zsh)"
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+zstyle ':completion:*' menu select

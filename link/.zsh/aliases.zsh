@@ -68,7 +68,7 @@ alias gcl='git config --list'
 alias gcm='cat $(git rev-parse --show-toplevel)/.git/rebase-merge/message'
 alias gco='git checkout'
 alias gco-='git checkout -'
-alias gcod='git checkout develop'
+alias gcod='git checkout dev'
 alias gcof='git checkout fixit'
 alias gcom='git checkout main'
 alias gcoo='git checkout --ours .'
@@ -87,10 +87,10 @@ alias gH='git lawg -1'
 
 gl() { git lawg $@ | less -EFXRS }
 alias gla='gl --all'
-# -- git log "recent", 42 is adjustable for window size --
-alias glr='git lawg -42'
+# -- git log "recent", 40 is adjustable for window size --
+alias glr='git lawg -40'
 # -- see glra() function definition for new and better implementation --
-# alias glra='git lawg -42 --all'
+# alias glra='git lawg -40 --all'
 alias glrf='glr fixit'
 alias glrs='glr spike'
 
@@ -107,6 +107,7 @@ alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grbo='git rebase --onto'
+alias grbm='git rebase main'
 alias grbs='git rebase --skip'
 alias grs='git restore --staged'
 alias grsh='git reset --hard'
@@ -126,16 +127,28 @@ alias gpip='PIP_REQUIRE_VIRTUALENV="" pip'
 alias n='next'
 alias oz="vim ~/.zshrc"
 alias p='prev'
+
+# -- run postgresql --
+alias pg='LC_ALL="C" /opt/homebrew/opt/postgresql@16/bin/postgres -D /opt/homebrew/var/postgresql@16'
+
 alias po='popd'
 alias pt='py.test'
 alias pu='pushd'
 alias rm='rm -i'
 alias sz="source ~/.zshrc"
-alias t='make clean && ruff . && py.test && behave --stop'
+alias t='make clean && ruff check && py.test && behave --stop'
 alias tw='make clean && ruff . && py.test && behave --stop --tags=-wip'
+
+alias ve=source\ .venv/bin/activate
+
 alias view='nvim -R'
 # -- V-cs-jump M-erge --
-alias vm=vim\ -c\ 'VcsJump\ merge'
+# alias vm=vim\ -c\ 'VcsJump\ merge'
+alias vm='~/.local/share/nvim/lazy/vcs-jump/bin/vcs-jump merge'
+
+# -- zoxide --------------------------
+alias z=__zoxide_z
+alias zi=__zoxide_zi
 
 # -------------------------------------------------------------------
 # directory information

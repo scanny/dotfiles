@@ -18,7 +18,7 @@ export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 fpath=(~/.zsh $fpath)
 
 # CDPATH allows quick directory changes
-export CDPATH=.:~/Dropbox:~/Dropbox/src
+# export CDPATH=.:~/Dropbox:~/Dropbox/src
 
 
 # --------------------------------------------------------------------
@@ -56,6 +56,7 @@ _fzf_compgen_dir() {
 export HOMEBREW_PREFIX="/opt/homebrew"
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
 export HOMEBREW_REPOSITORY="/opt/homebrew"
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 
@@ -123,13 +124,9 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep
 
 
 # --------------------------------------------------------------------
-# base16-shell configuration
+# rustc configuration
 # --------------------------------------------------------------------
-
-# BASE16_SHELL="$HOME/.config/base16-shell/"
-# [ -n "$PS1" ] && \
-#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#         eval "$("$BASE16_SHELL/profile_helper.sh")"
+export RUSTC_WRAPPER=sccache
 
 
 # --------------------------------------------------------------------
@@ -139,3 +136,9 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep
 # whatever reason, Sense uses a named profile, not the [default] one.
 # --------------------------------------------------------------------
 # export AWS_PROFILE=sense
+
+
+# ------------------------------------------------------------------------------------
+# XDG
+# ------------------------------------------------------------------------------------
+export XDG_CONFIG_HOME=~/.config
