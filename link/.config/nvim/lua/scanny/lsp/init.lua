@@ -35,7 +35,8 @@ vim.diagnostic.config({
   update_in_insert = false,
   underline = true,
   reverse = true,
-  severity_sort = true,
+  -- severity_sort = true,
+  severity_sort = {reverse = true},
   float = {
     border = 'rounded',
     focusable = false,
@@ -46,20 +47,47 @@ vim.diagnostic.config({
     end,
     header = '',
     prefix = '',
-    source = 'always',
+    source = 'if_many',
+    -- source = true,
     style = 'minimal',
   },
 })
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-  vim.lsp.handlers.hover, { border = 'rounded' }
-)
+require('lspconfig').eslint.setup({
+  on_attach = function(client, bufnr)
+    local buf_set_keymap = vim.api.nvim_buf_set_keymap
+    local bufopts = { noremap=true, silent=true }
+    -- ,dh - diagnostics-hide --
+    buf_set_keymap(
+      bufnr, "n", "<leader>dh", "<cmd>lua vim.diagnostic.disable(0)<CR>", bufopts
+    )
+    -- ,dr - LspRestart --
+    buf_set_keymap(bufnr, "n", "<leader>dr", "<cmd>LspRestart<CR>", bufopts)
+    -- ,ds - diagnostics-show --
+    buf_set_keymap(
+      bufnr, "n", "<leader>ds", "<cmd>lua vim.diagnostic.enable(0)<CR>", bufopts
+    )
+    -- -- disable tsserver formatting, use null-ls instead --
+    -- client.resolved_capabilities.document_formatting = false
+    -- client.resolved_capabilities.document_range_formatting = false
+  end,
+})
 
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-  vim.lsp.handlers.signature_help, { border = 'rounded' }
-)
+-- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+--   vim.lsp.handlers.hover, { border = 'rounded' }
+-- )
+
+-- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+--   vim.lsp.handlers.hover, { border = 'rounded' }
+-- )
+
+-- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+--   vim.lsp.handlers.signature_help, { border = 'rounded' }
+-- )
 
 -- ============================================================================
+
+vim.lsp.enable("eslint")
 
 require('scanny.lsp.bashls')
 require('scanny.lsp.gopls')

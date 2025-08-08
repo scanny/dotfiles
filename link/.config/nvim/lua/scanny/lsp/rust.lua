@@ -10,15 +10,16 @@ local on_attach = require('scanny.lsp.config').on_attach
 
 lspconfig.rust_analyzer.setup{
   capabilities = capabilities,
-  cmd = {
-    "rustup", "run", "stable", "rust-analyzer"
-  },
+  -- cmd = {
+  --   "rustup", "run", "stable", "rust-analyzer"
+  -- },
   on_attach = on_attach,
   settings = {
-  --   ['rust-analyzer'] = {
-  --     diagnostics = {
-  --       enable = false;
-  --     }
-  --   }
+    ['rust-analyzer'] = {
+      diagnostics = {
+        -- enable = false;
+        enable = true;
+      }
+    }
   }
 }
