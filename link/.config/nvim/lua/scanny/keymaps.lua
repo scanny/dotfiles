@@ -233,6 +233,12 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("i", "jk", "<Esc>", opts)
 keymap("i", "JK", "<Esc>", opts)
 
+-- special characters --
+keymap("i", "<leader>bc", "∵", opts)
+keymap("i", "<leader>im", "⇒", opts)
+keymap("i", "<leader>la", "λ", opts)
+keymap("i", "<leader>tf", "∴", opts)
+
 -- Ctrl-k is kill (to end of line) in insert mode. Note this overrides insert di-graph
 -- which is Vim built-in mapping of insert-mode Ctrl-k.
 keymap("i", "<C-k>", "<C-\\><C-O>D", opts)

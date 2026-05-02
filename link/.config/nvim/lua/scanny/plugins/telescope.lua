@@ -16,6 +16,21 @@ return {
     telescope.setup {
       defaults = {
 
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          -- custom flags:
+          "--no-ignore",         -- disable .gitignore, etc.
+          "--glob=!*.git/*",     -- but explicitly exclude .git/
+          "--glob=!.venv/*",     -- and virtual environment
+          "--glob=!vite/*",
+        },
+
         layout_strategy = "vertical",
 
         mappings = {

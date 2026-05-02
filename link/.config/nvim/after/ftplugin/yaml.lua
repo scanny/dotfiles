@@ -11,6 +11,6 @@ vim.opt_local.softtabstop = 2
 vim.opt_local.tabstop = 2
 
 -- folding settings --
-vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt_local.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo.foldmethod = "expr"
 vim.opt_local.foldnestmax = 3

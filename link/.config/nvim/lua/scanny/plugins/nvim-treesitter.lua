@@ -1,16 +1,20 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  event = { "BufReadPre", "BufNewFile" },
+  lazy = false,
+  -- event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects"
   },
 
   config = function()
-    local treesitter = require("nvim-treesitter.configs")
+    -- local treesitter = require("nvim-treesitter.config")
+    local treesitter = require("nvim-treesitter")
 
     -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
+    treesitter.setup({
+      -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+      install_dir = vim.fn.stdpath('data') .. '/site',
       -- automatically install "ensure-installed" language parsers --
       auto_install = true,
       ensure_installed = {
@@ -25,6 +29,8 @@ return {
         "lua",
         "python",
         "rst",
+        "terraform",
+        "typst",
         "vim",
         "yaml",
         "xml",
@@ -50,18 +56,19 @@ return {
       },
 
       highlight = {
+        -- enable syntax highlighting
         -- false will disable the whole extension --
         enable = true,
         -- list of languages for which highlighting will be disabled --
         -- disable = { "markdown" },
         disable = {},
         -- true will use vim syntax as well, slower but supports indentation ---
-        additional_vim_regex_highlighting = { "markdown" },
+        additional_vim_regex_highlighting = { "markdown", "python" },
       },
 
       indent = {
         enable = true,
-        disable = {"cucumber", "markdown", "yaml"},
+        disable = {"cucumber", "markdown", "typst", "yaml"},
       },
 
       playground = {
@@ -83,29 +90,6 @@ return {
         },
       },
     })
-
-    -- CUSTOMIZE FOLDING QUERIES -----------------------------------------------
-
-    if require("nvim-treesitter.parsers").has_parser "markdown" then
-      local md_folds_query = "([(section)] @fold (#trim! @fold))"
-      require("vim.treesitter.query").set("markdown", "folds", md_folds_query)
-    end
-
-    if require("nvim-treesitter.parsers").has_parser "python" then
-      -- local python_folds_query = [[
-      --   [(function_definition)(class_definition)] @fold
-      --   [(import_statement)(import_from_statement)]+ @fold
-      -- ]]
-      local python_folds_query = [[
-        [(function_definition)(class_definition)] @fold
-      ]]
-      require("vim.treesitter.query").set("python", "folds", python_folds_query)
-    end
-
-    if require("nvim-treesitter.parsers").has_parser "rust" then
-      local q = "[(mod_item)(function_item)(struct_item)(enum_item)(impl_item)] @fold"
-      require("vim.treesitter.query").set("rust", "folds", q)
-    end
 
   end,
 

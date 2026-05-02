@@ -5,8 +5,8 @@ return {
   init_options = {
     -- Ruff language server settings go here
     settings = {
-      -- configurationPreference = "filesystemFirst",
-      configurationPreference = "editorFirst",
+      -- configurationPreference = "editorFirst",
+      configurationPreference = "filesystemFirst",
       -- do not register server as capable of handling source.fixAll code actions --
       fixAll = false,
       lineLength = 100,
@@ -20,10 +20,10 @@ return {
         enable = true,
         ignore = {
           "COM812",   -- over aggressively insists on trailing commas where not desireable --
-          "F841",     -- unused variable, avoid duplicat by leaving this for `pyright` to pick up --
-          "PT001",    -- wants empty parens on @pytest.fixture where not used (essentially always) --
+          "F841",     -- unused variable, avoid duplicate by leaving this for `pyright` to pick up --
           "PT011",    -- pytest.raises({exc}) too broad, use match param or more specific exception --
           "PT012",    -- pytest.raises() block should contain a single simple statement --
+          "PT013",    -- doesn't like `from pytest import` --
           "SIM117",   -- merge `with` statements for context managers that have same scope --
         },
         preview = true,

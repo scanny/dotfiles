@@ -1,10 +1,21 @@
 --------------------------------------------------------------------------------------
 -- Snippets written in native lua
 
+return {
+  "L3MON4D3/LuaSnip",
+  enabled = true,
+  lazy = true,
+
+  -- follow latest release. Replace <CurrentMajor> by the latest released major (first
+  -- number of latest release)
+  version = "v2.*",
+
+  -- install jsregexp (optional!), but stops checkhealth warning --
+  build = "make install_jsregexp"
+}
+
 -- return {
 --   "L3MON4D3/LuaSnip",
---   enabled = true,
---   lazy = true,
 
 --   config = function ()
 --     local ls = require("luasnip")

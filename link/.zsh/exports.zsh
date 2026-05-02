@@ -34,6 +34,9 @@ export BAT_THEME=gruvbox-dark
 # -- Use fd instead of find to find paths --
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="
+  --preview 'bat --style=numbers --color=always {}'
+"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
@@ -87,19 +90,6 @@ export LC_COLLATE=C
 # --------------------------------------------------------------------
 
 export GOPATH=$HOME/go
-
-
-# --------------------------------------------------------------------
-# virtualenvwrapper configuration
-# --------------------------------------------------------------------
-
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Dropbox/src
-export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python
-source virtualenvwrapper.sh
-
-# -- I'll take care of the venv indicator in the prompt myself (so I can color it) --
-export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 
 # --------------------------------------------------------------------

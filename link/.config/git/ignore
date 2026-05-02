@@ -25,6 +25,8 @@ tags
 # -- scanny convention files --
 Session.vim
 _scratch/
+# -- for when it's a symlink to a Dropbox directory --
+_scratch
 
 # Thumbnails
 ._*

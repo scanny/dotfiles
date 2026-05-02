@@ -25,3 +25,9 @@ vim.opt_local.conceallevel = 0
 
 -- turn off pesky TODO bracket highlighting --
 vim.api.nvim_set_hl(0, "@text.todo", {})
+
+-- custom fold rules --
+vim.treesitter.query.set("markdown", "folds", "([(section)] @fold (#trim! @fold))")
+
+-- explicitly start TreeSitter for Markdown files --
+vim.treesitter.start()

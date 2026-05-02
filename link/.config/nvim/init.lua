@@ -1,8 +1,9 @@
 -- language providers --
-vim.g.python3_host_prog = "/Users/scanny/.virtualenvs/nvim/bin/python3"
-vim.g.ruby_host_prog = "/opt/homebrew/Cellar/gem-neovim/0.10.0/bin/neovim-ruby-host"
--- don't try to load a Perl provider --
+vim.g.python3_host_prog = "/Users/scanny/.local/share/uv/tools/pynvim/bin/python"
+-- don't try to load unneeded providers --
+vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 -- don't highlight matching bracket indefinitely and obscure cursor ---
 vim.g.loaded_matchparen = 1
@@ -80,3 +81,8 @@ xmap <leader>h <Plug>(HighlineToggle)  # highlight selected lines
 nmap <leader>H <Plug>(HighlineClear)
 
 ]])
+
+
+-- -- pull project-wide `ruff` diagnostics into quickfix list --
+-- vim.o.makeprg = "ruff check --output-format=concise ."
+-- vim.o.errorformat = "%f:%l:%c: %m"

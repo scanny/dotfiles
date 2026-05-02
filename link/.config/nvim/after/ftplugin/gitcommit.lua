@@ -11,3 +11,6 @@ vim.opt_local.tabstop = 4
 
 -- "t" - autowrap text using 'textwidth'
 vim.opt_local.formatoptions:append("t")
+
+-- TreeSitter needs to be explicitly started on filetype-by-type basis --
+vim.treesitter.start()

@@ -22,3 +22,14 @@ vim.opt_local.foldnestmax = 3
 
 -- formatoptions - Don't add comment prefix on (o)pen a line below --
 vim.opt_local.formatoptions:remove("o")
+
+-- custom fold rules --
+vim.treesitter.query.set("rust", "folds", [[
+  [
+    (mod_item)
+    (function_item)
+    (struct_item)
+    (enum_item)
+    (impl_item)
+  ] @fold
+]])

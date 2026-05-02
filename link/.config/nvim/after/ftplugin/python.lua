@@ -15,8 +15,8 @@ vim.opt_local.tabstop = 4
 
 -- folding settings --
 vim.opt.foldlevelstart = 0  -- collapse all folds in new window --
-vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.wo.foldmethod = "expr"
+vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo[0][0].foldmethod = "expr"
 vim.wo.foldlevel = 0
 vim.opt_local.foldnestmax = 2
 
@@ -27,3 +27,19 @@ vim.api.nvim_set_hl(
   -- {fg = 'black', bg = 'white', bold = true, nocombine = true },
   {fg = 'white', bg = 'black', bold = true, nocombine = true }
 )
+-- turn off search-highlighting style applied to TODO: comments --
+-- this approach turns it off globally, like for all languages, which might actually be good, but if
+-- so it belongs somewhere global, like in init.lua, not here.
+-- vim.api.nvim_set_hl( 0, 'Todo', { link = "Comment" }) 
+-- vim.cmd("syntax clear pythonTodo")
+
+-- remap `gq` such that it works for formatting paragraphs in multi-line docstrings --
+vim.keymap.set('n', 'gq', "gwip", { noremap = true, silent = true, desc = 'Format Paragraph in Python' })
+
+-- custom fold rules --
+vim.treesitter.query.set("python", "folds", [[
+  [(function_definition)(class_definition)] @fold
+]])
+
+-- explicitly start TreeSitter for Python files --
+vim.treesitter.start()

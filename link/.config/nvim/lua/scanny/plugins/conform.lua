@@ -11,6 +11,8 @@ return {
       json = { "prettier" },
       python = { "ruff_format" },
       rust = { "rustfmt", lsp_format = "fallback" },
+      typescript = { "prettierd", "prettier" },
+      typescriptreact = { "prettierd", "prettier" },
     },
 
     -- set up format-on-save --

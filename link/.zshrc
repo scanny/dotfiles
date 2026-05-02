@@ -33,4 +33,12 @@ eval "$(fzf --zsh)"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
-zstyle ':completion:*' menu select
+# zstyle ':completion:*' menu select
+
+# -- carapace setup --
+# export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+# zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+# source <(carapace _carapace)
+
+# -- uv adds this --
+. "$HOME/.local/bin/env"

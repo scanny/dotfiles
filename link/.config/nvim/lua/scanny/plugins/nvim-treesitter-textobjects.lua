@@ -5,7 +5,7 @@ return {
   -- event = { "BufReadPre", "BufNewFile" },
 
   config = function()
-    local treesitter = require("nvim-treesitter.configs")
+    local treesitter = require("nvim-treesitter.config")
 
     -- configure treesitter
     ---@diagnostic disable-next-line: missing-fields
@@ -103,7 +103,7 @@ return {
 
     })
 
-   local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+   local ts_repeat_move = require "nvim-treesitter-textobjects.repeatable_move"
 
    -- Repeat movement with ; and ,
    vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)

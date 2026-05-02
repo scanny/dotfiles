@@ -12,10 +12,19 @@ vim.opt_local.tabstop = 2
 
 -- folding settings --
 vim.opt.foldlevelstart = 0  -- collapse all folds in new window --
-vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt_local.foldlevel = 0
-vim.opt_local.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo.foldlevel = 0
+vim.wo.foldmethod = "expr"
 vim.opt_local.foldnestmax = 3
 
 -- concealed text like quotes 0=not-hidden, 2=hidden --
 vim.opt_local.conceallevel = 0
+
+-- custom fold rules --
+vim.treesitter.query.set("json", "folds", [[
+  [
+    (pair)
+    (object)
+    (array)
+  ] @fold
+]])

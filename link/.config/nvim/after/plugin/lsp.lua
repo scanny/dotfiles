@@ -1,6 +1,8 @@
 
 -- === GLOBAL LSP SETUP ========================================================
 
+local warn_plus = { min = vim.diagnostic.severity.WARN }
+
 vim.diagnostic.config({
 
   -- configure floating/popup diagnostic windows --
@@ -19,13 +21,16 @@ vim.diagnostic.config({
   },
 
   -- show diagnostics in reading order, not last->first order --
-  reverse = true,
+  -- reverse = true,
 
   -- show errors before warnings --
-  severity_sort = {reverse = true},
+  -- severity_sort = {reverse = true},
+  severity_sort = true,
 
   -- show icons in gutter --
   signs = {
+    -- suppress gutter signs for HINT diagnostics, in particular pyright unused variable --
+    severity = warn_plus,
     text = {
       [vim.diagnostic.severity.ERROR] = "",
       [vim.diagnostic.severity.WARN] = "",
@@ -42,9 +47,7 @@ vim.diagnostic.config({
   virtual_text = {
     -- don't show info diagnostics in virtual text, to avoid unused param warnings on methods
     -- like `.__exit__()` that have prescribed params.
-    severity = {
-      min = vim.diagnostic.severity.WARN,
-    },
+    severity = warn_plus,
     source = false,  -- true places this at front, include at end instead via format --
     format = function(diagnostic)
       return string.format(
@@ -78,14 +81,38 @@ vim.lsp.config('*', {
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, silent = true, desc = 'Hover' })
     vim.keymap.set('n', 'gk', vim.lsp.buf.signature_help, { buffer = bufnr, silent = true, desc = 'Signature Help' })
 
-    -- navigation
-    vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', { buffer = bufnr, silent = true, desc = 'Previous Diagnostic' })
-    vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded", severity = vim.diagnostic.severity.ERROR })<CR>', { buffer = bufnr, silent = true, desc = 'Next Error' })
+    -- navigation ---------------------------------------------------------
+
+    -- ]d - Jump Next --
+    vim.keymap.set(
+      'n',
+      ']d',
+      function()
+        vim.diagnostic.jump({ count = 1, severity = warn_plus, float = true })
+      end,
+      { buffer = bufnr, silent = true, desc = 'Previous Diagnostic' }
+    )
+
+    -- ]d - Jump Prev --
+    vim.keymap.set(
+      'n',
+      '[d',
+      function()
+        vim.diagnostic.jump({ count = -1, severity = warn_plus, float = true })
+      end,
+      { buffer = bufnr, silent = true, desc = 'Previous Diagnostic' }
+    )
+
+    -- ,L - Set Loclist --
     vim.keymap.set('n', '<leader>L', vim.diagnostic.setloclist, { buffer = bufnr, silent = true, desc = 'Set Loclist' })
 
-    -- virtual-text display
+    -- ,dh - Hide Diagnostics --
     buf_set_keymap("n", "<leader>dh", "<cmd>lua vim.diagnostic.disable(0)<CR>", { desc = 'Hide Diagnostics' })
-    buf_set_keymap("n", "<leader>dr", "<cmd>lua vim.lsp.stop_client(vim.lsp.get_clients({ bufnr = 0 })); vim.defer_fn(function() vim.cmd('edit') end, 100)<CR>", { desc = 'Restart LSP' })
+
+    -- ,dr - LspRestart --
+    buf_set_keymap("n", "<leader>dr", "<cmd>LspRestart<CR>", { desc = 'Restart LSP' })
+
+    -- ,ds - Show Diagnostics --
     buf_set_keymap("n", "<leader>ds", "<cmd>lua vim.diagnostic.enable(0)<CR>", { desc = 'Show Diagnostics' })
 
     -- refactoring
@@ -105,3 +132,5 @@ vim.lsp.enable('pyright')
 vim.lsp.enable('ruff')
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('tsserver')
+-- vim.lsp.enable('ty')  -- disabled for now, needs to cook a little more
+vim.lsp.enable('typst')
