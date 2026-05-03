@@ -1,3 +1,7 @@
+
+-- enable new v0.12 UI features --
+require("vim._core.ui2").enable({})
+
 -- language providers --
 vim.g.python3_host_prog = "/Users/scanny/.local/share/uv/tools/pynvim/bin/python"
 -- don't try to load unneeded providers --

@@ -17,27 +17,19 @@ vim.opt.foldlevelstart = 0  -- collapse all folds in new window --
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.wo.foldmethod = "expr"
 vim.wo.foldlevel = 0
-vim.opt_local.foldnestmax = 3
-
--- TreeSitter indentation is all funky for Typst so just use built-in; Note indentation must also be
--- explicitly disabled for "typst" filetype in TreeSitter configuration too.
--- vim.opt.indentexpr = ""
+vim.opt_local.foldnestmax = 6
 
 -- set custom fold rules for typst to override TreeSitter's default queries which fold a bit too
 -- much for my taste.
 vim.treesitter.query.set("typst", "folds", [[
-  ; -- fold set blocks, but only at the tope level, not when nested --
-  (source_file
-    (code
-      [
-        (set)
-        (let)
-        (show)
-      ] @fold))
+  ; -- 1. fold set blocks, but only at the tope level, not when nested --
+  (source_file (code [ (set) (let) (show) ] @fold))
 
-  [
-    (section)
-  ] @fold
+  ; -- 2. Fold all sections --
+  (section) @fold
+
+  ; -- 3. Fold list items ONLY when they are direct children of a section's content --
+  (section (content (item) @fold))
 ]])
 
 -- Available nodes for folding in typst: --
